@@ -1,11 +1,9 @@
-// 타입 정의
 interface Step {
   id: number;
   title: string;
   date: string;
 }
 
-// 배열에 타입 적용
 export const stepData: Step[] = [
   { id: 1, title: "지원서 제출", date: "2.24(월) - 3.5(수)" },
   { id: 2, title: "프리코스 시청", date: "2.24(월) - 3.10(월)" },

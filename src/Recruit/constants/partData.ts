@@ -1,4 +1,3 @@
-// partData.ts
 import Part_1 from "../assets/part_1.svg?react";
 import Part_2 from "../assets/part_2.svg?react";
 import Part_3 from "../assets/part_3.svg?react";

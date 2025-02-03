@@ -14,7 +14,7 @@ const Body = () => {
         <CardSection>
           {skillDataWithIcons.map(({ id, icon: Icon, title, text }) => (
             <SkillCard key={id}>
-              {Icon ? <Icon /> : null}
+              {Icon ? <Icon /> : null} {/*아이콘 있을 때만 렌더링 되도록 */}
               <Text>
                 <Title>{title}</Title>
                 <CardText>{text}</CardText>
