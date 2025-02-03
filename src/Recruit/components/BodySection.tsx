@@ -161,8 +161,12 @@ const Body = () => {
 
         {/* 지원하기 */}
         <ApplyContainer>
-          <Title>지금 바로 지원하세요</Title>
-          <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+          <LineBox bottomBorder />
+          <ApplyBox>
+            <Title>지금 바로 지원하세요</Title>
+            <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+          </ApplyBox>
+          <LineBox topBorder />
         </ApplyContainer>
       </BGC>
     </>
@@ -221,12 +225,10 @@ const Text = styled.div`
 
 const CardText = styled.p`
   color: #fff;
-
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 2.6rem;
   letter-spacing: -0.16px;
 `;
 // 파트
@@ -243,8 +245,8 @@ const PartCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  width: 300px;
-  height: 200px;
+  width: 30rem;
+  height: 20rem;
   flex-shrink: 0;
   border-radius: 10px;
   background: linear-gradient(
@@ -262,7 +264,7 @@ const PartName = styled.p`
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 1.8rem;
   letter-spacing: 0.4px;
   text-align: left;
 `;
@@ -301,12 +303,10 @@ const CircleTitle = styled.p`
   color: #fff;
   text-align: center;
 
-  /* Web/Pretendard/Subtitle2 */
-  font-family: Pretendard;
-  font-size: 30px;
+  font-size: 3rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 40px; /* 133.333% */
+  line-height: 4rem;
 `;
 
 const CircleDate = styled.p`
@@ -314,22 +314,58 @@ const CircleDate = styled.p`
   text-align: center;
   font-feature-settings: "calt" off;
 
-  /* Web/Pretendard/Body4 */
-  font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 32px; /* 177.778% */
+  line-height: 3.2rem;
   letter-spacing: -0.18px;
 `;
 
 // 지원
 const ApplyContainer = styled.div`
   display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+const LineBox = styled.div<{ topBorder?: boolean; bottomBorder?: boolean }>`
+  position: relative;
+  flex: 1;
+  height: 7.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1rem;
+
+  &::before {
+    content: ${({ topBorder }) => (topBorder ? '""' : "none")};
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1rem;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%);
+  }
+
+  &::after {
+    content: ${({ bottomBorder }) => (bottomBorder ? '""' : "none")};
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, #fff 100%);
+  }
+`;
+
+const ApplyBox = styled.div`
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 3rem;
+  width: 25rem;
+  margin: 0 4rem;
 `;
 
 const ApplyBtn = styled.button`
