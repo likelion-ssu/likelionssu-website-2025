@@ -1,7 +1,14 @@
 import styled from "styled-components";
+
 import Skill_1 from "../assets/skill_1.svg?react";
 import Skill_2 from "../assets/skill_2.svg?react";
 import Skill_3 from "../assets/skill_3.svg?react";
+
+import Arrow from "../../common/assets/arrow_down.svg?react";
+import Part_PM from "../assets/part_PM.svg?react";
+import Part_PD from "../assets/Part_PD.svg?react";
+import Part_FE from "../assets/Part_FE.svg?react";
+import Part_BE from "../assets/Part_BE.svg?react";
 
 const Body = () => {
   return (
@@ -48,6 +55,55 @@ const Body = () => {
         {/* 모집 파트 */}
         <BoxContainer>
           <Title>모집 파트</Title>
+          <PartSection>
+            <PartCard>
+              <Arrow style={{ float: "right" }} />
+              <PartBox>
+                <PartName>
+                  PROJECT
+                  <br />
+                  MANAGER
+                </PartName>
+                <Part_PM />
+              </PartBox>
+            </PartCard>
+
+            <PartCard>
+              <Arrow style={{ float: "right" }} />
+              <PartBox>
+                <PartName>
+                  PRODUCT
+                  <br />
+                  DESIGN
+                </PartName>
+                <Part_PD />
+              </PartBox>
+            </PartCard>
+
+            <PartCard>
+              <Arrow style={{ float: "right" }} />
+              <PartBox>
+                <PartName>
+                  FRONTEND
+                  <br />
+                  DEVELOPER
+                </PartName>
+                <Part_FE />
+              </PartBox>
+            </PartCard>
+
+            <PartCard>
+              <Arrow style={{ float: "right" }} />
+              <PartBox>
+                <PartName>
+                  BACKEND
+                  <br />
+                  DEVELOPER
+                </PartName>
+                <Part_BE />
+              </PartBox>
+            </PartCard>
+          </PartSection>
         </BoxContainer>
 
         {/* 로드맵 */}
@@ -73,9 +129,7 @@ const Body = () => {
 export default Body;
 
 const BGC = styled.div`
-  /* background: linear-gradient(180deg, #f3f7fb 61.94%, #d6e3ff 100%); */
   width: 100%;
-  /* height: 100vh; */
   padding: 16rem 0 34rem 0;
 `;
 
@@ -89,7 +143,6 @@ const Title = styled.h1`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  /* text-align: center; */
 `;
 
 // 인재상
@@ -134,7 +187,48 @@ const CardText = styled.p`
   letter-spacing: -0.16px;
 `;
 // 파트
+const PartSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 8rem;
+`;
 
+const PartCard = styled.div`
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 300px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.08) 55.49%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+`;
+const PartName = styled.p`
+  color: #fff;
+  font-feature-settings: "calt" off;
+
+  /* font-family: "SUIT Variable"; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  text-align: left;
+`;
+
+const PartBox = styled.div`
+  display: flex;
+  align-items: end;
+  padding: 0 0.8rem;
+`;
 // 모집 절차
 
 // 지원
