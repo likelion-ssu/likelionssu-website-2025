@@ -10,6 +10,8 @@ import Part_PD from "../assets/Part_PD.svg?react";
 import Part_FE from "../assets/Part_FE.svg?react";
 import Part_BE from "../assets/Part_BE.svg?react";
 
+import Circle from "../assets/Circle.svg?react";
+
 const Body = () => {
   return (
     <>
@@ -114,6 +116,47 @@ const Body = () => {
         {/* 모집 절차 */}
         <BoxContainer>
           <Title>모집 절차</Title>
+          <CircleContainer>
+            <CircleContent>
+              <Circle />
+              <CircleTextContainer>
+                <CircleTitle>지원서 제출</CircleTitle>
+                <CircleDate>2.24(월) - 3.5(수)</CircleDate>
+              </CircleTextContainer>
+            </CircleContent>
+
+            <CircleContent>
+              <Circle />
+              <CircleTextContainer>
+                <CircleTitle>프리코스 시청</CircleTitle>
+                <CircleDate>2.24(월) - 3.10(월)</CircleDate>
+              </CircleTextContainer>
+            </CircleContent>
+
+            <CircleContent>
+              <Circle />
+              <CircleTextContainer>
+                <CircleTitle>서류 결과</CircleTitle>
+                <CircleDate>3.8(토)</CircleDate>
+              </CircleTextContainer>
+            </CircleContent>
+
+            <CircleContent>
+              <Circle />
+              <CircleTextContainer>
+                <CircleTitle>면접 평가</CircleTitle>
+                <CircleDate> 3.10(월) - 3.12(수)</CircleDate>
+              </CircleTextContainer>
+            </CircleContent>
+
+            <CircleContent>
+              <Circle />
+              <CircleTextContainer>
+                <CircleTitle>최종 결과 발표</CircleTitle>
+                <CircleDate>3.14(금)</CircleDate>
+              </CircleTextContainer>
+            </CircleContent>
+          </CircleContainer>
         </BoxContainer>
 
         {/* 지원하기 */}
@@ -230,6 +273,55 @@ const PartBox = styled.div`
   padding: 0 0.8rem;
 `;
 // 모집 절차
+const CircleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 8rem;
+`;
+const CircleContent = styled.div`
+  position: relative;
+`;
+
+const CircleTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.6rem;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const CircleTitle = styled.p`
+  color: #fff;
+  text-align: center;
+
+  /* Web/Pretendard/Subtitle2 */
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px; /* 133.333% */
+`;
+
+const CircleDate = styled.p`
+  color: #fff;
+  text-align: center;
+  font-feature-settings: "calt" off;
+
+  /* Web/Pretendard/Body4 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 177.778% */
+  letter-spacing: -0.18px;
+`;
 
 // 지원
 const ApplyContainer = styled.div`
