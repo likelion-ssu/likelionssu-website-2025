@@ -1,33 +1,42 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import { FallbackProps } from "react-error-boundary";
+import styled from "styled-components";
 
-interface Props {
-  children?: ReactNode;
-}
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  return (
+    <ErrorContainer>
+      <ErrorMessage>error.message: {error?.message || "알 수 없는 오류"}</ErrorMessage>
+      <br />
+      <RetryBtn onClick={resetErrorBoundary}>다시 시도</RetryBtn>
+    </ErrorContainer>
+  );
+};
 
-interface State {
-  hasError: boolean;
-}
+export default ErrorFallback;
 
-class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
-  };
+const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  public static getDerivedStateFromError(_: Error): State {
-    return { hasError: true };
-  }
+  height: 100vh;
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
-  }
+  text-align: center;
+  color: white;
+`;
 
-  public render() {
-    if (this.state.hasError) {
-      return <h1>ERROR</h1>;
-    }
+const ErrorMessage = styled.div`
+  font-size: 2rem;
+`;
 
-    return this.props.children;
-  }
-}
+const RetryBtn = styled.button`
+  padding: 1rem 2.4rem;
+  border: none;
+  border-radius: 30px;
 
-export default ErrorBoundary;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(96deg, #6df5ff -0.2%, #8079b4 96.8%);
+
+  color: white;
+  cursor: pointer;
+`;

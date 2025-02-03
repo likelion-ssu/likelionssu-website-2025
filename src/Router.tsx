@@ -1,7 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
+import { createBrowserRouter } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./common/components/ErrorBoundary";
+import Home from "./Home";
 
-const Home = lazy(() => import("./Home"));
 const About = lazy(() => import("./About"));
 const Recruit = lazy(() => import("./Recruit"));
 const NotFound = lazy(() => import("./common/components/NotFound"));
@@ -10,7 +12,11 @@ const router = createBrowserRouter([
   // main - 승현
   {
     path: "/",
-    element: <Home />
+    element: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Home />
+      </ErrorBoundary>
+    )
   },
 
   // part ?? (와프 나온 후)
@@ -18,7 +24,11 @@ const router = createBrowserRouter([
   // about - 민주
   {
     path: "/about",
-    element: <About />
+    element: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <About />
+      </ErrorBoundary>
+    )
   },
 
   // project ?? (와프 나온 후)
@@ -26,7 +36,11 @@ const router = createBrowserRouter([
   // recruit - 시온
   {
     path: "/recruit",
-    element: <Recruit />
+    element: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Recruit />
+      </ErrorBoundary>
+    )
   },
   {
     path: "*",
