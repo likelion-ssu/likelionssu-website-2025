@@ -1,175 +1,71 @@
 import styled from "styled-components";
 
-import Skill_1 from "../assets/skill_1.svg?react";
-import Skill_2 from "../assets/skill_2.svg?react";
-import Skill_3 from "../assets/skill_3.svg?react";
-
-import Arrow from "../../common/assets/arrow_down.svg?react";
-import Part_PM from "../assets/part_PM.svg?react";
-import Part_PD from "../assets/Part_PD.svg?react";
-import Part_FE from "../assets/Part_FE.svg?react";
-import Part_BE from "../assets/Part_BE.svg?react";
-
 import Circle from "../assets/Circle.svg?react";
+import Arrow from "../../common/assets/arrow_down.svg?react";
+
+import { skillDataWithIcons, partDataWithIcons, stepData } from "../constants";
 
 const Body = () => {
   return (
-    <>
-      <BGC>
-        {/* 인재상 */}
-        <BoxContainer>
-          <Title>숭실대 멋쟁이사자처럼은 이런 사람을 원해요</Title>
-          <CardSection>
-            <SkillCard>
-              <Skill_1 style={{ marginTop: "5.4rem", marginBottom: "1.4rem" }} />
+    <BGC>
+      {/* 인재상 */}
+      <BoxContainer>
+        <Title>숭실대 멋쟁이사자처럼은 이런 사람을 원해요</Title>
+        <CardSection>
+          {skillDataWithIcons.map(({ id, icon: Icon, title, text }) => (
+            <SkillCard key={id}>
+              {Icon ? <Icon /> : null}
               <Text>
-                <Title>열정</Title>
-                <CardText>
-                  다양한 프로젝트에 참여하고자 하는 <br />
-                  열정과 탐구심을 가진 분들을 환영해요.
-                </CardText>
+                <Title>{title}</Title>
+                <CardText>{text}</CardText>
               </Text>
             </SkillCard>
-            <SkillCard>
-              <Skill_2 style={{ marginTop: "5.4rem", marginBottom: "1.4rem" }} />
-              <Text>
-                <Title>협업</Title>
-                <CardText>
-                  서로의 강점을 살려 협력하며 프로젝트를 <br />
-                  이끌어갈 인재를 기다리고 있어요.
-                </CardText>
-              </Text>
-            </SkillCard>
-            <SkillCard>
-              <Skill_3 style={{ marginTop: "5.4rem", marginBottom: "1.4rem" }} />
-              <Text>
-                <Title>책임</Title>
-                <CardText>
-                  일정을 지키고 결과물을 책임감 있게
-                  <br />
-                  완성할 수 있는 사람을 원해요.
-                </CardText>
-              </Text>
-            </SkillCard>
-          </CardSection>
-        </BoxContainer>
+          ))}
+        </CardSection>
+      </BoxContainer>
 
-        {/* 모집 파트 */}
-        <BoxContainer>
-          <Title>모집 파트</Title>
-          <PartSection>
-            <PartCard>
-              <Arrow style={{ float: "right" }} />
+      {/* 모집 파트 */}
+      <BoxContainer>
+        <Title>모집 파트</Title>
+        <PartSection>
+          {partDataWithIcons.map(({ id, name, icon: Icon }) => (
+            <PartCard key={id}>
+              <Arrow />
               <PartBox>
-                <PartName>
-                  PROJECT
-                  <br />
-                  MANAGER
-                </PartName>
-                <Part_PM />
+                <PartName>{name}</PartName>
+                {Icon ? <Icon /> : null}
               </PartBox>
             </PartCard>
+          ))}
+        </PartSection>
+      </BoxContainer>
 
-            <PartCard>
-              <Arrow style={{ float: "right" }} />
-              <PartBox>
-                <PartName>
-                  PRODUCT
-                  <br />
-                  DESIGN
-                </PartName>
-                <Part_PD />
-              </PartBox>
-            </PartCard>
-
-            <PartCard>
-              <Arrow style={{ float: "right" }} />
-              <PartBox>
-                <PartName>
-                  FRONTEND
-                  <br />
-                  DEVELOPER
-                </PartName>
-                <Part_FE />
-              </PartBox>
-            </PartCard>
-
-            <PartCard>
-              <Arrow style={{ float: "right" }} />
-              <PartBox>
-                <PartName>
-                  BACKEND
-                  <br />
-                  DEVELOPER
-                </PartName>
-                <Part_BE />
-              </PartBox>
-            </PartCard>
-          </PartSection>
-        </BoxContainer>
-
-        {/* 로드맵 */}
-        <BoxContainer>
-          <Title>13기 활동 로드맵</Title>
-        </BoxContainer>
-
-        {/* 모집 절차 */}
-        <BoxContainer>
-          <Title>모집 절차</Title>
-          <CircleContainer>
-            <CircleContent>
+      {/* 모집 절차 */}
+      <BoxContainer>
+        <Title>모집 절차</Title>
+        <CircleContainer>
+          {stepData.map(({ id, title, date }) => (
+            <CircleContent key={id}>
               <Circle />
               <CircleTextContainer>
-                <CircleTitle>지원서 제출</CircleTitle>
-                <CircleDate>2.24(월) - 3.5(수)</CircleDate>
+                <CircleTitle>{title}</CircleTitle>
+                <CircleDate>{date}</CircleDate>
               </CircleTextContainer>
             </CircleContent>
+          ))}
+        </CircleContainer>
+      </BoxContainer>
 
-            <CircleContent>
-              <Circle />
-              <CircleTextContainer>
-                <CircleTitle>프리코스 시청</CircleTitle>
-                <CircleDate>2.24(월) - 3.10(월)</CircleDate>
-              </CircleTextContainer>
-            </CircleContent>
-
-            <CircleContent>
-              <Circle />
-              <CircleTextContainer>
-                <CircleTitle>서류 결과</CircleTitle>
-                <CircleDate>3.8(토)</CircleDate>
-              </CircleTextContainer>
-            </CircleContent>
-
-            <CircleContent>
-              <Circle />
-              <CircleTextContainer>
-                <CircleTitle>면접 평가</CircleTitle>
-                <CircleDate> 3.10(월) - 3.12(수)</CircleDate>
-              </CircleTextContainer>
-            </CircleContent>
-
-            <CircleContent>
-              <Circle />
-              <CircleTextContainer>
-                <CircleTitle>최종 결과 발표</CircleTitle>
-                <CircleDate>3.14(금)</CircleDate>
-              </CircleTextContainer>
-            </CircleContent>
-          </CircleContainer>
-        </BoxContainer>
-
-        {/* 지원하기 */}
-        <ApplyContainer>
-          <LineBox bottomBorder />
-          <ApplyBox>
-            <Title>지금 바로 지원하세요</Title>
-            <ApplyBtn>지원 서류 작성하기</ApplyBtn>
-          </ApplyBox>
-          <LineBox topBorder />
-        </ApplyContainer>
-      </BGC>
-    </>
+      {/* 지원하기 */}
+      <ApplyContainer>
+        <LineBox bottomBorder />
+        <ApplyBox>
+          <Title>지금 바로 지원하세요</Title>
+          <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+        </ApplyBox>
+        <LineBox topBorder />
+      </ApplyContainer>
+    </BGC>
   );
 };
 
