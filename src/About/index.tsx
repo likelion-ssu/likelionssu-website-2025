@@ -1,5 +1,13 @@
+import AboutUsSection from "./components/AboutUsSection";
+import ActivitySection from "./components/ActivitySection";
+
 const About = () => {
-  return <div>about 페이지입니다.</div>;
+  return (
+    <>
+      <AboutUsSection />
+      <ActivitySection />
+    </>
+  );
 };
 
 export default About;
