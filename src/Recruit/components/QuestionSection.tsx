@@ -25,18 +25,15 @@ const QuestionSection = () => {
 export default QuestionSection;
 
 const BGC = styled.div`
-  background: #fff;
+  background: #f6f7f9;
   color: black;
   width: 100%;
   padding: 8.9rem 20rem;
 `;
 
 const Title = styled.div`
-  color: var(--90, #1a1a1a);
-
-  /* Web/Pretendard/Title3 */
-  font-family: Pretendard;
-  font-size: 40px;
+  color: #1a1a1a;
+  font-size: 4rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -64,9 +61,7 @@ const Question = styled.div`
   color: #000;
   margin-top: 0.5rem;
 
-  /* Web/Pretendard/Body2 */
-  font-family: Pretendard;
-  font-size: 22px;
+  font-size: 2.2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -75,9 +70,7 @@ const Question = styled.div`
 const Answer = styled.div`
   color: rgba(0, 0, 0, 0.6);
 
-  /* Web/Pretendard/Body4 */
-  font-family: Pretendard;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
