@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { questionData } from "../constants/questionData";
 
 const QuestionSection = () => {
   return (
@@ -6,16 +7,15 @@ const QuestionSection = () => {
       <BGC>
         <Title>자주묻는 질문</Title>
         <QuestionWrapper>
-          <QuestionContainer>
-            <p style={{ fontSize: "3rem", fontWeight: "600" }}>Q.</p>
-            <QuestionBox>
-              <Question>숭멋사는 어떤 동아리인가요?</Question>
-              <Answer>
-                숭멋사는 전공자와 비전공자의 구분없이 모두가 함께 성장할 수 있는 IT 동아리입니다.
-                다양한 프로젝트를 진행하며 협업 경험을 쌓을 수 있습니다.
-              </Answer>
-            </QuestionBox>
-          </QuestionContainer>
+          {questionData.map(({ id, question, answer }) => (
+            <QuestionContainer key={id}>
+              <p style={{ fontSize: "3rem", fontWeight: "600" }}>Q.</p>
+              <QuestionBox>
+                <Question>{question}</Question>
+                <Answer>{answer}</Answer>
+              </QuestionBox>
+            </QuestionContainer>
+          ))}
         </QuestionWrapper>
       </BGC>
     </>
