@@ -58,12 +58,12 @@ const Body = () => {
 
       {/* 지원하기 */}
       <ApplyContainer>
-        <LineBox bottomBorder />
+        <LineBox $bottomBorder />
         <ApplyBox>
           <Title>지금 바로 지원하세요</Title>
           <ApplyBtn>지원 서류 작성하기</ApplyBtn>
         </ApplyBox>
-        <LineBox topBorder />
+        <LineBox $topBorder />
       </ApplyContainer>
     </BGC>
   );
@@ -224,7 +224,7 @@ const ApplyContainer = styled.div`
   width: 100%;
 `;
 
-const LineBox = styled.div<{ topBorder?: boolean; bottomBorder?: boolean }>`
+const LineBox = styled.div<{ $topBorder?: boolean; $bottomBorder?: boolean }>`
   position: relative;
   flex: 1;
   height: 7.8rem;
@@ -234,7 +234,7 @@ const LineBox = styled.div<{ topBorder?: boolean; bottomBorder?: boolean }>`
   margin-top: -1rem;
 
   &::before {
-    content: ${({ topBorder }) => (topBorder ? '""' : "none")};
+    content: ${({ $topBorder }) => ($topBorder ? '""' : "none")};
     position: absolute;
     top: 0;
     left: 0;
@@ -244,7 +244,7 @@ const LineBox = styled.div<{ topBorder?: boolean; bottomBorder?: boolean }>`
   }
 
   &::after {
-    content: ${({ bottomBorder }) => (bottomBorder ? '""' : "none")};
+    content: ${({ $bottomBorder }) => ($bottomBorder ? '""' : "none")};
     position: absolute;
     bottom: 0;
     left: 0;

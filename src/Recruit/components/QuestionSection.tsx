@@ -1,22 +1,31 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { questionData } from "../constants/questionData";
 
 const QuestionSection = () => {
+  const [showAll, setShowAll] = useState(false); // 기본 세개
+
+  const handleShowMore = () => {
+    setShowAll(true);
+  };
+
   return (
     <>
       <BGC>
         <Title>자주묻는 질문</Title>
         <QuestionWrapper>
-          <QuestionContainer>
-            <p style={{ fontSize: "3rem", fontWeight: "600" }}>Q.</p>
-            <QuestionBox>
-              <Question>숭멋사는 어떤 동아리인가요?</Question>
-              <Answer>
-                숭멋사는 전공자와 비전공자의 구분없이 모두가 함께 성장할 수 있는 IT 동아리입니다.
-                다양한 프로젝트를 진행하며 협업 경험을 쌓을 수 있습니다.
-              </Answer>
-            </QuestionBox>
-          </QuestionContainer>
+          {(showAll ? questionData : questionData.slice(0, 3)).map(({ id, question, answer }) => (
+            <QuestionContainer key={id}>
+              <p style={{ fontSize: "3rem", fontWeight: "600" }}>Q.</p>
+              <QuestionBox>
+                <Question>{question}</Question>
+                <Answer>{answer}</Answer>
+              </QuestionBox>
+            </QuestionContainer>
+          ))}
         </QuestionWrapper>
+
+        {!showAll && <MoreBtn onClick={handleShowMore}>더보기</MoreBtn>}
       </BGC>
     </>
   );
@@ -25,32 +34,35 @@ const QuestionSection = () => {
 export default QuestionSection;
 
 const BGC = styled.div`
-  background: #fff;
+  background: #f6f7f9;
   color: black;
   width: 100%;
   padding: 8.9rem 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Title = styled.div`
-  color: var(--90, #1a1a1a);
-
-  /* Web/Pretendard/Title3 */
-  font-family: Pretendard;
-  font-size: 40px;
+  color: #1a1a1a;
+  font-size: 4rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.4px;
+  width: 120rem;
 `;
 
 const QuestionWrapper = styled.div`
   margin: 6.1rem 0;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.14);
 `;
+
 const QuestionContainer = styled.div`
   display: flex;
+  width: 120rem;
   gap: 1.6rem;
   padding: 4rem 0;
-  border-top: 0.1rem solid rgba(0, 0, 0, 0.14);
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.14);
 `;
 
@@ -64,9 +76,7 @@ const Question = styled.div`
   color: #000;
   margin-top: 0.5rem;
 
-  /* Web/Pretendard/Body2 */
-  font-family: Pretendard;
-  font-size: 22px;
+  font-size: 2.2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -75,11 +85,22 @@ const Question = styled.div`
 const Answer = styled.div`
   color: rgba(0, 0, 0, 0.6);
 
-  /* Web/Pretendard/Body4 */
-  font-family: Pretendard;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.18px;
+`;
+
+const MoreBtn = styled.button`
+  padding: 1.8rem 4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
 `;
