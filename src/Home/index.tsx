@@ -9,7 +9,7 @@ const Home = () => {
   const onClick = () => {
     navigate(`/about`);
   };
-  
+
   return (
     <>
       <BgImgWrapper />
@@ -53,11 +53,14 @@ const BgImgWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100vh;
+
   background-image: url(${bgImg});
   background-size: cover;
   background-position: center;
+
   z-index: -1;
 `;
 
@@ -65,9 +68,12 @@ const BgWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100vh;
+
   background-color: rgba(0, 0, 0, 0.5);
+
   z-index: -1;
 `;
 
@@ -76,6 +82,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8rem;
+
   margin: 0 8.5rem;
   margin-top: 50.3rem;
 `;
@@ -92,6 +99,7 @@ const Title = styled.div`
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+
   background: linear-gradient(90deg, #1cffff 0%, #74c8ff 48.5%, #bab0ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -99,8 +107,8 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
-  color: white;
   /* font-family: Pretendard; */
+  color: white;
   font-size: 3rem;
   font-style: normal;
   font-weight: 400;
@@ -110,6 +118,7 @@ const SubTitle = styled.div`
 const MainBtnContainer = styled.div`
   display: flex;
   gap: 4rem;
+
   width: 100%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   padding: 5.1rem 8.5rem 8rem 8.5rem;
@@ -119,40 +128,45 @@ const MainBtn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  flex-direction: column;
+  justify-content: center;
+
   width: 45rem;
   height: 12rem;
   padding: 2rem 2.2rem;
-  flex-direction: column;
-  justify-content: center;
+
   background: rgba(255, 255, 255, 0.1);
+
+  cursor: pointer;
   &:hover {
     background: linear-gradient(90deg, rgba(94, 94, 94, 0.22) 34.44%, rgba(0, 52, 148, 0.7) 100%);
   }
 `;
 
 const BtnTopContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  width: 100%;
 `;
 
 const BtnTitle = styled.div`
-  color: white;
   /* font-family: "SUIT Variable"; */
+  color: white;
   font-size: 3rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.06rem;
 `;
 
 const BtnCaption = styled.div`
-  color: var(--Basic-White, #fff);
   /* font-family: Pretendard; */
+  color: white;
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.18px;
+  letter-spacing: -0.018rem;
 `;
