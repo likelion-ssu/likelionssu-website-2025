@@ -1,38 +1,18 @@
 import styled from "styled-components";
-import Shadow from "../assets/timer_shadow.svg?react";
 
-const Timer = () => {
+const TimerSection = () => {
   return (
     <>
       <BGC>
         <TitleWrapper>
           <Title>13th SSU BABYLION RECRUITING 13th SSU BABYLION RECRUITING</Title>
         </TitleWrapper>
-        <TimerContainer>
-          <TimerTitle>모집 마감까지</TimerTitle>
-          <TimerSection>
-            <TimeBox>
-              <Name>DAYS</Name>
-              03
-              <Shadow />
-            </TimeBox>
-            :
-            <TimeBox>
-              <Name>HOURS</Name>
-              15 <Shadow />
-            </TimeBox>
-            :
-            <TimeBox>
-              <Name>MINUTES</Name>
-              20
-              <Shadow />
-            </TimeBox>
-          </TimerSection>
-          <TimerTitle>
-            숭실대 멋쟁이사자처럼은 <Blue>지금 서류 모집 중</Blue>
-          </TimerTitle>
-          <ApplyBtn>지원 서류 작성하기</ApplyBtn>
-        </TimerContainer>
+        <TextContainer>
+          <TextLarge>지금은 모집기간이 아닙니다</TextLarge>
+          <TextSmall>
+            13기 모집이 완료되었습니다. <br /> 2026년 3월에 예정된 14기 모집에 지원해주세요.
+          </TextSmall>
+        </TextContainer>
         <TitleWrapper>
           <Title>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </Title>
         </TitleWrapper>
@@ -41,10 +21,10 @@ const Timer = () => {
   );
 };
 
-export default Timer;
+export default TimerSection;
 
 const BGC = styled.div`
-  background: linear-gradient(180deg, #f3f7fb 61.94%, #d6e3ff 100%);
+  background: linear-gradient(90deg, #1a1a1a 35.78%, #000 100%);
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -74,76 +54,28 @@ const Title = styled.p`
   background-size: 100vw auto; // 그라데이션 크기
 `;
 
-const TimerContainer = styled.div`
+const TextContainer = styled.div`
+  padding: 18rem 5.6rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4rem;
-  margin: 3.6rem auto;
+  align-items: start;
+  gap: 5rem;
 `;
 
-const TimerTitle = styled.p`
-  color: #1a1a1a;
-  text-align: center;
-  font-size: 3rem;
+const TextLarge = styled.p`
+  color: #fff;
+  font-size: 6rem;
   font-style: normal;
   font-weight: 600;
   line-height: 4rem;
 `;
 
-const Blue = styled.span`
-  background: linear-gradient(180deg, #50b3ff 0%, #177bc8 113.75%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline;
-`;
-
-const TimerSection = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  color: #000;
-  text-align: center;
-  font-family: "SUIT Variable";
-  font-size: 12rem;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
-`;
-
-const ApplyBtn = styled.button`
-  border-radius: 10px;
-  background: #1a1a1a;
+const TextSmall = styled.p`
   color: #fff;
+  font-feature-settings: "calt" off;
 
-  font-size: 1.8rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  display: flex;
-  padding: 1.8rem 3rem;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const TimeBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2rem;
-  width: 17rem;
-`;
-
-const Name = styled.p`
-  color: rgba(0, 0, 0, 0.3);
-  text-align: center;
-
-  font-family: "SUIT Variable";
   font-size: 2.2rem;
   font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.44px;
+  font-weight: 400;
+  line-height: 1.5;
 `;
