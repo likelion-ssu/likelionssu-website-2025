@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import Shadow from "../assets/timer_shadow.svg?react";
+import useCountDown from "../../common/components/CountDown";
 
 const TimerSectionActive = () => {
+  const { days, hours, minutes, seconds } = useCountDown();
+
   return (
     <>
       <BGC>
@@ -13,18 +16,25 @@ const TimerSectionActive = () => {
           <TimerSection>
             <TimeBox>
               <Name>DAYS</Name>
-              03
+              {days < 10 ? `0${days}` : days}
               <Shadow />
             </TimeBox>
             :
             <TimeBox>
               <Name>HOURS</Name>
-              15 <Shadow />
+              {hours < 10 ? `0${hours}` : hours}
+              <Shadow />
             </TimeBox>
             :
             <TimeBox>
               <Name>MINUTES</Name>
-              20
+              {minutes < 10 ? `0${minutes}` : minutes}
+              <Shadow />
+            </TimeBox>
+            :
+            <TimeBox>
+              <Name>SECONDS</Name>
+              {seconds < 10 ? `0${seconds}` : seconds}
               <Shadow />
             </TimeBox>
           </TimerSection>
