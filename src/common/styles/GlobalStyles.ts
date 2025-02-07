@@ -7,16 +7,16 @@ const GlobalStyles = createGlobalStyle`
 
     @font-face {
         font-family: "Pretendard Variable";
-        src: url("/assets/fonts/PretendardVariable.woff2") format("woff2"),
-             url("/assets/fonts/PretendardVariable.woff2") format("woff");
+        src: url("/fonts/PretendardVariable.woff2") format("woff2"),
+             url("/fonts/PretendardVariable.woff2") format("woff");
         font-weight: 100 900;
         font-style: normal;
     }
 
     @font-face {
         font-family: "SUIT Variable";
-        src: url("/assets/fonts/SUIT-Variable.woff2") format("woff2"),
-             url("/assets/fonts/SUIT-Variable.woff") format("woff");
+        src: url("/fonts/SUIT-Variable.woff2") format("woff2"),
+             url("/fonts/SUIT-Variable.woff") format("woff");
         font-weight: 100 900;
         font-style: normal;
     }

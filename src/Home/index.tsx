@@ -69,6 +69,7 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled.div`
+  font-family: "SUIT Variable";
   font-size: 6rem;
   font-weight: 800;
 
@@ -79,9 +80,8 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
-  color: white;
-  font-size: 3rem;
-  font-weight: 400;
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.subtitle3)}
+  color: ${({ theme }) => theme.colors.White};
 `;
 
 const MainBtnContainer = styled.div`

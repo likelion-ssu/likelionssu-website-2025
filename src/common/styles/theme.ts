@@ -1,3 +1,13 @@
+import { css } from "styled-components";
+
+const fontMixin = (fontStyle: any) => css`
+  font-family: ${fontStyle.fontFamily};
+  font-size: ${fontStyle.fontSize};
+  font-weight: ${fontStyle.fontWeight};
+  letter-spacing: ${fontStyle.letterSpacing || "normal"};
+  line-height: ${fontStyle.lineHeight};
+`;
+
 const colors = {
   BG_White: "#F6F7F9",
   "90": "#1A1A1A",
@@ -151,7 +161,10 @@ const sizes = {};
 const theme = {
   colors,
   fonts,
-  sizes
+  sizes,
+  mixins: {
+    font: fontMixin
+  }
 };
 
 export default theme;
