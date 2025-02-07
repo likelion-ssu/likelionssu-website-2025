@@ -5,6 +5,22 @@ import theme from "./theme";
 const GlobalStyles = createGlobalStyle`
     ${reset}  // reset 적용
 
+    @font-face {
+        font-family: "Pretendard Variable";
+        src: url("/fonts/PretendardVariable.woff2") format("woff2"),
+             url("/fonts/PretendardVariable.woff2") format("woff");
+        font-weight: 100 900;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: "SUIT Variable";
+        src: url("/fonts/SUIT-Variable.woff2") format("woff2"),
+             url("/fonts/SUIT-Variable.woff") format("woff");
+        font-weight: 100 900;
+        font-style: normal;
+    }
+
     html {
         font-size: 62.5%;
         // 1rem = 10px로 지정
@@ -40,8 +56,8 @@ const GlobalStyles = createGlobalStyle`
         'Segoe UI Symbol',
         sans-serif;
         font-style: normal;
-        color: #fff;
-        background-color: ${theme.colors.black};
+        color: ${theme.colors.White};
+        background-color: ${theme.colors.Black};
     }
 
     h1 {

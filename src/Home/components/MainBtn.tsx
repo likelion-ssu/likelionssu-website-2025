@@ -35,6 +35,7 @@ const StyledMainBtn = styled(Link)`
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
   text-decoration: none;
+  color: ${({ theme }) => theme.colors.White};
 
   &:hover {
     background: linear-gradient(90deg, rgba(94, 94, 94, 0.22) 34.44%, rgba(0, 52, 148, 0.7) 100%);
@@ -50,15 +51,9 @@ const BtnTopContainer = styled.div`
 `;
 
 const BtnTitle = styled.div`
-  color: white;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 0.06rem;
+  ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
 `;
 
 const BtnCaption = styled.div`
-  color: white;
-  font-size: 1.8rem;
-  font-weight: 400;
-  letter-spacing: -0.018rem;
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
 `;
