@@ -1,10 +1,15 @@
 import styled, { keyframes } from "styled-components";
 import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.svg?react";
+import { motion } from "framer-motion";
 
 const AboutUsSection = () => {
   return (
-    <BG>
+    <BG
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <BGBottom>
         <StyledBgPhrase>
           <BgPhrase />
@@ -32,7 +37,7 @@ const AboutUsSection = () => {
 
 export default AboutUsSection;
 
-const BG = styled.div`
+const BG = styled(motion.div)`
   width: 100%;
   height: 100vh;
 
@@ -51,6 +56,9 @@ const BG = styled.div`
     inset: 0;
     opacity: 0.6;
   }
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
 `;
 
 const BGBottom = styled.div`

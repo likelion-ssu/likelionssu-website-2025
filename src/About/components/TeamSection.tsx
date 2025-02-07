@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Team_MemberCard from "./Team_MemberCard";
 import { teamCategories } from "../constants/teamData";
+import { motion } from "framer-motion";
 
 // 팀 카테고리 섹션의 props의 타입
 interface TeamCategorySectionProps {
@@ -13,7 +14,7 @@ const TeamCategorySection: React.FC<TeamCategorySectionProps> = ({ title, teamTy
   return (
     <TeamWrapper>
       <Title>{title}</Title>
-      <CardsContainer teamType={teamType}>
+      <CardsContainer $teamType={teamType}>
         {members.map((person, index) => (
           <Team_MemberCard
             key={index}
@@ -29,11 +30,15 @@ const TeamCategorySection: React.FC<TeamCategorySectionProps> = ({ title, teamTy
 
 const TeamSection = () => {
   return (
-    <BG>
+    <BG
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Header>Management Team</Header>
       <Wrapper>
-        {teamCategories.map(({ title, teamType, members }) => (
-          <TeamCategorySection key={teamType} title={title} teamType={teamType} members={members} />
+        {teamCategories.map(({ title, teamType, members }, index) => (
+          <TeamCategorySection key={index} title={title} teamType={teamType} members={members} />
         ))}
       </Wrapper>
     </BG>
@@ -42,10 +47,12 @@ const TeamSection = () => {
 
 export default TeamSection;
 
-const BG = styled.div`
+const BG = styled(motion.div)`
   width: 100%;
 
   background-color: #f6f7f9;
+  scroll-snap-align: start;
+  scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
 `;
 
 const Header = styled.div`
@@ -82,27 +89,18 @@ const Title = styled.div`
   letter-spacing: 0.06rem;
 `;
 
-const CardsContainer = styled.div<{ teamType: string }>`
+const CardsContainer = styled.div<{ $teamType: string }>`
   display: grid;
   grid-template-columns: ${props =>
-    props.teamType === "CORE"
+    props.$teamType === "CORE"
       ? "repeat(2, 1fr)"
-      : props.teamType === "TECH"
+      : props.$teamType === "TECH"
         ? "repeat(4,1fr)"
         : "repeat(3,1fr)"};
   grid-template-rows: auto;
 
   row-gap: 6rem; /* 위아래 간격 */
   column-gap: ${props =>
-    props.teamType === "CORE" ? "24rem" : props.teamType === "TECH" ? "8.4rem" : "16rem"};
+    props.$teamType === "CORE" ? "24rem" : props.$teamType === "TECH" ? "8.4rem" : "16rem"};
   justify-content: center; /* 중앙 정렬 */
-
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; */
-
-  /* gap: ${props =>
-    props.teamType === "CORE" ? "24rem" : props.teamType === "TECH" ? "8.4rem" : "16rem"}; */
 `;
