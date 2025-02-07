@@ -63,21 +63,21 @@ const BGBottom = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
 
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 `;
 
 const Description = styled.div`
   color: rgba(255, 255, 255, 0.7);
+  /* width: 108rem; */
+  padding-left: 5rem;
   padding-bottom: 3.13rem;
 
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 3rem;
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
 
   word-break: keep-all;
-  letter-spacing: 0.1rem;
+  line-height: 3.3rem;
 `;
 
 const BoldDescription = styled.span`
