@@ -1,16 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const NotFoundContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-  background: #000;
-`;
-
 const NotFound = () => {
   return (
     <NotFoundContainer>
@@ -23,3 +13,15 @@ const NotFound = () => {
 };
 
 export default NotFound;
+
+const NotFoundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  color: ${({ theme }) => theme.colors.White};
+  background: ${({ theme }) => theme.colors.Black};
+`;

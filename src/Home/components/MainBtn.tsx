@@ -57,7 +57,7 @@ const BtnTitle = styled.div`
 `;
 
 const BtnCaption = styled.div`
-  color: white;
+  color: var(--white);
   font-size: 1.8rem;
   font-weight: 400;
   letter-spacing: -0.018rem;
