@@ -6,6 +6,7 @@ import Home from "./Home";
 
 const About = lazy(() => import("./About"));
 const Recruit = lazy(() => import("./Recruit"));
+const Part = lazy(() => import("./Part"));
 const NotFound = lazy(() => import("./common/components/NotFound"));
 
 const router = createBrowserRouter([
@@ -19,7 +20,15 @@ const router = createBrowserRouter([
     )
   },
 
-  // part ?? (와프 나온 후)
+  // part - 승현
+  {
+    path: "/part",
+    element: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Part />
+      </ErrorBoundary>
+    )
+  },
 
   // about - 민주
   {
