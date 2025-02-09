@@ -52,6 +52,8 @@ const LogoContainer = styled.div`
   line-height: normal;
   letter-spacing: 0.44px;
   gap: 0.8rem;
+  padding: 1rem auto;
+  height: 5rem;
 `;
 
 const BtnContainer = styled.div`
