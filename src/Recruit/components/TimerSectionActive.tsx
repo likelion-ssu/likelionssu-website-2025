@@ -57,8 +57,13 @@ const BGC = styled.div`
   background: linear-gradient(180deg, #f3f7fb 61.94%, #d6e3ff 100%);
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  min-height: 85rem;
   position: relative;
+  padding-top: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const TitleWrapper = styled.div`
@@ -88,7 +93,7 @@ const TimerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: 1.5rem;
   margin: 3.6rem auto;
 `;
 
@@ -116,7 +121,7 @@ const TimerSection = styled.div`
   color: #000;
   text-align: center;
   font-family: "SUIT Variable";
-  font-size: 12rem;
+  font-size: 10rem;
   font-style: normal;
   font-weight: 900;
   line-height: normal;

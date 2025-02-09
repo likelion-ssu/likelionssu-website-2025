@@ -2,19 +2,27 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../../public/logo.svg?react";
 import IcMenu from "../assets/ic_menu.svg?react";
+import { useCountDownStore } from "../../common/components/CountDown";
 
-const TopBar = () => {
+interface TopBarProps {
+  type?: string;
+}
+
+const TopBar = ({ type }: TopBarProps) => {
+  const { isExpired } = useCountDownStore();
+  const isRecruitActive = type === "recruit" && !isExpired;
+
   return (
-    <TopBarContainer>
+    <TopBarContainer isRecruit={isRecruitActive}>
       <Link to="/">
-        <LogoContainer>
+        <LogoContainer isRecruit={isRecruitActive}>
           <Logo style={{ width: "2rem" }} />
           LIKELION SOONGSIL
         </LogoContainer>
       </Link>
       <BtnContainer>
-        <ApplyBtn>13기 지원하기</ApplyBtn>
-        <IcMenu />
+        {type !== "recruit" && <ApplyBtn>13기 지원하기</ApplyBtn>}
+        <IcMenuStyled isRecruit={isRecruitActive} />
       </BtnContainer>
     </TopBarContainer>
   );
@@ -22,8 +30,8 @@ const TopBar = () => {
 
 export default TopBar;
 
-const TopBarContainer = styled.div`
-  position: fixed;
+const TopBarContainer = styled.div<{ isRecruit: boolean }>`
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -37,13 +45,16 @@ const TopBarContainer = styled.div`
   height: 12rem;
   padding: 5rem 5.6rem;
 
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  background: ${({ isRecruit }) =>
+    isRecruit
+      ? "transparent"
+      : "linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%)"};
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.div<{ isRecruit: boolean }>`
   display: flex;
   align-items: center;
-  color: #fff;
+  color: ${({ isRecruit }) => (isRecruit ? "black" : "#fff")};
 
   font-family: "SUIT Variable";
   font-size: 2.2rem;
@@ -59,6 +70,12 @@ const LogoContainer = styled.div`
 const BtnContainer = styled.div`
   display: flex;
   gap: 3.5rem;
+`;
+
+const IcMenuStyled = styled(IcMenu)<{ isRecruit: boolean }>`
+  path {
+    fill: ${({ isRecruit }) => (isRecruit ? "black" : "white")};
+  }
 `;
 
 const ApplyBtn = styled.button`

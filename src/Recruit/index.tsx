@@ -13,7 +13,7 @@ const Recruit = () => {
 
   return (
     <div>
-      <TopBar />
+      <TopBar type="recruit" />
       {isExpired ? <Timer /> : <TimerActive />}
       <Body />
       <Question />
