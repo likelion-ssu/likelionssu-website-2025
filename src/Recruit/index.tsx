@@ -4,6 +4,7 @@ import Body from "./components/BodySection";
 import Question from "./components/QuestionSection";
 
 import { useCountDownStore } from "../common/components/CountDown";
+import TopBar from "../common/components/TopBar";
 
 const Recruit = () => {
   const { isExpired } = useCountDownStore();
@@ -11,6 +12,7 @@ const Recruit = () => {
 
   return (
     <div>
+      <TopBar />
       {isExpired ? <Timer /> : <TimerActive />}
       <Body />
       <Question />
