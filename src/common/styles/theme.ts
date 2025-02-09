@@ -54,6 +54,13 @@ const fonts = {
       fontStyle: "normal",
       lineHeight: "3.6rem"
     },
+    body1: {
+      fontSize: "2.4rem",
+      fontFamily: "Pretendard Variable",
+      fontWeight: 600,
+      fontStyle: "normal",
+      lineHeight: "2.9rem"
+    },
     body2: {
       fontSize: "2.2rem",
       fontFamily: "Pretendard Variable",
