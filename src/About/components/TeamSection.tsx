@@ -73,8 +73,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 3.6rem;
 
-  padding: 11.4rem 0rem 5.5rem 0rem;
-  padding-top: 4rem;
+  padding: 3rem 0rem 5.5rem 0rem;
 `;
 
 const TeamWrapper = styled.div`
