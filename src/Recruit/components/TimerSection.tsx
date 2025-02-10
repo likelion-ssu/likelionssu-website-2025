@@ -27,8 +27,12 @@ const BGC = styled.div`
   background: linear-gradient(90deg, #1a1a1a 35.78%, #000 100%);
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  min-height: 85rem;
   position: relative;
+  padding: 12rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const TitleWrapper = styled.div`
@@ -55,7 +59,7 @@ const Title = styled.p`
 `;
 
 const TextContainer = styled.div`
-  padding: 18rem 5.6rem;
+  padding: 15.1rem 5.6rem;
   display: flex;
   flex-direction: column;
   align-items: start;
