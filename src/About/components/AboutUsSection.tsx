@@ -83,6 +83,7 @@ const Description = styled.div`
   padding-bottom: 3.13rem;
 
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  -webkit-font-smoothing: antialiased;
 
   word-break: keep-all;
   line-height: 3.3rem;
