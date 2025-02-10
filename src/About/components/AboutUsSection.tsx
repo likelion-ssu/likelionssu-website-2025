@@ -3,6 +3,7 @@ import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.svg?react";
 import { motion } from "framer-motion";
 import { aboutUsText } from "../constants/aboutUsText";
+import TopBar from "../../common/components/TopBar";
 
 const AboutUsSection = () => {
   return (
@@ -11,6 +12,7 @@ const AboutUsSection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <TopBar />
       <BGBottom>
         <StyledBgPhrase>
           <BgPhrase />

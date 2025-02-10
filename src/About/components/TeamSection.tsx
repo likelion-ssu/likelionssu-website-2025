@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Team_MemberCard from "./Team_MemberCard";
 import { teamCategories } from "../constants/teamData";
 import { motion } from "framer-motion";
+import Footer from "../../common/components/Footer";
 
 // 팀 카테고리 섹션의 props의 타입
 interface TeamCategorySectionProps {
@@ -41,6 +42,7 @@ const TeamSection = () => {
           <TeamCategorySection key={index} title={title} teamType={teamType} members={members} />
         ))}
       </Wrapper>
+      <Footer />
     </BG>
   );
 };

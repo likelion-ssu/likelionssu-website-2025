@@ -33,6 +33,8 @@ const FooterContainer = styled.div`
   display: flex;
   padding: 3.8rem 6.7rem;
   justify-content: space-between;
+
+  background-color: black;
 `;
 
 const ContentsContainer = styled.div`

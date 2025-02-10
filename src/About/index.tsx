@@ -5,11 +5,13 @@ import TeamSection from "./components/TeamSection";
 
 const About = () => {
   return (
-    <SnapContainer>
-      <AboutUsSection />
-      <ActivitySection />
-      <TeamSection />
-    </SnapContainer>
+    <>
+      <SnapContainer>
+        <AboutUsSection />
+        <ActivitySection />
+        <TeamSection />
+      </SnapContainer>
+    </>
   );
 };
 
