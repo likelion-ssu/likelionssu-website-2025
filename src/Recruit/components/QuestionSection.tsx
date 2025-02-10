@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { questionData } from "../constants/questionData";
+import { motion } from "framer-motion";
+import Footer from "../../common/components/Footer";
 
 const QuestionSection = () => {
   const [showAll, setShowAll] = useState(false); // 기본 세개
@@ -11,22 +13,29 @@ const QuestionSection = () => {
 
   return (
     <>
-      <BGC>
-        <Title>자주묻는 질문</Title>
-        <QuestionWrapper>
-          {(showAll ? questionData : questionData.slice(0, 3)).map(({ id, question, answer }) => (
-            <QuestionContainer key={id}>
-              <p style={{ fontSize: "3rem", fontWeight: "600" }}>Q.</p>
-              <QuestionBox>
-                <Question>{question}</Question>
-                <Answer>{answer}</Answer>
-              </QuestionBox>
-            </QuestionContainer>
-          ))}
-        </QuestionWrapper>
+      <BG
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <BGC>
+          <Title>자주묻는 질문</Title>
+          <QuestionWrapper>
+            {(showAll ? questionData : questionData.slice(0, 3)).map(({ id, question, answer }) => (
+              <QuestionContainer key={id}>
+                <p style={{ fontSize: "3rem", fontWeight: "600" }}>Q.</p>
+                <QuestionBox>
+                  <Question>{question}</Question>
+                  <Answer>{answer}</Answer>
+                </QuestionBox>
+              </QuestionContainer>
+            ))}
+          </QuestionWrapper>
 
-        {!showAll && <MoreBtn onClick={handleShowMore}>더보기</MoreBtn>}
-      </BGC>
+          {!showAll && <MoreBtn onClick={handleShowMore}>더보기</MoreBtn>}
+        </BGC>
+        <Footer />
+      </BG>
     </>
   );
 };
@@ -43,6 +52,10 @@ const BGC = styled.div`
   align-items: center;
 `;
 
+const BG = styled(motion.div)`
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+`;
 const Title = styled.div`
   color: #1a1a1a;
   font-size: 4rem;

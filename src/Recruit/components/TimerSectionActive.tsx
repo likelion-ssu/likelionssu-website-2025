@@ -1,13 +1,36 @@
 import styled from "styled-components";
 import Shadow from "../assets/timer_shadow.svg?react";
 import useCountDown from "../../common/components/CountDown";
+import { motion } from "framer-motion";
+import TopBar from "../../common/components/TopBar";
+import IcArrow from "../../common/assets/arrow_down.svg?react";
+import { RefObject } from "react";
 
-const TimerSectionActive = () => {
+interface TimerSectionActiveProps {
+  snapContainerRef: RefObject<HTMLDivElement>;
+}
+
+const TimerSectionActive = ({ snapContainerRef }: TimerSectionActiveProps) => {
   const { days, hours, minutes, seconds } = useCountDown();
+
+  // 스크롤 버튼
+  const handleScrollDown = () => {
+    if (snapContainerRef.current) {
+      const container = snapContainerRef.current;
+      const sectionHeight = window.innerHeight;
+
+      container.scrollBy({ top: sectionHeight, behavior: "smooth" });
+    }
+  };
 
   return (
     <>
-      <BGC>
+      <BGC
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <TopBar type="recruit" />
         <TitleWrapper>
           <Title>13th SSU BABYLION RECRUITING 13th SSU BABYLION RECRUITING</Title>
         </TitleWrapper>
@@ -46,6 +69,7 @@ const TimerSectionActive = () => {
         <TitleWrapper>
           <Title>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </Title>
         </TitleWrapper>
+        <IcArrowStyled onClick={handleScrollDown} />
       </BGC>
     </>
   );
@@ -53,17 +77,18 @@ const TimerSectionActive = () => {
 
 export default TimerSectionActive;
 
-const BGC = styled.div`
+const BGC = styled(motion.div)`
   background: linear-gradient(180deg, #f3f7fb 61.94%, #d6e3ff 100%);
   width: 100%;
   height: 100vh;
   min-height: 85rem;
   position: relative;
-  padding-top: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `;
 
 const TitleWrapper = styled.div`
@@ -86,7 +111,7 @@ const Title = styled.p`
   overflow: hidden;
   text-overflow: clip;
   display: inline-block;
-  background-size: 100vw auto; // 그라데이션 크기
+  background-size: 100vw auto;
 `;
 
 const TimerContainer = styled.div`
@@ -131,7 +156,6 @@ const ApplyBtn = styled.button`
   border-radius: 10px;
   background: #1a1a1a;
   color: #fff;
-
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 600;
@@ -154,11 +178,17 @@ const TimeBox = styled.div`
 const Name = styled.p`
   color: rgba(0, 0, 0, 0.3);
   text-align: center;
-
   font-family: "SUIT Variable";
   font-size: 2.2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.44px;
+`;
+
+const IcArrowStyled = styled(IcArrow)`
+  position: fixed;
+  bottom: 4.8rem;
+  transform: rotate(90deg);
+  cursor: pointer;
 `;

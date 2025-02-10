@@ -50,7 +50,7 @@ const TopBarContainer = styled.div<{ isRecruit: boolean }>`
   align-items: center;
   justify-content: space-between;
 
-  height: 12rem;
+  height: 10rem;
   padding: 5rem 5.6rem;
 
   background: ${({ isRecruit }) =>

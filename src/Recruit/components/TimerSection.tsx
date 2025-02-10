@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const TimerSection = () => {
   return (
     <>
-      <BGC>
+      <BGC
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <TitleWrapper>
           <Title>13th SSU BABYLION RECRUITING 13th SSU BABYLION RECRUITING</Title>
         </TitleWrapper>
@@ -23,7 +28,7 @@ const TimerSection = () => {
 
 export default TimerSection;
 
-const BGC = styled.div`
+const BGC = styled(motion.div)`
   background: linear-gradient(90deg, #1a1a1a 35.78%, #000 100%);
   width: 100%;
   height: 100vh;
@@ -33,6 +38,8 @@ const BGC = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `;
 
 const TitleWrapper = styled.div`
