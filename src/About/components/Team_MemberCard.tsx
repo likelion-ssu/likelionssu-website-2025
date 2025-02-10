@@ -22,15 +22,15 @@ export default Team_MemberCard;
 
 const Wrapper = styled.div`
   display: flex;
-  width: 22rem;
+  width: 17rem;
   flex-direction: column;
   align-items: center;
   gap: 2.4rem;
 `;
 
 const Image = styled.img`
-  width: 22rem;
-  height: 22rem;
+  width: 17rem;
+  height: 17rem;
   border-radius: 50%;
 
   object-fit: cover;
@@ -39,19 +39,22 @@ const Image = styled.img`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.3rem;
 `;
 
 const Name = styled.div`
   color: #000;
 
   text-align: center;
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
+  font-size: 2.2rem;
+  font-family: "Pretendard Variable";
+  font-weight: 600;
+  line-height: normal;
 `;
 
 const RoleContainer = styled.div`
   display: flex;
-  padding: 0.8rem 2.2rem;
+  padding: 0.5rem 2.2rem;
   justify-content: center;
   align-items: center;
 

@@ -53,11 +53,14 @@ const BG = styled(motion.div)`
   background-color: #f6f7f9;
   scroll-snap-align: start;
   scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
+
+  position: relative;
 `;
 
 const Header = styled.div`
-  padding-left: 5.6rem;
-  padding-top: 5rem;
+  position: absolute;
+  left: 5.6rem;
+  top: 3rem;
 
   color: rgba(0, 0, 0, 0.2);
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
@@ -68,10 +71,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 8.4rem;
+  gap: 3.6rem;
 
-  padding: 12rem 11.3rem;
-  padding-top: 3rem;
+  padding: 11.4rem 0rem 5.5rem 0rem;
+  padding-top: 4rem;
 `;
 
 const TeamWrapper = styled.div`
@@ -79,12 +82,12 @@ const TeamWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 8rem;
+  gap: 3.6rem;
 `;
 
 const Title = styled.div`
   color: #000;
-  ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle2)}
   text-align: center;
   letter-spacing: 0.06rem;
 `;
