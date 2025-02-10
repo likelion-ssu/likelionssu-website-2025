@@ -14,7 +14,12 @@ const Recruit = () => {
   return (
     <div>
       <SnapContainer ref={snapContainerRef}>
-        {isExpired ? <Timer /> : <TimerActive snapContainerRef={snapContainerRef} />} <Body />
+        {isExpired ? (
+          <Timer snapContainerRef={snapContainerRef} />
+        ) : (
+          <TimerActive snapContainerRef={snapContainerRef} />
+        )}
+        <Body />
         <Question />
       </SnapContainer>
     </div>

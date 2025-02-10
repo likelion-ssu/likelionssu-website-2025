@@ -191,4 +191,7 @@ const IcArrowStyled = styled(IcArrow)`
   bottom: 4.8rem;
   transform: rotate(90deg);
   cursor: pointer;
+  path {
+    stroke: #000;
+  }
 `;
