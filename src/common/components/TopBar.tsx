@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useState } from "react";
 import Logo from "../../../public/logo.svg?react";
 import IcMenu from "../assets/ic_menu.svg?react";
 import { useCountDownStore } from "../../common/components/CountDown";
+import NavBar from "./NavBar";
 
 interface TopBarProps {
   type?: string;
@@ -12,19 +14,25 @@ const TopBar = ({ type }: TopBarProps) => {
   const { isExpired } = useCountDownStore();
   const isRecruitActive = type === "recruit" && !isExpired;
 
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   return (
-    <TopBarContainer isRecruit={isRecruitActive}>
-      <Link to="/">
-        <LogoContainer isRecruit={isRecruitActive}>
-          <Logo style={{ width: "2rem" }} />
-          LIKELION SOONGSIL
-        </LogoContainer>
-      </Link>
-      <BtnContainer>
-        {type !== "recruit" && <ApplyBtn>13기 지원하기</ApplyBtn>}
-        <IcMenuStyled isRecruit={isRecruitActive} />
-      </BtnContainer>
-    </TopBarContainer>
+    <>
+      <TopBarContainer isRecruit={isRecruitActive}>
+        <Link to="/">
+          <LogoContainer isRecruit={isRecruitActive}>
+            <Logo style={{ width: "2rem" }} />
+            LIKELION SOONGSIL
+          </LogoContainer>
+        </Link>
+        <BtnContainer>
+          {type !== "recruit" && <ApplyBtn>13기 지원하기</ApplyBtn>}
+          <IcMenuStyled isRecruit={isRecruitActive} onClick={() => setIsNavOpen(true)} />
+        </BtnContainer>
+      </TopBarContainer>
+
+      {isNavOpen && <NavBar onClose={() => setIsNavOpen(false)} />}
+    </>
   );
 };
 
