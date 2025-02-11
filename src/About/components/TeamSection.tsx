@@ -66,6 +66,11 @@ const Header = styled.div`
 
   color: rgba(0, 0, 0, 0.2);
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
+
+  @media (max-width: 768px) {
+    left: 2rem;
+    top: 5.2rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -76,6 +81,11 @@ const Wrapper = styled.div`
   gap: 3.6rem;
 
   padding: 3rem 0rem 5.5rem 0rem;
+
+  @media (max-width: 768px) {
+    padding: 10.2rem 6.3rem 8.08rem 6.3rem;
+    gap: 6rem;
+  }
 `;
 
 const TeamWrapper = styled.div`
@@ -84,6 +94,10 @@ const TeamWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 3.6rem;
+
+  @media (max-width: 768px) {
+    gap: 3rem;
+  }
 `;
 
 const Title = styled.div`
@@ -107,4 +121,10 @@ const CardsContainer = styled.div<{ $teamType: string }>`
   column-gap: ${props =>
     props.$teamType === "CORE" ? "24rem" : props.$teamType === "TECH" ? "8.4rem" : "16rem"};
   justify-content: center; /* 중앙 정렬 */
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 8rem;
+    row-gap: 2.6rem;
+  }
 `;
