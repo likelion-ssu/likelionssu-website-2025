@@ -28,23 +28,28 @@ const BtnWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
   margin-top: 5rem;
 `;
 
 const Btn = styled.div<{ $selected: boolean }>`
   display: flex;
-  padding: 14px 38px;
   justify-content: center;
   align-items: center;
   gap: 10px;
 
+  width: fit-content;
+  padding: 14px 38px;
   border-radius: 40px;
   border: 2px solid ${({ $selected }) => ($selected ? "#FFF" : "#585858")};
+
   background: ${({ $selected }) => ($selected ? "#9A9A9A" : "#1a1a1a")};
   color: ${({ $selected }) => ($selected ? "#000000" : "#9A9A9A")};
+
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border 0.2s ease;
 
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle2)}
-
-  transition: background 0.2s ease, border 0.2s ease;
 `;

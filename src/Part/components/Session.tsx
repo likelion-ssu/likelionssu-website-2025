@@ -27,11 +27,13 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 4rem;
+
   margin-top: 15.4rem;
 `;
 
 const Title = styled.div`
   color: ${({ theme }) => theme.colors.White};
+
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
 `;
 
@@ -39,38 +41,45 @@ const SectionContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 140rem;
   gap: 2rem;
+
+  max-width: 140rem;
 `;
 
 const SectionCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.8rem 1.6rem;
   gap: 16px;
+
+  width: fit-content;
   height: 6.8rem;
+  padding: 1.8rem 1.6rem;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+
   background: rgba(255, 255, 255, 0.06);
 `;
 
 const SectionWeek = styled.div`
   display: flex;
-  padding: 8px 12px;
   justify-content: center;
   align-items: center;
+  padding: 8px 12px;
   border-radius: 4px;
   white-space: nowrap;
+
   background: ${({ theme }) => theme.colors["90"]};
   color: ${({ theme }) => theme.colors["30"]};
   text-align: center;
+
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
 `;
 
 const SectionContent = styled.div`
-  color: ${({ theme }) => theme.colors.White};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
   white-space: nowrap;
   overflow-x: scroll;
+
+  color: ${({ theme }) => theme.colors.White};
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
 `;
