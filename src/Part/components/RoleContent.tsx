@@ -68,7 +68,7 @@ const ContentContainer = styled.div`
   gap: 8rem;
 
   margin-top: 4rem;
-  padding: 0 13.5rem;
+  padding: 0 4rem;
 `;
 
 const RoleImage = styled.img`
