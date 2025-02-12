@@ -50,7 +50,7 @@ const SectionCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 16px;
+  gap: 1.6rem;
 
   width: fit-content;
   height: 6.8rem;
@@ -65,7 +65,7 @@ const SectionWeek = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 12px;
+  padding: 0.8rem 1.2rem;
   border-radius: 4px;
   white-space: nowrap;
 

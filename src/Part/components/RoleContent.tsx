@@ -52,7 +52,7 @@ export default function RoleContent() {
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -111,7 +111,7 @@ const TextContainer = styled.div`
 
   width: auto;
   max-width: 90vw;
-  min-width: 250px;
+  min-width: 25rem;
 
   animation: ${fadeIn} 0.5s ease-in-out;
   animation-delay: 0.5s;

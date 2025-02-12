@@ -13,6 +13,7 @@ export default function Comment() {
   const { selectedRole } = useRoleStore();
   const comments = commentsData[selectedRole] ?? [];
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(false);
   const sliderRef = useRef<Slider | null>(null);
   const visibleSlides = 3;
   const totalSlides = comments.length;
@@ -28,26 +29,30 @@ export default function Comment() {
   };
 
   useEffect(() => {
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(0);
-      setCurrentSlide(0);
+    if (isDisabled) {
+      const timeout = setTimeout(() => {
+        setIsDisabled(false);
+      }, 500);
+      return () => clearTimeout(timeout);
     }
-  }, [selectedRole]);
+  }, [isDisabled]);
 
   const handlePrev = () => {
-    if (sliderRef.current && currentSlide > 0) {
-      const newIndex = Math.max(currentSlide - visibleSlides, 0);
-      sliderRef.current.slickGoTo(newIndex);
-      setCurrentSlide(newIndex);
-    }
+    if (isDisabled || !sliderRef.current || currentSlide === 0) return;
+    setIsDisabled(true);
+
+    const newIndex = Math.max(currentSlide - visibleSlides, 0);
+    sliderRef.current.slickGoTo(newIndex);
+    setCurrentSlide(newIndex);
   };
 
   const handleNext = () => {
-    if (sliderRef.current) {
-      const newIndex = Math.min(currentSlide + visibleSlides, totalSlides - visibleSlides);
-      sliderRef.current.slickGoTo(newIndex);
-      setCurrentSlide(newIndex);
-    }
+    if (isDisabled || !sliderRef.current) return;
+    setIsDisabled(true);
+
+    const newIndex = Math.min(currentSlide + visibleSlides, totalSlides - visibleSlides);
+    sliderRef.current.slickGoTo(newIndex);
+    setCurrentSlide(newIndex);
   };
 
   return (
@@ -63,7 +68,12 @@ export default function Comment() {
       )}
 
       <CarouselWrapper>
-        <CustomPrevArrow $hidden={currentSlide === 0} onClick={handlePrev} type="button">
+        <CustomPrevArrow
+          $hidden={currentSlide === 0}
+          disabled={isDisabled}
+          onClick={handlePrev}
+          type="button"
+        >
           <Arrow />
         </CustomPrevArrow>
 
@@ -84,6 +94,7 @@ export default function Comment() {
 
         <CustomNextArrow
           $hidden={currentSlide + visibleSlides >= totalSlides}
+          disabled={isDisabled}
           onClick={handleNext}
           type="button"
         >
@@ -94,7 +105,62 @@ export default function Comment() {
   );
 }
 
-const StyledSlider = styled(Slider)`
+// ✅ 스타일 수정: 기존 스타일 유지 + $hidden 상태 유지
+const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.6);
+  border: 0.903px solid #fff;
+  border-radius: 90.323px;
+  width: 5.6rem;
+  height: 5.6rem;
+  padding: 1.8968rem 2.3484rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  z-index: 999;
+
+  /* ✅ hidden이면 완전히 사라지도록 설정 */
+  display: ${({ $hidden }) => ($hidden ? "none" : "flex")};
+
+  /* ✅ disabled일 때 스타일 유지하면서 클릭만 방지 */
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+
+  svg {
+    transform: rotate(180deg);
+  }
+`;
+
+const CustomNextArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.6);
+  border: 0.903px solid #fff;
+  border-radius: 90.323px;
+  width: 5.6rem;
+  height: 5.6rem;
+  padding: 1.8968rem 2.3484rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  z-index: 999;
+
+  /* ✅ hidden이면 완전히 사라지도록 설정 */
+  display: ${({ $hidden }) => ($hidden ? "none" : "flex")};
+
+  /* ✅ disabled일 때 스타일 유지하면서 클릭만 방지 */
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+`;
+
+const StyledSlider = styled(Slider as any)`
   width: 100%;
 
   .slick-list {
@@ -151,62 +217,6 @@ const Container = styled.div`
   padding-bottom: 7rem;
   overflow: visible;
   position: relative;
-`;
-
-const CustomPrevArrow = styled.button<{ $hidden: boolean }>`
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: ${({ theme }) => theme.colors.White};
-  cursor: pointer;
-  z-index: 999;
-
-  display: ${({ $hidden }) => ($hidden ? "none" : "flex")};
-
-  padding: 18.968px 23.484px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 9.032px;
-  border-radius: 90.323px;
-  border: 0.903px solid var(--Basic-White, #fff);
-  background: rgba(255, 255, 255, 0.6);
-  width: 5.6rem;
-  height: 5.6rem;
-
-  svg {
-    transform: rotate(180deg);
-  }
-`;
-
-const CustomNextArrow = styled.button<{ $hidden: boolean }>`
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: ${({ theme }) => theme.colors.White};
-  cursor: pointer;
-  z-index: 999;
-
-  display: ${({ $hidden }) => ($hidden ? "none" : "flex")};
-
-  padding: 18.968px 23.484px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 9.032px;
-  border-radius: 90.323px;
-  border: 0.903px solid var(--Basic-White, #fff);
-  background: rgba(255, 255, 255, 0.6);
-  width: 5.6rem;
-  height: 5.6rem;
 `;
 
 export const LeftContainer = styled.div`

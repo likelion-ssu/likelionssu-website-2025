@@ -27,7 +27,7 @@ export default function RoleSelector() {
 const BtnWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1.2rem;
 
   margin-top: 5rem;
 `;
@@ -36,10 +36,10 @@ const Btn = styled.div<{ $selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
 
   width: fit-content;
-  padding: 14px 38px;
+  padding: 1.4rem 3.8rem;
   border-radius: 40px;
   border: 2px solid ${({ $selected }) => ($selected ? "#FFF" : "#585858")};
 
