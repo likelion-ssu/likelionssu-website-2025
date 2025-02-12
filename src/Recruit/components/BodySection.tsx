@@ -1,13 +1,20 @@
 import styled from "styled-components";
-
 import Circle from "../assets/Circle.svg?react";
 import Arrow from "../../common/assets/arrow_down.svg?react";
-
 import { skillDataWithIcons, partDataWithIcons, stepData } from "../constants";
+import { useCountDownStore } from "../../common/components/CountDown";
+import { motion } from "framer-motion";
 
 const Body = () => {
+  const { isExpired } = useCountDownStore();
+  console.log("isExpired:", isExpired);
+
   return (
-    <BGC>
+    <BGC
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       {/* 인재상 */}
       <BoxContainer>
         <Title>숭실대 멋쟁이사자처럼은 이런 사람을 원해요</Title>
@@ -55,25 +62,30 @@ const Body = () => {
           ))}
         </CircleContainer>
       </BoxContainer>
-
-      {/* 지원하기 */}
-      <ApplyContainer>
-        <LineBox $bottomBorder />
-        <ApplyBox>
-          <Title>지금 바로 지원하세요</Title>
-          <ApplyBtn>지원 서류 작성하기</ApplyBtn>
-        </ApplyBox>
-        <LineBox $topBorder />
-      </ApplyContainer>
+      {isExpired ? (
+        ""
+      ) : (
+        // {/* 지원하기 */}
+        <ApplyContainer>
+          <LineBox $bottomBorder />
+          <ApplyBox>
+            <Title>지금 바로 지원하세요</Title>
+            <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+          </ApplyBox>
+          <LineBox $topBorder />
+        </ApplyContainer>
+      )}
     </BGC>
   );
 };
 
 export default Body;
 
-const BGC = styled.div`
+const BGC = styled(motion.div)`
   width: 100%;
-  padding: 16rem 0 34rem 0;
+  padding: 16rem 0 0 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `;
 
 const BoxContainer = styled.div`
@@ -156,11 +168,11 @@ const PartName = styled.p`
   color: #fff;
   font-feature-settings: "calt" off;
 
-  /* font-family: "SUIT Variable"; */
+  font-family: "SUIT Variable";
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.8rem;
+  line-height: normal;
   letter-spacing: 0.4px;
   text-align: left;
 `;
@@ -222,6 +234,7 @@ const ApplyContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  padding-bottom: 34rem;
 `;
 
 const LineBox = styled.div<{ $topBorder?: boolean; $bottomBorder?: boolean }>`

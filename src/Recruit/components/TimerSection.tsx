@@ -1,9 +1,30 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { RefObject } from "react";
+import IcArrow from "../../common/assets/arrow_down.svg?react";
+import TopBar from "../../common/components/TopBar";
 
-const TimerSection = () => {
+interface TimerSectionProps {
+  snapContainerRef: RefObject<HTMLDivElement>;
+}
+
+const TimerSection = ({ snapContainerRef }: TimerSectionProps) => {
+  const handleScrollDown = () => {
+    if (snapContainerRef.current) {
+      const container = snapContainerRef.current;
+      const sectionHeight = window.innerHeight;
+
+      container.scrollBy({ top: sectionHeight, behavior: "smooth" });
+    }
+  };
   return (
     <>
-      <BGC>
+      <BGC
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <TopBar type="recruit" />
         <TitleWrapper>
           <Title>13th SSU BABYLION RECRUITING 13th SSU BABYLION RECRUITING</Title>
         </TitleWrapper>
@@ -16,6 +37,9 @@ const TimerSection = () => {
         <TitleWrapper>
           <Title>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </Title>
         </TitleWrapper>
+        <ArrowWrapper>
+          <IcArrowStyled onClick={handleScrollDown} />
+        </ArrowWrapper>
       </BGC>
     </>
   );
@@ -23,12 +47,17 @@ const TimerSection = () => {
 
 export default TimerSection;
 
-const BGC = styled.div`
+const BGC = styled(motion.div)`
   background: linear-gradient(90deg, #1a1a1a 35.78%, #000 100%);
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  min-height: 85rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `;
 
 const TitleWrapper = styled.div`
@@ -55,7 +84,7 @@ const Title = styled.p`
 `;
 
 const TextContainer = styled.div`
-  padding: 18rem 5.6rem;
+  padding: 15.1rem 5.6rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -78,4 +107,19 @@ const TextSmall = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
+`;
+
+const IcArrowStyled = styled(IcArrow)`
+  position: fixed;
+  bottom: 4.8rem;
+  transform: rotate(90deg);
+  cursor: pointer;
+  path {
+    stroke: #fff;
+  }
+`;
+
+const ArrowWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
