@@ -7,6 +7,8 @@ import Home from "./Home";
 const About = lazy(() => import("./About"));
 const Recruit = lazy(() => import("./Recruit"));
 const Part = lazy(() => import("./Part"));
+const Project = lazy(() => import("./Project"));
+const ProjectDetail = lazy(() => import("./Project/Detail"));
 const NotFound = lazy(() => import("./common/components/NotFound"));
 
 const router = createBrowserRouter([
@@ -40,7 +42,24 @@ const router = createBrowserRouter([
     )
   },
 
-  // project ?? (와프 나온 후)
+  // project
+  {
+    path: "/project",
+    element: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Project />
+      </ErrorBoundary>
+    )
+  },
+  // project detail
+  {
+    path: "/project/:id",
+    element: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <ProjectDetail />
+      </ErrorBoundary>
+    )
+  },
 
   // recruit - 시온
   {
@@ -51,6 +70,7 @@ const router = createBrowserRouter([
       </ErrorBoundary>
     )
   },
+
   {
     path: "*",
     element: <NotFound />
