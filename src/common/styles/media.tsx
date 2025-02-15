@@ -1,10 +1,11 @@
 import { css, type CSSObject, type Interpolation } from "styled-components";
 
-export type Breakpoints = "small" | "large";
+export type Breakpoints = "small" | "medium" | "large";
 
 export const breakpoints: Record<Breakpoints, string> = {
-  small: "@media (max-width: 767px)",
-  large: "@media (min-width: 768px)"
+  small: "@media (max-width: 639px)",
+  medium: "@media (max-width: 1047px)",
+  large: "@media (min-width: 1048px)"
 };
 
 const media = Object.entries(breakpoints).reduce((acc, [key, value]) => {
