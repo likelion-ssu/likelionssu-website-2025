@@ -18,16 +18,16 @@ const TopBar = ({ type }: TopBarProps) => {
 
   return (
     <>
-      <TopBarContainer isRecruit={isRecruitActive}>
+      <TopBarContainer $isRecruit={isRecruitActive}>
         <Link to="/">
-          <LogoContainer isRecruit={isRecruitActive}>
+          <LogoContainer $isRecruit={isRecruitActive}>
             <Logo style={{ width: "2rem" }} />
             LIKELION SOONGSIL
           </LogoContainer>
         </Link>
         <BtnContainer>
           {type !== "recruit" && <ApplyBtn>13기 지원하기</ApplyBtn>}
-          <IcMenuStyled isRecruit={isRecruitActive} onClick={() => setIsNavOpen(true)} />
+          <IcMenuStyled $isRecruit={isRecruitActive} onClick={() => setIsNavOpen(true)} />
         </BtnContainer>
       </TopBarContainer>
 
@@ -38,7 +38,7 @@ const TopBar = ({ type }: TopBarProps) => {
 
 export default TopBar;
 
-const TopBarContainer = styled.div<{ isRecruit: boolean }>`
+const TopBarContainer = styled.div<{ $isRecruit: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -53,16 +53,16 @@ const TopBarContainer = styled.div<{ isRecruit: boolean }>`
   height: 10rem;
   padding: 5rem 5.6rem;
 
-  background: ${({ isRecruit }) =>
-    isRecruit
+  background: ${({ $isRecruit }) =>
+    $isRecruit
       ? "transparent"
       : "linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%)"};
 `;
 
-const LogoContainer = styled.div<{ isRecruit: boolean }>`
+const LogoContainer = styled.div<{ $isRecruit: boolean }>`
   display: flex;
   align-items: center;
-  color: ${({ isRecruit }) => (isRecruit ? "black" : "#fff")};
+  color: ${({ $isRecruit }) => ($isRecruit ? "black" : "#fff")};
 
   font-family: "SUIT Variable";
   font-size: 2.2rem;
@@ -80,9 +80,9 @@ const BtnContainer = styled.div`
   gap: 3.5rem;
 `;
 
-const IcMenuStyled = styled(IcMenu)<{ isRecruit: boolean }>`
+const IcMenuStyled = styled(IcMenu)<{ $isRecruit: boolean }>`
   path {
-    fill: ${({ isRecruit }) => (isRecruit ? "black" : "white")};
+    fill: ${({ $isRecruit }) => ($isRecruit ? "black" : "white")};
   }
 `;
 
