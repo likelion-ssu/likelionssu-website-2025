@@ -2,10 +2,31 @@ import styled, { keyframes } from "styled-components";
 import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.svg?react";
 import { motion } from "framer-motion";
-import { aboutUsText } from "../constants/aboutUsText";
 import TopBar from "../../common/components/TopBar";
+import { aboutUsDesktopText } from "../constants/aboutUsText";
+import { aboutUsMobileText } from "../constants/aboutUsText";
+import { useEffect, useRef, useState } from "react";
+import media from "../../common/styles/media";
 
 const AboutUsSection = () => {
+  const [text, setText] = useState(aboutUsDesktopText);
+
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 768) {
+        setText(aboutUsMobileText);
+      } else {
+        setText(aboutUsDesktopText);
+      }
+    };
+
+    window.addEventListener("resize", update);
+
+    update();
+
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <BG
       initial={{ opacity: 0, y: 50 }}
@@ -18,7 +39,7 @@ const AboutUsSection = () => {
           <BgPhrase />
         </StyledBgPhrase>
         <Description>
-          {aboutUsText.map((item, index) =>
+          {text.map((item, index) =>
             typeof item === "string" ? (
               <span key={index}>{item} </span>
             ) : (
@@ -37,6 +58,9 @@ const BG = styled(motion.div)`
   width: 100%;
   height: 100vh;
 
+  scroll-snap-align: start;
+  scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
+
   background: url(${BgImg});
   background-size: cover;
   background-size: center;
@@ -44,17 +68,30 @@ const BG = styled(motion.div)`
   position: relative;
   isolation: isolate;
 
-  &::after {
-    content: "";
-    position: absolute;
-    background: #000000;
-    z-index: -1;
-    inset: 0;
-    opacity: 0.6;
-  }
+  ${media.large`
+    &::after {
+      content: "";
+      position: absolute;
+      background: #000000;
+      z-index: -1;
+      inset: 0;
+      opacity: 0.6;
+    }`}
 
-  scroll-snap-align: start;
-  scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
+  ${media.medium`
+      background-size: contain;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    &::after {
+      content: "";
+      position: absolute;
+      background: #000000;
+      z-index: -1;
+      inset: 0;
+      opacity: 0.6;
+    }
+    `}
 `;
 
 const BGBottom = styled.div`
@@ -70,6 +107,14 @@ const BGBottom = styled.div`
   gap: 3rem;
 
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+
+  @media (max-width: 768px) {
+    top: 0;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    padding-top: 1.5rem;
+  }
 `;
 
 const Description = styled.div`
@@ -85,6 +130,10 @@ const Description = styled.div`
 
   word-break: keep-all;
   line-height: 3.5rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const BoldDescription = styled.span`
@@ -96,6 +145,6 @@ const fadeInOut = keyframes`
   100% { opacity: 1; transform: scale(1); }
 `;
 
-const StyledBgPhrase = styled.div`
+const StyledBgPhrase = styled(BgPhrase)`
   animation: ${fadeInOut} 3s ease-in-out 1;
 `;

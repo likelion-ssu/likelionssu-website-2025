@@ -3,6 +3,7 @@ import Team_MemberCard from "./Team_MemberCard";
 import { teamCategories } from "../constants/teamData";
 import { motion } from "framer-motion";
 import Footer from "../../common/components/Footer";
+import media from "../../common/styles/media";
 
 // 팀 카테고리 섹션의 props의 타입
 interface TeamCategorySectionProps {
@@ -53,10 +54,11 @@ const BG = styled(motion.div)`
   width: 100%;
 
   background-color: #f6f7f9;
-  scroll-snap-align: start;
-  scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
 
   position: relative;
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
 `;
 
 const Header = styled.div`
@@ -122,9 +124,9 @@ const CardsContainer = styled.div<{ $teamType: string }>`
     props.$teamType === "CORE" ? "24rem" : props.$teamType === "TECH" ? "8.4rem" : "16rem"};
   justify-content: center; /* 중앙 정렬 */
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+  ${media.medium`
+      grid-template-columns: repeat(2, 1fr);
     column-gap: 8rem;
     row-gap: 2.6rem;
-  }
+    `}
 `;
