@@ -4,6 +4,7 @@ import Arrow from "../../common/assets/arrow_down.svg?react";
 import { skillDataWithIcons, partDataWithIcons, stepData } from "../constants";
 import { useCountDownStore } from "../../common/components/CountDown";
 import { motion } from "framer-motion";
+import media from "../../common/styles/media";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
@@ -89,7 +90,7 @@ const BGC = styled(motion.div)`
 `;
 
 const BoxContainer = styled.div`
-  margin-bottom: 26rem;
+  margin-bottom: 2rem;
   text-align: center;
 `;
 
@@ -98,6 +99,14 @@ const Title = styled.h1`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  ${media.small`
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px; /* 162.5% */
+    letter-spacing: -0.16px;
+  `};
 `;
 
 // 인재상
@@ -107,9 +116,18 @@ const CardSection = styled.div`
   margin-top: 8rem;
   align-items: center;
   justify-content: center;
+
+  ${media.small`
+    flex-direction:column;
+    margin-top: 2rem;
+    gap:1.4rem
+  `};
 `;
 
 const SkillCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 32rem;
   height: 40rem;
   flex-shrink: 0;
@@ -120,6 +138,15 @@ const SkillCard = styled.div`
     rgba(255, 255, 255, 0.08) 55.49%,
     rgba(255, 255, 255, 0.04) 100%
   );
+
+  ${media.small`
+    width: 330px;
+height: 120px;
+border-radius: 5.94px;
+display: flex;
+flex-direction: row;
+
+  `};
 `;
 
 const Text = styled.div`
@@ -129,6 +156,12 @@ const Text = styled.div`
   text-align: left;
   gap: 1.8rem;
   margin: 0 5.5rem 2.6rem 2.6rem;
+
+  ${media.small`
+   gap:1rem;
+   width:20rem;
+   margin: 2.4rem 2.5rem 2.4rem 2rem;
+  `};
 `;
 
 const CardText = styled.p`
@@ -138,6 +171,10 @@ const CardText = styled.p`
   font-weight: 400;
   line-height: 2.6rem;
   letter-spacing: -0.16px;
+
+  ${({ theme }) => media.small`
+    ${theme.mixins.font(theme.fonts.Pretendard.body7)}
+  `};
 `;
 // 파트
 const PartSection = styled.div`
