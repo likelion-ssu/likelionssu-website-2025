@@ -2,12 +2,16 @@ import styled from "styled-components";
 import bgImg from "./assets/background.png";
 import { mainBtns } from "./constants/mainBtns";
 import MainBtn from "./components/MainBtn";
+import ThreeScene from "./components/ThreeScene";
 
 const Home = () => {
   return (
     <>
       <BgImgWrapper />
       <BgWrapper />
+      <ThreeSceneWrapper>
+        <ThreeScene />
+      </ThreeSceneWrapper>
       <MainContainer>
         <TextContainer>
           <Title>Possibility To Reality,</Title>
@@ -92,3 +96,5 @@ const MainBtnContainer = styled.div`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   padding: 5.1rem 8.5rem 8rem 8.5rem;
 `;
+
+const ThreeSceneWrapper = styled.div``;
