@@ -32,8 +32,7 @@ const NavBar = ({ onClose }: NavBarProps) => {
           </li>
 
           <li>
-            {/* part 링크로 수정 */}
-            <Link to="/">PART</Link>
+            <Link to="/part">PART</Link>
             <p>
               Project Manager
               <br />
@@ -46,8 +45,7 @@ const NavBar = ({ onClose }: NavBarProps) => {
           </li>
 
           <li>
-            {/* project 링크로 수정 */}
-            <Link to="/">PROJECT</Link>
+            <Link to="/project">PROJECT</Link>
           </li>
 
           <li>
