@@ -1,15 +1,8 @@
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform
-} from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import Activity_ImgAnimation from "./Activity_ImgAnimation";
 import { imgPaths } from "../constants/activityArrays";
-import { ACTIVITY_LIST } from "../constants/activityList";
 import { ActivityType } from "../type/activity";
 import { findActivityType } from "../utils/findActivityType";
 import Activity_TextAnimation from "./Activity_TextAnimation";
