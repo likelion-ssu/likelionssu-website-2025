@@ -16,14 +16,16 @@ export default function Comment() {
   const [isDisabled, setIsDisabled] = useState(false);
   const sliderRef = useRef<Slider | null>(null);
   const visibleSlides = 3;
+  const slideToMove = 1;
   const totalSlides = comments.length;
+  const [expandedComments, setExpandedComments] = useState<number[]>([]);
 
   const settings = {
     dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: visibleSlides,
-    slidesToScroll: visibleSlides,
+    slidesToScroll: slideToMove,
     arrows: false,
     beforeChange: (_: number, newIndex: number) => setCurrentSlide(newIndex)
   };
@@ -41,7 +43,7 @@ export default function Comment() {
     if (isDisabled || !sliderRef.current || currentSlide === 0) return;
     setIsDisabled(true);
 
-    const newIndex = Math.max(currentSlide - visibleSlides, 0);
+    const newIndex = Math.max(currentSlide - slideToMove, 0);
     sliderRef.current.slickGoTo(newIndex);
     setCurrentSlide(newIndex);
   };
@@ -50,10 +52,31 @@ export default function Comment() {
     if (isDisabled || !sliderRef.current) return;
     setIsDisabled(true);
 
-    const newIndex = Math.min(currentSlide + visibleSlides, totalSlides - visibleSlides);
+    const maxIndex = Math.max(0, totalSlides - visibleSlides);
+    const newIndex = Math.min(currentSlide + slideToMove, maxIndex);
     sliderRef.current.slickGoTo(newIndex);
     setCurrentSlide(newIndex);
   };
+
+  const toggleExpand = (index: number) => {
+    if (expandedComments.includes(index)) {
+      setExpandedComments(expandedComments.filter(i => i !== index));
+    } else {
+      setExpandedComments([...expandedComments, index]);
+    }
+  };
+
+  // 텍스트 줄임 함수
+  const truncateText = (text: string, lines: number = 4) => {
+    const averageCharsPerLine = 36;
+    const limit = averageCharsPerLine * lines;
+
+    if (text.length <= limit) return text;
+    return text.substring(0, limit) + "...";
+  };
+
+  // 다음 버튼 숨김 조건 수정
+  const isNextButtonHidden = currentSlide >= totalSlides - visibleSlides;
 
   return (
     <Container>
@@ -79,21 +102,33 @@ export default function Comment() {
 
         <SliderContainer>
           <StyledSlider ref={sliderRef} {...settings}>
-            {comments.map((comment, index) => (
-              <Card key={index}>
-                <img src={lion_img} alt="Lion Emoji" />
-                <Tag>
-                  <Name>{comment.name}</Name>
-                  <CardinalNumber>{comment.batch}</CardinalNumber>
-                </Tag>
-                <CommentCaption>{comment.text}</CommentCaption>
-              </Card>
-            ))}
+            {comments.map((comment, index) => {
+              const isExpanded = expandedComments.includes(index);
+              return (
+                <Card key={index} $expanded={isExpanded}>
+                  <img src={lion_img} alt="Lion Emoji" />
+                  <Tag>
+                    <Name>{comment.name}</Name>
+                    <CardinalNumber>{comment.batch}</CardinalNumber>
+                  </Tag>
+                  <CommentCaption>
+                    {isExpanded ? comment.text : truncateText(comment.text)}
+                  </CommentCaption>
+                  {comment.text.length > 4 * 36 && (
+                    <ExpandButton onClick={() => toggleExpand(index)}>
+                      <ArrowWrapper $expanded={isExpanded}>
+                        <Arrow />
+                      </ArrowWrapper>
+                    </ExpandButton>
+                  )}
+                </Card>
+              );
+            })}
           </StyledSlider>
         </SliderContainer>
 
         <CustomNextArrow
-          $hidden={currentSlide + visibleSlides >= totalSlides}
+          $hidden={isNextButtonHidden}
           disabled={isDisabled}
           onClick={handleNext}
           type="button"
@@ -105,7 +140,6 @@ export default function Comment() {
   );
 }
 
-// ✅ 스타일 수정: 기존 스타일 유지 + $hidden 상태 유지
 const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   position: absolute;
   top: 50%;
@@ -123,10 +157,8 @@ const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   gap: 0.9rem;
   z-index: 999;
 
-  /* ✅ hidden이면 완전히 사라지도록 설정 */
   display: ${({ $hidden }) => ($hidden ? "none" : "flex")};
 
-  /* ✅ disabled일 때 스타일 유지하면서 클릭만 방지 */
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
 
@@ -152,12 +184,25 @@ const CustomNextArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   gap: 0.9rem;
   z-index: 999;
 
-  /* ✅ hidden이면 완전히 사라지도록 설정 */
   display: ${({ $hidden }) => ($hidden ? "none" : "flex")};
 
-  /* ✅ disabled일 때 스타일 유지하면서 클릭만 방지 */
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+`;
+
+const ArrowWrapper = styled.span<{ $expanded: boolean }>`
+  display: inline-flex;
+  transition: transform 0.3s ease;
+  transform: ${({ $expanded }) => ($expanded ? "rotate(270deg)" : "rotate(90deg)")};
+`;
+
+const ExpandButton = styled.button`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 2.5rem;
 `;
 
 const StyledSlider = styled(Slider as any)`
@@ -171,7 +216,7 @@ const StyledSlider = styled(Slider as any)`
     display: flex !important;
     gap: 3rem;
     margin-left: 0;
-    padding-right: 100rem;
+    padding-right: 0;
   }
 
   .slick-slide {
@@ -184,11 +229,12 @@ const StyledSlider = styled(Slider as any)`
 
 const SliderContainer = styled.div`
   width: 150rem;
+  padding-right: 4rem;
 `;
 
-const Card = styled.div`
+const Card = styled.div<{ $expanded: boolean }>`
   width: 45rem;
-  height: 35.8rem;
+  height: ${({ $expanded }) => ($expanded ? "auto" : "35.8rem")};
   max-width: 45rem;
   min-width: 45rem;
   border-radius: 20px;
@@ -200,6 +246,7 @@ const Card = styled.div`
   align-items: start;
   gap: 1rem;
   overflow-y: auto;
+  transition: height 0.3s ease;
 `;
 
 const CarouselWrapper = styled.div`
