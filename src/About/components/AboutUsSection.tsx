@@ -100,17 +100,6 @@ const BG = styled(motion.div)`
     `}
 `;
 
-const TransparentTop = styled.div`
-  width: 100%;
-  height: 10rem;
-  background-color: transparent;
-  // 실제 top bar의 사이즈와 동일하게 정의
-
-  ${media.small`
-    background-color: black;
-  `}
-`;
-
 const BGBottom = styled.div`
   width: 100%;
   height: 100%;

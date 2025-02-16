@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { imgPaths, imgToIndexMap } from "../constants/activityArrays";
 import { ActivityType } from "../type/activity";
 import { getImagesByActivityType } from "../utils/activityImageUtil";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import media from "../../common/styles/media";
-import { useEffect, useState } from "react";
 
 interface activityProps {
   index: ActivityType;
@@ -17,9 +15,6 @@ interface activityProps {
 const ActivityItem = ({ index, title, description }: activityProps) => {
   const images = getImagesByActivityType(index) ?? [];
 
-  const [centerIndex, setCenterIndex] = useState<number>(0);
-  const [center, setCenter] = useState<string>(images[0] ?? "");
-
   const settings = {
     dots: false,
     infinite: false,
@@ -27,11 +22,7 @@ const ActivityItem = ({ index, title, description }: activityProps) => {
     slidesToScroll: 1,
     swipeToSlide: true,
     arrows: false,
-    centerMode: true,
-    beforeChange: () => {
-      setCenterIndex(prev => prev + 1);
-      setCenter(images[centerIndex] ?? "");
-    }
+    centerMode: true
   };
 
   return (
