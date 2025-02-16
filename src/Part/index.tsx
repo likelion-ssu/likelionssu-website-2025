@@ -5,6 +5,8 @@ import RoleContent from "./components/RoleContent";
 import RoleSelector from "./components/RoleSelector";
 import Section from "./components/Session";
 import Comment from "./components/Comment";
+import TopBar from "../common/components/TopBar";
+import Footer from "../common/components/Footer";
 import backgroundImg from "./assets/bg_effect.png";
 
 const Part = () => {
@@ -12,6 +14,7 @@ const Part = () => {
 
   return (
     <MainContainer ref={ref}>
+      <TopBar type="part" />
       <Wrapper>
         <SnapSection
           initial={{ opacity: 0, y: 50 }}
@@ -33,6 +36,7 @@ const Part = () => {
           </CarouselWrapper>
         </SnapSection>
       </Wrapper>
+      <Footer />
     </MainContainer>
   );
 };
