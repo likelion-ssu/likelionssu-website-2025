@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import media from "../../common/styles/media";
 
 interface MemberProps {
   name: string;
@@ -26,6 +27,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2.4rem;
+
+  ${media.small`
+    width: 9rem;
+  `}
 `;
 
 const Image = styled.img`
@@ -34,6 +39,11 @@ const Image = styled.img`
   border-radius: 50%;
 
   object-fit: cover;
+
+  ${media.small`
+    width: 9rem;
+    height: 9rem;
+  `}
 `;
 
 const TextContainer = styled.div`
@@ -50,6 +60,10 @@ const Name = styled.div`
   font-family: "Pretendard Variable";
   font-weight: 600;
   line-height: normal;
+
+  ${media.small`
+    font-size: 1.2rem;
+  `}
 `;
 
 const RoleContainer = styled.div`
@@ -64,4 +78,16 @@ const RoleContainer = styled.div`
 
   color: rgba(0, 0, 0, 0.7);
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+
+  ${media.small`
+    padding: 0.6rem 1.2rem;
+    gap: 0.3948rem;
+    order-radius: 1.1845rem;
+    border: 0.395px solid rgba(0, 0, 0, 0.08);  
+
+    font-size: 1rem;
+    font-weight: 400;
+  line-height: 1.0266rem; /* 102.66% */
+  letter-spacing: -0.01rem;
+  `}
 `;
