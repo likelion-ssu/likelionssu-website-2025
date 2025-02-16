@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import TopBar from "../../common/components/TopBar";
 import { aboutUsDesktopText } from "../constants/aboutUsText";
 import { aboutUsMobileText } from "../constants/aboutUsText";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import media from "../../common/styles/media";
 
 const AboutUsSection = () => {
@@ -13,7 +13,7 @@ const AboutUsSection = () => {
 
   useEffect(() => {
     const update = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 639) {
         setText(aboutUsMobileText);
       } else {
         setText(aboutUsDesktopText);
@@ -33,7 +33,10 @@ const AboutUsSection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* absolute한 투명한 top bar */}
       <TopBar />
+      {/* 실제 공간을 차지하는 투명한 div */}
+      <TransparentTop />
       <BGBottom>
         <StyledBgPhrase>
           <BgPhrase />
@@ -68,58 +71,108 @@ const BG = styled(motion.div)`
   position: relative;
   isolation: isolate;
 
-  ${media.large`
-    &::after {
-      content: "";
-      position: absolute;
-      background: #000000;
-      z-index: -1;
-      inset: 0;
-      opacity: 0.6;
-    }`}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-  ${media.medium`
-      background-size: contain;
+  &::after {
+    content: "";
+    position: absolute;
+    background: #000000;
+    z-index: -1;
+    inset: 0;
+    opacity: 0.6;
+  }
+
+  ${media.small`
+    width: 100%;
+    height: auto;
+    
+    background: none;
+    background-size: contain;
     background-repeat: no-repeat;
-    height: 100vh;
+
+    justify-content: flex-start;
 
     &::after {
-      content: "";
-      position: absolute;
-      background: #000000;
-      z-index: -1;
-      inset: 0;
-      opacity: 0.6;
+      content: none; 
     }
     `}
 `;
 
+const TransparentTop = styled.div`
+  width: 100%;
+  height: 10rem;
+  background-color: transparent;
+  // 실제 top bar의 사이즈와 동일하게 정의
+
+  ${media.small`
+    background-color: black;
+  `}
+`;
+
 const BGBottom = styled.div`
   width: 100%;
-
-  position: absolute;
-  bottom: 0;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 3rem;
 
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 
-  @media (max-width: 768px) {
-    top: 0;
-    justify-content: flex-start;
+  ${media.medium`
     gap: 1rem;
+  `}
 
-    padding-top: 1.5rem;
+  ${media.small`
+    min-height: 30rem;
+    max-height: 35rem;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    position: relative;
+
+     background: url(${BgImg});
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &::after {
+      height: 100%;
+      content: "";
+      position: absolute;
+      bottom: 0;
+
+      background: linear-gradient(0deg, rgba(0,0,0,1) 30%,  rgba(0,0,0,0.1) 100%);
+
+      z-index: 0;
+      
+      inset: 0;
   }
+  `}
+`;
+
+const fadeInOut = keyframes`
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+`;
+
+const StyledBgPhrase = styled(BgPhrase)`
+  animation: ${fadeInOut} 2s linear 1;
+
+  ${media.small`
+    height: 10rem;
+
+    z-index: 1;
+  `}
 `;
 
 const Description = styled.div`
   color: rgba(255, 255, 255, 0.7);
-  /* width: 108rem; */
   padding-left: 4rem;
   padding-bottom: 3.13rem;
 
@@ -131,20 +184,16 @@ const Description = styled.div`
   word-break: keep-all;
   line-height: 3.5rem;
 
-  @media (max-width: 768px) {
+  z-index: 1;
+
+  ${media.small`
     padding: 2rem;
-  }
+
+    ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+    line-height: 2rem;
+  `}
 `;
 
 const BoldDescription = styled.span`
   font-weight: 700;
-`;
-
-const fadeInOut = keyframes`
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
-`;
-
-const StyledBgPhrase = styled(BgPhrase)`
-  animation: ${fadeInOut} 3s ease-in-out 1;
 `;

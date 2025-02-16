@@ -69,10 +69,10 @@ const Header = styled.div`
   color: rgba(0, 0, 0, 0.2);
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
 
-  @media (max-width: 768px) {
+  ${media.medium`
     left: 2rem;
     top: 5.2rem;
-  }
+  `}
 `;
 
 const Wrapper = styled.div`
@@ -84,10 +84,10 @@ const Wrapper = styled.div`
 
   padding: 3rem 0rem 5.5rem 0rem;
 
-  @media (max-width: 768px) {
+  ${media.medium`
     padding: 10.2rem 6.3rem 8.08rem 6.3rem;
     gap: 6rem;
-  }
+  `}
 `;
 
 const TeamWrapper = styled.div`
@@ -97,9 +97,9 @@ const TeamWrapper = styled.div`
   align-items: center;
   gap: 3.6rem;
 
-  @media (max-width: 768px) {
+  ${media.medium`
     gap: 3rem;
-  }
+  `}
 `;
 
 const Title = styled.div`
