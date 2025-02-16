@@ -3,11 +3,13 @@ import AboutUsSection from "./components/AboutUsSection";
 import ActivitySection from "./components/ActivitySection";
 import TeamSection from "./components/TeamSection";
 import media from "../common/styles/media";
+import TopBar from "../common/components/TopBar";
 
 const About = () => {
   return (
     <>
       <SnapContainer>
+        <TopBar />
         <AboutUsSection />
         <ActivitySection />
         <TeamSection />
@@ -26,5 +28,10 @@ const SnapContainer = styled.div`
 
   ${media.small`
     height: auto;
+
+    scroll-snap-align : none;
+    scroll-behavior: normal;
+
+    overflow-y: hidden;
   `}
 `;

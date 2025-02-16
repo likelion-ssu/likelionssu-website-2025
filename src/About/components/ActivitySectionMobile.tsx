@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { ACTIVITY_LIST } from "../constants/activityList";
-import theme from "../../common/styles/theme";
 import ActivityItem from "./ActivityItem";
 import { ActivityType } from "../type/activity";
 

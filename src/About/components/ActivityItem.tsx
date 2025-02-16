@@ -16,16 +16,18 @@ interface activityProps {
 
 const ActivityItem = ({ index, title, description }: activityProps) => {
   const images = getImagesByActivityType(index) ?? [];
+
   const [centerIndex, setCenterIndex] = useState<number>(0);
   const [center, setCenter] = useState<string>(images[0] ?? "");
 
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
-    slideToShow: 1,
-    slidesToScroll: 0.7,
+    slideToShow: 3,
+    slidesToScroll: 1,
+    swipeToSlide: true,
     arrows: false,
+    centerMode: true,
     beforeChange: () => {
       setCenterIndex(prev => prev + 1);
       setCenter(images[centerIndex] ?? "");
@@ -38,13 +40,9 @@ const ActivityItem = ({ index, title, description }: activityProps) => {
       <Description>{description}</Description>
       <ImageContainer>
         <StyledSlider {...settings}>
-          {images.map((src, index) =>
-            src === center ? (
-              <CenterImage key={index} src={src} alt={`activity-${index}`} />
-            ) : (
-              <DisabledImage key={index} src={src} alt={`activity-${index}`} />
-            )
-          )}
+          {images.map((src, index) => (
+            <CenterImage key={index} src={src} alt={`activity-${index}`} />
+          ))}
         </StyledSlider>
       </ImageContainer>
     </Container>
@@ -69,12 +67,20 @@ const Title = styled.div`
   color: #fff;
 
   font-family: Pretendard;
-  font-size: 3rem;
+
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.03rem;
   text-align: left;
+
+  ${media.medium`
+    font-size: 6rem;
+    `}
+
+  ${media.small`
+    font-size: 3rem;
+    `}
 `;
 
 const Description = styled.div`
@@ -82,18 +88,33 @@ const Description = styled.div`
 
   color: #d9d9d9;
 
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
   text-align: left;
 
   -webkit-font-smoothing: antialiased;
   white-space: pre-wrap;
   word-break: keep-all;
+
+  ${media.medium`
+    ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+    `}
+
+  ${media.small`
+      ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+    `}
 `;
 
 const ImageContainer = styled.div`
-  overflow-x: scroll;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+`;
 
-  height: 20rem;
+const CenterImage = styled.img`
+  object-fit: cover;
+
+  border-radius: 1rem;
 `;
 
 const StyledSlider = styled(Slider as any)`
@@ -101,41 +122,28 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-list {
     overflow: visible;
+
+    ${media.medium`
+      width: 65rem;
+    `}
+
+    ${media.small`
+      width: 40rem;
+    `}
   }
 
   .slick-track {
     display: flex !important;
     gap: 3rem;
     margin-left: 0;
-
-    ${media.medium`
-        padding-right: 200rem;
-    `}
-
-    ${media.small`
-        padding-right: 100rem;
-    `}
   }
 
   .slick-slide {
-    > div {
-      display: flex;
-      justify-content: center;
-
-      width: 30rem;
-      height: 20rem;
-    }
+    opacity: 0.3; /* 기본 opacity */
+    transition: opacity 0.3s ease-in-out;
   }
-`;
 
-const CenterImage = styled.img`
-  width: 30rem;
-  height: 20rem;
-  object-fit: cover;
-
-  border-radius: 1rem;
-`;
-
-const DisabledImage = styled(CenterImage)`
-  opacity: 0.3;
+  .slick-slide.slick-center {
+    opacity: 1; /* 중앙 슬라이드는 opacity 1 */
+  }
 `;

@@ -1,71 +1,40 @@
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform
-} from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Activity_ImgAnimation from "./Activity_ImgAnimation";
-import { imgPaths } from "../constants/activityArrays";
-import { ACTIVITY_LIST } from "../constants/activityList";
-import { ActivityType } from "../type/activity";
-import { findActivityType } from "../utils/findActivityType";
-import Activity_TextAnimation from "./Activity_TextAnimation";
+import media from "../../common/styles/media";
+import ActivitySectionDesktop from "./ActivitySectionDesktop";
+import ActivitySectionMobile from "./ActivitySectionMobile";
 
 const ActivitySection = () => {
-  const [activeActivityType, setActiveActivityType] = useState<ActivityType>(
-    ActivityType.EDUCATION
-  );
-  const [activeImgIndex, setActiveImgIndex] = useState(0); // 활성화된 이미지 인덱스
+  // 모바일과 태블릿/데스크탑 뷰 상태 관리
+  const [isMobile, setIsMobile] = useState(true);
 
-  const containerRef = useRef<HTMLDivElement>(null); // 스크롤 측정 영역의 전체 컨테이너
-  const targetRef = useRef<HTMLDivElement>(null); // 스크롤 측정할 타겟 요소
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 1047) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
 
-  const { scrollYProgress } = useScroll({
-    container: containerRef,
-    target: targetRef,
-    offset: ["start start", "end end"]
-  }); // 현재 스크롤의 위치를 추적합니다.
+    window.addEventListener("resize", update);
 
-  const imgIndex = useTransform(
-    scrollYProgress,
-    [0, 0.08, 0.14, 0.21, 0.26, 0.32, 0.38, 0.43, 0.48, 0.56, 0.6, 0.68, 0.75, 0.83, 0.88, 0.94, 1],
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-  );
+    update();
 
-  useMotionValueEvent(imgIndex, "change", latest => {
-    // 이미지 인덱스 결정
-    const newImgIndex = Math.round(latest);
-    setActiveImgIndex(newImgIndex);
-
-    // imgIdx를 기반으로 ActivityType 설정
-    const newActivityType = findActivityType(newImgIndex);
-    setActiveActivityType(newActivityType);
+    return () => window.removeEventListener("resize", update);
   });
 
-  return (
-    <BG
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      ref={containerRef}
-    >
-      <Title>Activity</Title>
-      {/* 텍스트 영역과 사진 영역을 묶는 컨테이너 */}
-      <SectionContainer ref={targetRef}>
-        {/* 좌측의 텍스트 영역 */}
-        <TextSection>
-          <Activity_TextAnimation activeActivityType={activeActivityType} />
-        </TextSection>
+  // 데스크탑/ 태블릿을 위한 부모 컨테이너 ref
+  const containerRef = useRef<HTMLDivElement>(null); // 스크롤 측정 영역의 전체 컨테이너
 
-        <ImgSection>
-          {imgPaths.map((img, index) => (
-            <Activity_ImgAnimation key={index} src={img} isActive={activeImgIndex === index} />
-          ))}
-        </ImgSection>
-      </SectionContainer>
+  // 모바일뷰를 위한 가로 스크롤 기능
+
+  return (
+    <BG ref={containerRef}>
+      <Title>Activity</Title>
+      {isMobile && <SubTitle>숭멋사 주요 활동</SubTitle>}
+      {!isMobile ? <ActivitySectionDesktop parentRef={containerRef} /> : <ActivitySectionMobile />}
     </BG>
   );
 };
@@ -82,38 +51,14 @@ const BG = styled(motion.div)`
 
   scroll-snap-align: start;
   scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
-`;
 
-const SectionContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  ${media.small`
+    height: auto;
 
-  position: relative;
-`;
-
-const TextSection = styled.div`
-  width: 60rem;
-  position: sticky;
-  top: 30rem;
-  left: 13rem;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
-`;
-
-const ImgSection = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
-  gap: 3rem;
-
-  margin: 20rem 0;
+    /* 초기화 */
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  `}
 `;
 
 const Title = styled.div`
@@ -125,4 +70,17 @@ const Title = styled.div`
 
   position: sticky;
   top: 0;
+
+  ${media.small`
+    padding: 2rem;
+
+    ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
+  `}
+`;
+
+const SubTitle = styled.div`
+  padding: 1rem 2rem;
+  color: rgba(255, 255, 255, 0.4);
+
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
 `;

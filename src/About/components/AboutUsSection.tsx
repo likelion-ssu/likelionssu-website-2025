@@ -2,7 +2,6 @@ import styled, { keyframes } from "styled-components";
 import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.svg?react";
 import { motion } from "framer-motion";
-import TopBar from "../../common/components/TopBar";
 import { aboutUsDesktopText } from "../constants/aboutUsText";
 import { aboutUsMobileText } from "../constants/aboutUsText";
 import { useEffect, useState } from "react";
@@ -33,10 +32,6 @@ const AboutUsSection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* absolute한 투명한 top bar */}
-      <TopBar />
-      {/* 실제 공간을 차지하는 투명한 div */}
-      <TransparentTop />
       <BGBottom>
         <StyledBgPhrase>
           <BgPhrase />
@@ -86,6 +81,10 @@ const BG = styled(motion.div)`
   }
 
   ${media.small`
+   /* 초기화 */
+   scroll-snap-align: none;
+    scroll-snap-stop: normal;
+
     width: 100%;
     height: auto;
     
@@ -129,10 +128,12 @@ const BGBottom = styled.div`
   `}
 
   ${media.small`
-    min-height: 30rem;
-    max-height: 35rem;
+    margin-top: 15rem;
+    min-height: 37rem;
+    max-height: 40rem;
 
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 5rem;
     align-items: flex-start;
 
     position: relative;

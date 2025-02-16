@@ -62,6 +62,10 @@ const BG = styled(motion.div)`
 `;
 
 const Header = styled.div`
+  /* 초기화 */
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+
   position: absolute;
   left: 5.6rem;
   top: 3rem;
@@ -72,6 +76,7 @@ const Header = styled.div`
   ${media.medium`
     left: 2rem;
     top: 5.2rem;
+    ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
   `}
 `;
 
@@ -85,7 +90,7 @@ const Wrapper = styled.div`
   padding: 3rem 0rem 5.5rem 0rem;
 
   ${media.medium`
-    padding: 10.2rem 6.3rem 8.08rem 6.3rem;
+    padding: 13.2rem 6.3rem 8.08rem 6.3rem;
     gap: 6rem;
   `}
 `;
@@ -126,7 +131,7 @@ const CardsContainer = styled.div<{ $teamType: string }>`
 
   ${media.medium`
       grid-template-columns: repeat(2, 1fr);
-    column-gap: 8rem;
-    row-gap: 2.6rem;
+      column-gap: 8rem;
+      row-gap: 2.6rem;
     `}
 `;

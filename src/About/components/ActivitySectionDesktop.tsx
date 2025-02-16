@@ -6,6 +6,7 @@ import { imgPaths } from "../constants/activityArrays";
 import { ActivityType } from "../type/activity";
 import { findActivityType } from "../utils/activityImageUtil";
 import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import media from "../../common/styles/media";
 
 interface RefProp {
   parentRef: RefObject<HTMLDivElement>;
@@ -79,6 +80,11 @@ const TextSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: left;
+
+  ${media.medium`
+  top: 15rem;
+  left: 5rem;
+  `}
 `;
 
 const ImgSection = styled.div`
@@ -89,5 +95,9 @@ const ImgSection = styled.div`
   align-items: left;
   gap: 3rem;
 
-  margin: 20rem 0;
+  margin: 20rem 5rem 20rem 0;
+
+  ${media.medium`
+    width: 45%;
+  `}
 `;
