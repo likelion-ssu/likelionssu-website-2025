@@ -359,7 +359,6 @@ const Container = styled.div`
   position: relative;
 
   ${media.medium`
-    padding: 0;
     width: 100%;
     flex-direction: column;
     overflow: hidden;
@@ -367,7 +366,6 @@ const Container = styled.div`
   `};
 
   ${media.small`
-    padding: 0;
     width: 100%;
     flex-direction: column;
     overflow: hidden;
@@ -378,11 +376,11 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 10rem;
+  padding-left: 8.6rem;
   height: 35.8rem;
 
   ${media.medium`
-    padding-left: 2rem;
+    padding-left: 5rem;
     height: auto;
     margin-bottom: 2rem;
   `};
@@ -411,10 +409,10 @@ const Card = styled.div<{ $expanded: boolean }>`
   transition: height 0.3s ease;
 
   ${media.medium`
-    width: 38rem;
+    width: 36rem;
     height: ${({ $expanded }) => ($expanded ? "auto" : "40rem")};
-    min-width: 38rem;
-    max-width: 38rem;
+    min-width: 36rem;
+    max-width: 36rem;
     padding: 2rem;
     margin: 0;
   `};
