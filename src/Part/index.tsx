@@ -23,10 +23,11 @@ const Part = () => {
         >
           <BGWrapper>
             <BG src={backgroundImg} />
+
+            <Logo>LIKELION PART</Logo>
+            <RoleSelector />
+            <RoleContent />
           </BGWrapper>
-          <Logo>LIKELION PART</Logo>
-          <RoleSelector />
-          <RoleContent />
         </SnapSection>
 
         <SnapSection>
@@ -76,22 +77,23 @@ const SnapSection = styled(motion.div)`
 `;
 
 const BGWrapper = styled.div`
-  position: absolute;
-  top: 39%;
-  left: 18%;
-  width: 70%;
-  height: 70%;
-  z-index: -9999;
-
+  position: relative;
   ${SnapSection}:nth-of-type(2) & {
     display: none;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const BG = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 70%;
+  height: 70%;
+  z-index: -999;
 `;
 
 const CarouselWrapper = styled.div`
