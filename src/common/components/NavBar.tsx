@@ -25,9 +25,9 @@ const NavBar = ({ onClose }: NavBarProps) => {
           <li>
             <Link to="/about">ABOUT</Link>
             <p>
-              Roadmap
+              <Link to="/about#activity-section">Roadmap</Link>
               <br />
-              Management Team
+              <Link to="/about#team-section">Management Team</Link>
             </p>
           </li>
 
