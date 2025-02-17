@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import media from "../../common/styles/media";
-import { DefaultTheme } from "styled-components/dist/types";
+import { Theme } from "../../common/styles/theme";
 
 interface activityProps {
   index: ActivityType;
@@ -87,11 +87,11 @@ const Description = styled.div`
   word-break: keep-all;
 
   ${media.medium`
-    ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+    ${({ theme }: { theme: Theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
     `}
 
   ${media.small`
-      ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+      ${({ theme }: { theme: Theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
     `}
 `;
 

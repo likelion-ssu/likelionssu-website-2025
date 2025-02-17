@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import Team_MemberCard from "./Team_MemberCard";
 import { teamCategories } from "../constants/teamData";
 import { motion } from "framer-motion";
 import Footer from "../../common/components/Footer";
 import media from "../../common/styles/media";
-import { DefaultTheme } from "styled-components/dist/types";
+import { Theme } from "../../common/styles/theme";
 
 // 팀 카테고리 섹션의 props의 타입
 interface TeamCategorySectionProps {
