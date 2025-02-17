@@ -47,7 +47,7 @@ const BGC = styled.div`
   background: #f6f7f9;
   color: black;
   width: 100%;
-  padding: 8.9rem 20rem;
+  padding: 8.9rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,8 +98,7 @@ const QuestionContainer = styled.div`
 
   ${media.small`
   width:35rem;
-  padding: 2.4rem 0 1.6rem 0
-
+  padding: 2.4rem 0 1.6rem 0;
   `};
 `;
 
@@ -135,6 +134,7 @@ const Answer = styled.div`
 const MoreBtn = styled.button`
   padding: 1.8rem 4rem;
   border-radius: 10px;
+  font-family: Pretendard;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background: #fff;
   color: rgba(0, 0, 0, 0.6);
@@ -143,9 +143,19 @@ const MoreBtn = styled.button`
   font-weight: 600;
   line-height: normal;
   cursor: pointer;
+
+  ${media.small`
+  padding: 1.6rem 3.4rem;
+  font-size: 1.4rem;
+  margin-bottom:31.6rem;
+  `};
 `;
 
 const Q = styled.p`
   font-size: 3rem;
   font-weight: 600;
+
+  ${({ theme }) => media.small`
+    ${theme.mixins.font(theme.fonts.Pretendard.body5)}
+  `};
 `;
