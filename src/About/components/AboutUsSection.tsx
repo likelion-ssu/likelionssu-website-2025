@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, DefaultTheme } from "styled-components";
 import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.svg?react";
 import { motion } from "framer-motion";
@@ -100,17 +100,6 @@ const BG = styled(motion.div)`
     `}
 `;
 
-const TransparentTop = styled.div`
-  width: 100%;
-  height: 10rem;
-  background-color: transparent;
-  // 실제 top bar의 사이즈와 동일하게 정의
-
-  ${media.small`
-    background-color: black;
-  `}
-`;
-
 const BGBottom = styled.div`
   width: 100%;
   height: 100%;
@@ -190,7 +179,7 @@ const Description = styled.div`
   ${media.small`
     padding: 2rem;
 
-    ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+    ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
     line-height: 2rem;
   `}
 `;

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import media from "../../common/styles/media";
 import ActivitySectionDesktop from "./ActivitySectionDesktop";
 import ActivitySectionMobile from "./ActivitySectionMobile";
@@ -66,7 +66,7 @@ const Title = styled.div`
   padding: 5rem;
   color: rgba(255, 255, 255, 0.3);
 
-  ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
+  ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
 
   position: sticky;
   top: 0;
@@ -74,7 +74,7 @@ const Title = styled.div`
   ${media.small`
     padding: 2rem;
 
-    ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
+    ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Suit.body3)}
   `}
 `;
 
