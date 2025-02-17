@@ -207,6 +207,9 @@ const ExpandButton = styled.button`
 
 const StyledSlider = styled(Slider as any)`
   width: 100%;
+  min-height: 35.8rem;
+  display: flex;
+  align-items: flex-start;
 
   .slick-list {
     overflow: visible;
@@ -245,7 +248,7 @@ const Card = styled.div<{ $expanded: boolean }>`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  overflow-y: auto;
+  overflow-y: hidden;
   transition: height 0.3s ease;
 `;
 
@@ -259,8 +262,6 @@ const Container = styled.div`
   width: 143.6rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 10rem;
   padding-bottom: 7rem;
   overflow: visible;
   position: relative;
@@ -269,7 +270,9 @@ const Container = styled.div`
 export const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding-left: 60rem;
+  height: 35.8rem;
 `;
 
 export const RoleText = styled.div`
@@ -277,7 +280,7 @@ export const RoleText = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.colors.White};
   font-family: "SUIT Variable";
-  font-size: 5.5rem;
+  font-size: 6rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -287,8 +290,8 @@ export const RoleText = styled.div`
 export const CommentSubTitle = styled.div`
   margin-top: 1rem;
   color: ${({ theme }) => theme.colors["10"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
-  width: 40rem;
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
+  width: 41.6rem;
 `;
 
 export const Tag = styled.div`

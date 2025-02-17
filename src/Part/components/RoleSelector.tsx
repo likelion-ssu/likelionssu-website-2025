@@ -39,7 +39,7 @@ const Btn = styled.div<{ $selected: boolean }>`
   gap: 1rem;
 
   width: fit-content;
-  padding: 1.4rem 3.8rem;
+  padding: 1.4rem 3.4rem;
   border-radius: 40px;
   border: 2px solid ${({ $selected }) => ($selected ? "#FFF" : "#585858")};
 
@@ -51,5 +51,11 @@ const Btn = styled.div<{ $selected: boolean }>`
     background 0.2s ease,
     border 0.2s ease;
 
-  ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle2)}
+  text-align: center;
+  font-family: "SUIT Variable";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.8rem;
+  letter-spacing: 0.04rem;
 `;

@@ -7,6 +7,10 @@ export default function Session() {
   const weeks = ["WEEK 01", "WEEK 02", "WEEK 03", "WEEK 04", "WEEK 05", "WEEK 06"];
   const contents = roleContents[selectedRole] || [];
 
+  if (selectedRole === "pm" || selectedRole === "de") {
+    weeks.splice(-2, 2, "WEEK 05-06");
+  }
+
   return (
     <Container>
       <Title>SESSION</Title>
@@ -29,6 +33,7 @@ const Container = styled.div`
   gap: 4rem;
 
   margin-top: 15.4rem;
+  margin-bottom: 13rem;
 `;
 
 const Title = styled.div`

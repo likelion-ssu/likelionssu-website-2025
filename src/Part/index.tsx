@@ -34,9 +34,9 @@ const Part = () => {
           <CarouselWrapper>
             <Comment />
           </CarouselWrapper>
+          <Footer />
         </SnapSection>
       </Wrapper>
-      <Footer />
     </MainContainer>
   );
 };
@@ -73,7 +73,6 @@ const SnapSection = styled(motion.div)`
   scroll-snap-align: start;
   scroll-snap-stop: always;
   position: relative;
-  overflow: hidden;
 `;
 
 const BGWrapper = styled.div`
