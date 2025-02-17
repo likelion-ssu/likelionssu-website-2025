@@ -8,17 +8,19 @@ const useScrollToElement = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const hash = location.hash.replace("#", ""); // #id 부분 추출
+    const hash = location.hash.replace("#", "");
     if (!hash) return;
 
     const element = document.getElementById(hash);
-    const snapContainer = document.getElementById("snap-container"); // 부모 컨테이너
+    const snapContainer = document.getElementById("snap-container");
+    // 스냅을 컨트롤하는 부모 컨테이너의 id를 명시
 
     if (element && snapContainer) {
       // 스냅을 일시적으로 비활성화
       snapContainer.style.scrollSnapType = "none";
 
       setTimeout(() => {
+        window.history.replaceState(null, "", window.location.pathname);
         element.scrollIntoView({ behavior: "smooth", block: "start" });
 
         // 스냅을 다시 활성화
