@@ -4,8 +4,11 @@ import styled, { DefaultTheme } from "styled-components";
 import media from "../../common/styles/media";
 import ActivitySectionDesktop from "./ActivitySectionDesktop";
 import ActivitySectionMobile from "./ActivitySectionMobile";
+import useScrollToElement from "../../common/hooks/useScrollToElement";
 
 const ActivitySection = () => {
+  useScrollToElement(); // 페이지 로드 시 특정 요소로 스크롤하기 위함
+
   // 모바일과 태블릿/데스크탑 뷰 상태 관리
   const [isMobile, setIsMobile] = useState(true);
 
@@ -41,7 +44,7 @@ const ActivitySection = () => {
 
 export default ActivitySection;
 
-const BG = styled(motion.div)`
+const BG = styled(motion.div).attrs({ id: "activity-section" })`
   width: 100%;
   height: 100vh;
   background-color: black;

@@ -20,7 +20,7 @@ const About = () => {
 
 export default About;
 
-const SnapContainer = styled.div`
+const SnapContainer = styled.div.attrs({ id: "snap-container" })`
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;

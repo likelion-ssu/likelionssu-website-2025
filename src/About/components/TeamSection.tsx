@@ -4,7 +4,7 @@ import { teamCategories } from "../constants/teamData";
 import { motion } from "framer-motion";
 import Footer from "../../common/components/Footer";
 import media from "../../common/styles/media";
-import { Theme } from "../../common/styles/theme";
+import useScrollToElement from "../../common/hooks/useScrollToElement";
 
 // 팀 카테고리 섹션의 props의 타입
 interface TeamCategorySectionProps {
@@ -32,6 +32,8 @@ const TeamCategorySection: React.FC<TeamCategorySectionProps> = ({ title, teamTy
 };
 
 const TeamSection = () => {
+  useScrollToElement();
+
   return (
     <BG
       initial={{ opacity: 0, y: 50 }}
@@ -51,7 +53,7 @@ const TeamSection = () => {
 
 export default TeamSection;
 
-const BG = styled(motion.div)`
+const BG = styled(motion.div).attrs({ id: "team-section" })`
   width: 100%;
 
   background-color: #f6f7f9;

@@ -52,7 +52,7 @@ const AboutUsSection = () => {
 
 export default AboutUsSection;
 
-const BG = styled(motion.div)`
+const BG = styled(motion.div).attrs({ id: "aboutus-section" })`
   width: 100%;
   height: 100vh;
 
