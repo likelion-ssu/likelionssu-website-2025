@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import TopBar from "../../common/components/TopBar";
 import IcArrow from "../../common/assets/arrow_down.svg?react";
 import { RefObject } from "react";
+import media from "../../common/styles/media";
 
 interface TimerSectionActiveProps {
   snapContainerRef: RefObject<HTMLDivElement>;
@@ -40,25 +41,25 @@ const TimerSectionActive = ({ snapContainerRef }: TimerSectionActiveProps) => {
             <TimeBox>
               <Name>DAYS</Name>
               {days < 10 ? `0${days}` : days}
-              <Shadow />
+              <ShadowIC />
             </TimeBox>
             :
             <TimeBox>
               <Name>HOURS</Name>
               {hours < 10 ? `0${hours}` : hours}
-              <Shadow />
+              <ShadowIC />
             </TimeBox>
-            :
+            <Colon>:</Colon>
             <TimeBox>
               <Name>MINUTES</Name>
               {minutes < 10 ? `0${minutes}` : minutes}
-              <Shadow />
+              <ShadowIC />
             </TimeBox>
             :
             <TimeBox>
               <Name>SECONDS</Name>
               {seconds < 10 ? `0${seconds}` : seconds}
-              <Shadow />
+              <ShadowIC />
             </TimeBox>
           </TimerSection>
           <TimerTitle>
@@ -67,7 +68,7 @@ const TimerSectionActive = ({ snapContainerRef }: TimerSectionActiveProps) => {
           <ApplyBtn>지원 서류 작성하기</ApplyBtn>
         </TimerContainer>
         <TitleWrapper>
-          <Title>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </Title>
+          <TitleRight>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </TitleRight>
         </TitleWrapper>
         <IcArrowStyled onClick={handleScrollDown} />
       </BGC>
@@ -89,6 +90,7 @@ const BGC = styled(motion.div)`
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  overflow: hidden;
 `;
 
 const TitleWrapper = styled.div`
@@ -112,6 +114,26 @@ const Title = styled.p`
   text-overflow: clip;
   display: inline-block;
   background-size: 100vw auto;
+
+  ${media.small`
+    position: absolute;
+    font-size: 4rem;  
+    writing-mode: vertical-rl;  
+    white-space: nowrap;
+    transform: rotate(180deg); 
+    left: 5rem;
+    top: 0rem;
+    transform-origin: left center;
+  `};
+`;
+
+const TitleRight = styled(Title)`
+  ${media.small`
+    transform: rotate(360deg);
+    right: 0rem;
+    left: auto;
+    transform-origin: right center;
+  `};
 `;
 
 const TimerContainer = styled.div`
@@ -129,6 +151,11 @@ const TimerTitle = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 4rem;
+
+  ${media.small`
+    font-size: 1.8rem;
+    margin-bottom:4rem
+  `};
 `;
 
 const Blue = styled.span`
@@ -142,6 +169,7 @@ const Blue = styled.span`
 const TimerSection = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 3rem;
   color: #000;
   text-align: center;
@@ -150,6 +178,18 @@ const TimerSection = styled.div`
   font-style: normal;
   font-weight: 900;
   line-height: normal;
+  flex-wrap: wrap;
+
+  ${media.small`
+    font-size: 6rem;
+    gap: 0.1rem;
+  `};
+`;
+
+const Colon = styled.span`
+  ${media.small`
+    display: none;
+  `};
 `;
 
 const ApplyBtn = styled.button`
@@ -165,6 +205,11 @@ const ApplyBtn = styled.button`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+
+  ${media.small`
+    font-size: 1.4rem;
+    padding: 1.6rem 3.4rem;
+  `};
 `;
 
 const TimeBox = styled.div`
@@ -184,6 +229,10 @@ const Name = styled.p`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.44px;
+
+  ${media.small`
+    font-size: 1.4rem;
+    `};
 `;
 
 const IcArrowStyled = styled(IcArrow)`
@@ -194,4 +243,10 @@ const IcArrowStyled = styled(IcArrow)`
   path {
     stroke: #000;
   }
+`;
+
+const ShadowIC = styled(Shadow)`
+  ${media.small`
+    height:2.1rem
+    `};
 `;

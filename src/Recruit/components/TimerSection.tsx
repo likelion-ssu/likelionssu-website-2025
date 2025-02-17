@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { RefObject } from "react";
 import IcArrow from "../../common/assets/arrow_down.svg?react";
 import TopBar from "../../common/components/TopBar";
+import media from "../../common/styles/media";
 
 interface TimerSectionProps {
   snapContainerRef: RefObject<HTMLDivElement>;
@@ -35,7 +36,7 @@ const TimerSection = ({ snapContainerRef }: TimerSectionProps) => {
           </TextSmall>
         </TextContainer>
         <TitleWrapper>
-          <Title>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </Title>
+          <TitleRight>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </TitleRight>
         </TitleWrapper>
         <ArrowWrapper>
           <IcArrowStyled onClick={handleScrollDown} />
@@ -58,6 +59,7 @@ const BGC = styled(motion.div)`
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  overflow: hidden;
 `;
 
 const TitleWrapper = styled.div`
@@ -80,7 +82,27 @@ const Title = styled.p`
   overflow: hidden;
   text-overflow: clip;
   display: inline-block;
-  background-size: 100vw auto; // 그라데이션 크기
+  background-size: 100vw auto;
+
+  ${media.small`
+    position: absolute;
+    font-size: 4rem;  
+    writing-mode: vertical-rl;  
+    white-space: nowrap;
+    transform: rotate(180deg); 
+    left: 5rem;
+    top: 0rem;
+    transform-origin: left center;
+  `};
+`;
+
+const TitleRight = styled(Title)`
+  ${media.small`
+    transform: rotate(360deg);
+    right: 0rem;
+    left: auto;
+    transform-origin: right center;
+  `};
 `;
 
 const TextContainer = styled.div`
@@ -89,6 +111,14 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 5rem;
+
+  ${media.small`
+    gap: 2rem;
+    padding: 0;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  `};
 `;
 
 const TextLarge = styled.p`
@@ -97,6 +127,10 @@ const TextLarge = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 4rem;
+
+  ${media.small`
+    font-size: 2.6rem;
+  `};
 `;
 
 const TextSmall = styled.p`
@@ -107,6 +141,10 @@ const TextSmall = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
+
+  ${({ theme }) => media.small`
+    ${theme.mixins.font(theme.fonts.Pretendard.body7)}
+  `};
 `;
 
 const IcArrowStyled = styled(IcArrow)`
