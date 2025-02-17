@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useRoleStore from "../store/useRoleStore";
+import media from "../../common/styles/media";
 
 const roles: Array<"pm" | "de" | "fe" | "be"> = ["pm", "de", "fe", "be"];
 
@@ -30,6 +31,11 @@ const BtnWrapper = styled.div`
   gap: 1.2rem;
 
   margin-top: 5rem;
+
+  ${media.small`
+    margin-top: 1.4rem;
+    gap: 0.6rem;
+  `};
 `;
 
 const Btn = styled.div<{ $selected: boolean }>`
@@ -58,4 +64,10 @@ const Btn = styled.div<{ $selected: boolean }>`
   font-weight: 700;
   line-height: 1.8rem;
   letter-spacing: 0.04rem;
+
+  ${media.small`
+    padding: 0.7rem 2rem;
+    font-size: 1.2rem;
+    gap: 0.6rem;
+  `};
 `;

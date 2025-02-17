@@ -2,6 +2,7 @@ import useRoleStore from "../store/useRoleStore";
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
 import { roleContents } from "../constants/RoleContents";
+import media from "../../common/styles/media";
 
 import pmImg from "../assets/pm.png";
 import deImg from "../assets/de.png";
@@ -70,6 +71,20 @@ const ContentContainer = styled.div`
   margin-top: 4rem;
   padding: 0 4rem;
   max-width: 120.4rem;
+
+  ${media.medium`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  `};
+
+  ${media.small` 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  `};
 `;
 
 const RoleImage = styled.img`
@@ -78,6 +93,11 @@ const RoleImage = styled.img`
   height: auto;
 
   animation: ${fadeIn} 0.5s ease-in-out;
+
+  ${media.small` 
+    width: 32rem;
+    height: 21.3997rem;
+  `};
 `;
 
 const RoleName = styled.div`
@@ -90,6 +110,11 @@ const RoleName = styled.div`
   font-weight: 300;
   line-height: normal;
   letter-spacing: 0.092rem;
+
+  ${media.small` 
+    margin-top: 3rem;
+    font-size: 3rem;
+  `};
 `;
 
 const RoleText = styled.div`
@@ -102,6 +127,10 @@ const RoleText = styled.div`
   white-space: pre-line;
   word-break: break-word;
   overflow-wrap: break-word;
+
+  ${media.small` 
+   line-height: 166%;
+  `};
 `;
 
 const TextContainer = styled.div`
@@ -109,10 +138,14 @@ const TextContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
   flex-shrink: 1;
-  width: 65.4rem;
+  max-width: 65.4rem;
 
   animation: ${fadeIn} 0.5s ease-in-out;
   animation-delay: 0.5s;
   opacity: 0;
   animation-fill-mode: forwards;
+
+  ${media.small` 
+    width: 100%;
+  `};
 `;

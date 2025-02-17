@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import useRoleStore from "../store/useRoleStore";
 import { roleContents } from "../constants/Session";
+import media from "../../common/styles/media";
 
 export default function Session() {
   const { selectedRole } = useRoleStore();
@@ -34,12 +35,22 @@ const Container = styled.div`
 
   margin-top: 15.4rem;
   margin-bottom: 13rem;
+  
+  ${media.small`
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    align-items: flex-start;
+  `};
 `;
 
 const Title = styled.div`
   color: ${({ theme }) => theme.colors.White};
 
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
+
+  ${media.small`
+    font-size: 1.6rem;
+  `};
 `;
 
 const SectionContainer = styled.div`
@@ -47,8 +58,14 @@ const SectionContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-
   max-width: 140rem;
+
+  ${media.small`
+   width: 100%;
+    gap: 1.2rem;
+    flex-direction: column;
+    align-items: center;
+  `};
 `;
 
 const SectionCard = styled.div`
@@ -64,6 +81,14 @@ const SectionCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
 
   background: rgba(255, 255, 255, 0.06);
+
+  ${media.small`
+    display: flex;
+    padding: 1.2rem 1.6rem;
+    align-items: center;
+    gap: 1.6rem;
+    max-width: 31.8rem;
+  `};
 `;
 
 const SectionWeek = styled.div`
@@ -79,6 +104,12 @@ const SectionWeek = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
+
+  ${media.small`
+    padding: 0.8rem 1.2rem;
+    gap: 1rem;
+    ${({ theme }: any) => theme.mixins.font(theme.fonts.Suit.body5)}
+  `};
 `;
 
 const SectionContent = styled.div`
@@ -87,4 +118,10 @@ const SectionContent = styled.div`
 
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
+
+  ${media.small`
+    padding: 0.8rem 1.2rem;
+    gap: 1rem;
+    ${({ theme }: any) => theme.mixins.font(theme.fonts.Pretendard.body6)}
+  `};
 `;
