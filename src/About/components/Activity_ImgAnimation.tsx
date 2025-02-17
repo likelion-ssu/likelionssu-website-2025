@@ -6,7 +6,6 @@ interface ImgProps {
   isActive: boolean;
 }
 
-// isActive는 제대로 오고 있음
 const Activity_ImgAnimation = ({ src, isActive }: ImgProps) => {
   return (
     <Wrapper>
@@ -31,8 +30,9 @@ const Wrapper = styled.div`
 `;
 
 const MotionImg = styled(motion.img)`
-  width: 66rem;
+  width: 100%;
   height: 44rem;
+  margin-right: 5rem;
 
   border-radius: 10px;
 
