@@ -65,15 +65,16 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8rem;
+  gap: 4rem;
 
   margin-top: 4rem;
   padding: 0 4rem;
+  max-width: 120.4rem;
 `;
 
 const RoleImage = styled.img`
-  width: 100%;
-  max-width: 64.3rem;
+  width: 51rem;
+  height: 34rem;
   height: auto;
 
   animation: ${fadeIn} 0.5s ease-in-out;
@@ -84,7 +85,7 @@ const RoleName = styled.div`
 
   color: ${({ theme }) => theme.colors.White};
   font-family: "SUIT Variable";
-  font-size: 4.6rem;
+  font-size: 4rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
@@ -96,7 +97,7 @@ const RoleText = styled.div`
   max-width: 100%;
 
   color: ${({ theme }) => theme.colors["10"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
   line-height: 2.2;
   white-space: pre-line;
   word-break: break-word;
@@ -108,10 +109,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
   flex-shrink: 1;
-
-  width: auto;
-  max-width: 90vw;
-  min-width: 25rem;
+  width: 65.4rem;
 
   animation: ${fadeIn} 0.5s ease-in-out;
   animation-delay: 0.5s;
