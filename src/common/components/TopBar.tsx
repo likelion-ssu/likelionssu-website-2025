@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
-import Logo from "../../../public/logo.svg?react";
+import Logo from "/public/logo.svg?react";
 import IcMenu from "../assets/ic_menu.svg?react";
 import { useCountDownStore } from "../../common/components/CountDown";
 import NavBar from "./NavBar";
