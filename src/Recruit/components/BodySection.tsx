@@ -96,6 +96,8 @@ const BGC = styled(motion.div)`
   ${media.small`
     gap: 4rem;
     padding-top: 7rem;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
   `};
 `;
 

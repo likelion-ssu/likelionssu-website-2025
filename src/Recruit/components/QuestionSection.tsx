@@ -57,6 +57,11 @@ const BGC = styled.div`
 const BG = styled(motion.div)`
   scroll-snap-align: start;
   scroll-snap-stop: always;
+
+  ${media.small`
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+   `};
 `;
 const Title = styled.div`
   color: #1a1a1a;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Shadow from "../assets/timer_shadow.svg?react";
 import useCountDown from "../../common/components/CountDown";
 import { motion } from "framer-motion";
-import TopBar from "../../common/components/TopBar";
+// import TopBar from "../../common/components/TopBar";
 import IcArrow from "../../common/assets/arrow_down.svg?react";
 import { RefObject } from "react";
 import media from "../../common/styles/media";
@@ -31,7 +31,7 @@ const TimerSectionActive = ({ snapContainerRef }: TimerSectionActiveProps) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <TopBar type="recruit" />
+        {/* <TopBar type="recruit" /> */}
         <TitleWrapper>
           <Title>13th SSU BABYLION RECRUITING 13th SSU BABYLION RECRUITING</Title>
         </TitleWrapper>
@@ -91,6 +91,11 @@ const BGC = styled(motion.div)`
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
+
+  ${media.small`
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+   `};
 `;
 
 const TitleWrapper = styled.div`
