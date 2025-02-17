@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../common/components/Footer";
 import BgImg from "../assets/BgImg.jpg";
 import TopBar from "../../common/components/TopBar";
 import ProjectCard from "./ProjectCard";
 import { projectData } from "../Detail/constants/projectData";
+import media from "../../common/styles/media";
 
 const ProjectMain = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <TopBar />
@@ -17,9 +20,9 @@ const ProjectMain = () => {
         </TitleContainer>
         <CardContainer>
           {projectData.map(project => (
-            <Link key={project.id} to={`/project/${project.id}`}>
-              <ProjectCard project={project} />
-            </Link>
+            <StyledLink key={project.id} to={`/project/${project.id}`}>
+              <ProjectCard key={project.id} project={project} />
+            </StyledLink>
           ))}
         </CardContainer>
       </BG>
@@ -35,13 +38,14 @@ const BG = styled.div`
   flex-direction: column;
 
   width: 100vw;
-  height: 390rem;
   margin: 12rem 0;
   padding: 3rem 0;
 
+  // 너무 느려져서 일단 주석처리
   background: url(${BgImg});
-  background-size: cover;
+  background-size: contain;
   background-size: center;
+  background-repeat: no-repeat;
 `;
 
 const TitleContainer = styled.div`
@@ -60,9 +64,32 @@ const KorTitle = styled.div`
 `;
 
 const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
+  display: grid;
+  margin: 6rem auto;
+  place-items: center;
 
-  margin: 6rem 8rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  row-gap: 4.8rem;
+  column-gap: 3rem;
+
+  /* 예외적으로, 이미지 잘리지 않도록 */
+  @media screen and (min-width: 51rem) and (max-width: 73rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 50rem) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  display: inline-block;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  height: auto;
+
+  max-width: 37rem;
 `;

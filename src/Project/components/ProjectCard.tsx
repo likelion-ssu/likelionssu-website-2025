@@ -28,8 +28,8 @@ const CardContainer = styled.div`
   overflow: hidden;
   cursor: pointer;
 
-  width: 43rem;
-  height: 34.6rem;
+  max-width: 46rem;
+  height: 37.6rem;
   flex-shrink: 0;
   padding: 1.6rem;
   gap: 1.6rem;
@@ -67,7 +67,9 @@ const CardContainer = styled.div`
 `;
 
 const CoverImg = styled.img`
-  width: 40rem;
+  max-width: 35rem;
+  height: 24rem;
+  object-fit: cover;
 `;
 
 const TextContainer = styled.div`
