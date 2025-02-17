@@ -13,7 +13,12 @@ const ActivitySectionMobile = () => {
         .map(([key, value]) => {
           const activityKey = key as ActivityType;
           return (
-            <ActivityItem index={activityKey} title={value.title} description={value.description} />
+            <ActivityItem
+              key={key}
+              index={activityKey}
+              title={value.title}
+              description={value.description}
+            />
           );
         })}
     </Container>

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, DefaultTheme } from "styled-components";
 import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.svg?react";
 import { motion } from "framer-motion";
@@ -179,7 +179,7 @@ const Description = styled.div`
   ${media.small`
     padding: 2rem;
 
-    ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+    ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
     line-height: 2rem;
   `}
 `;

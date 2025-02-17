@@ -4,6 +4,7 @@ import { teamCategories } from "../constants/teamData";
 import { motion } from "framer-motion";
 import Footer from "../../common/components/Footer";
 import media from "../../common/styles/media";
+import { DefaultTheme } from "styled-components/dist/types";
 
 // 팀 카테고리 섹션의 props의 타입
 interface TeamCategorySectionProps {
@@ -76,7 +77,7 @@ const Header = styled.div`
   ${media.medium`
     left: 2rem;
     top: 5.2rem;
-    ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
+    ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Suit.body3)}
   `}
 `;
 
