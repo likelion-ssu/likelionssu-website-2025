@@ -12,12 +12,22 @@ const useScrollToElement = () => {
     if (!hash) return;
 
     const element = document.getElementById(hash);
-    if (element) {
+    const snapContainer = document.getElementById("snap-container"); // 부모 컨테이너
+
+    if (element && snapContainer) {
+      // 스냅을 일시적으로 비활성화
+      snapContainer.style.scrollSnapType = "none";
+
       setTimeout(() => {
-        element.scrollIntoView({ behavior: "smooth" });
-      }, 100); // 조금의 딜레이 추가
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // 스냅을 다시 활성화
+        setTimeout(() => {
+          snapContainer.style.scrollSnapType = "y mandatory";
+        }, 500);
+      }, 100);
     }
-  }, [location.hash]); // URL 해시 변경될 때 실행
+  }, [location.hash]);
 
   return null;
 };
