@@ -5,6 +5,7 @@ import Question from "./components/QuestionSection";
 import styled from "styled-components";
 import { useRef } from "react";
 import { useCountDownStore } from "../common/components/CountDown";
+import TopBar from "../common/components/TopBar";
 
 const Recruit = () => {
   const { isExpired } = useCountDownStore();
@@ -13,6 +14,7 @@ const Recruit = () => {
 
   return (
     <div>
+      <TopBar type="recruit" />
       <SnapContainer ref={snapContainerRef}>
         {isExpired ? (
           <Timer snapContainerRef={snapContainerRef} />

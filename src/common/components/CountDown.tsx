@@ -9,7 +9,7 @@ interface CountDownState {
 }
 
 export const useCountDownStore = create<CountDownState>(set => ({
-  targetDate: new Date("2025-03-07 00:00:00"),
+  targetDate: new Date("2025-03-08 00:00:00"),
   isExpired: false,
   setTargetDate: date => set({ targetDate: date }),
   updateExpired: status => set({ isExpired: status })
