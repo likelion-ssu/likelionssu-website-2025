@@ -129,6 +129,13 @@ const Title = styled.p`
     left: 5rem;
     top: 0rem;
     transform-origin: left center;
+    
+    background: linear-gradient(180deg, rgba(32, 250, 254, 0.2) 0%, rgba(177, 177, 254, 0.2) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: auto 100%;
+    background-position: top;
   `};
 `;
 
@@ -138,6 +145,13 @@ const TitleRight = styled(Title)`
     right: 0rem;
     left: auto;
     transform-origin: right center;
+    
+    background: linear-gradient(180deg, rgba(32, 250, 254, 0.2) 0%, rgba(177, 177, 254, 0.2) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: auto 100%;
+    background-position: top;
   `};
 `;
 

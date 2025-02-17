@@ -207,6 +207,7 @@ const PartSection = styled.div`
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  flex-wrap: wrap;
 
   ${media.small`
     flex-wrap: wrap;
