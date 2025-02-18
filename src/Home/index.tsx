@@ -11,7 +11,17 @@ const Home = () => {
       <Container>
         <MainContainer>
           <TextContainer>
-            <Title>Possibility To Reality,</Title>
+            <TitleWrapper>
+              <Title>POSSIBILITY TO REALITY</Title>
+            </TitleWrapper>
+
+            <TitleBgWrapperTop>
+              <TitleBg data-content="POSSIBILITY TO REALITY">POSSIBILITY TO REALITY</TitleBg>
+            </TitleBgWrapperTop>
+
+            <TitleBgWrapperBottom>
+              <TitleBg data-content="POSSIBILITY TO REALITY">POSSIBILITY TO REALITY</TitleBg>
+            </TitleBgWrapperBottom>
             <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요!</SubTitle>
           </TextContainer>
         </MainContainer>
@@ -29,34 +39,6 @@ const Home = () => {
 
 export default Home;
 
-// const BgImgWrapper = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100vh;
-
-//   background-image: url(${bgImg});
-//   background-size: cover;
-//   background-position: center;
-
-//   z-index: -1;
-//   overflow: hidden;
-// `;
-
-// const BgWrapper = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100vh;
-
-//   background-color: rgba(0, 0, 0, 0.5);
-
-//   z-index: -1;
-//   overflow: hidden;
-// `;
-
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -69,12 +51,24 @@ const MainContainer = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+
+  background-color: ${({ theme }) => theme.colors.Black};
 `;
 
 const Title = styled.div`
   font-family: "SUIT Variable";
-  font-size: 6rem;
+  font-size: 8rem;
   font-weight: 800;
 
   background: linear-gradient(90deg, #1cffff 0%, #74c8ff 48.5%, #bab0ff 100%);
@@ -83,9 +77,47 @@ const Title = styled.div`
   -webkit-text-fill-color: transparent;
 `;
 
+const TitleBgWrapperTop = styled.div`
+  position: absolute;
+  z-index: -1;
+  top: -4rem;
+`;
+
+const TitleBgWrapperBottom = styled.div`
+  position: absolute;
+  z-index: -1;
+  top: 6rem;
+`;
+
+const TitleBg = styled.div`
+  font-family: "SUIT Variable";
+  font-size: 8rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: -0.08rem;
+  color: transparent;
+  z-index: 0;
+  position: relative;
+  color: ${({ theme }) => theme.colors.Black};
+
+  &::before {
+    z-index: -1;
+    content: attr(data-content);
+    position: absolute;
+    left: 0;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.3);
+  }
+`;
+
 const SubTitle = styled.div`
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.subtitle3)}
   color: ${({ theme }) => theme.colors.White};
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 const MainBtnContainer = styled.div`
