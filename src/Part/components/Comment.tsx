@@ -410,7 +410,7 @@ const Card = styled.div<{ $expanded: boolean }>`
 
   ${media.medium`
     width: 36rem;
-    height: ${({ $expanded }) => ($expanded ? "auto" : "40rem")};
+    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "40rem")};
     min-width: 36rem;
     max-width: 36rem;
     padding: 2rem;
@@ -419,7 +419,7 @@ const Card = styled.div<{ $expanded: boolean }>`
 
   ${media.small`
     width: 24.9rem;
-    height: ${({ $expanded }) => ($expanded ? "auto" : "24.2rem")};
+    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "24.2rem")};
     min-width: 24.9rem;
     max-width: 24.9rem;
     padding: 1.5rem;
