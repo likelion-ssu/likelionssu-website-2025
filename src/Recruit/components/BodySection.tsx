@@ -295,8 +295,8 @@ const CircleContent = styled.div`
 `;
 
 const CircleIC = styled(Circle)`
-  width: 25rem;
-  height: 25rem;
+  width: 20rem;
+  height: 20rem;
 
   ${media.small`
     width: 10rem;
@@ -309,7 +309,7 @@ const CircleTextContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.6rem;
+  gap: 2rem;
   position: absolute;
   width: 100%;
   top: 50%;
@@ -324,7 +324,7 @@ const CircleTextContainer = styled.div`
 const CircleTitle = styled.p`
   color: #fff;
   text-align: center;
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.subtitle2)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
 
   ${media.small`
     font-size: 1.2rem;
@@ -333,7 +333,9 @@ const CircleTitle = styled.p`
   `};
 `;
 
-const CircleDate = styled(TextBody4)`
+const CircleDate = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+
   ${media.small`
     font-size: 1rem;
     font-weight: 400;
@@ -405,6 +407,7 @@ const ApplyBtn = styled.button`
   gap: 1rem;
   border-radius: 10px;
   background: #fff;
+  color: black;
   font-size: 1.8rem;
   font-weight: 600;
 
