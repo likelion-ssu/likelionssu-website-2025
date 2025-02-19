@@ -5,6 +5,7 @@ import { skillDataWithIcons, partDataWithIcons, stepData } from "../constants";
 import { useCountDownStore } from "../../common/components/CountDown";
 import { motion } from "framer-motion";
 import media from "../../common/styles/media";
+import RoadmapImg from "../assets/roadmap.png";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
@@ -47,6 +48,12 @@ const Body = () => {
             </PartCard>
           ))}
         </PartSection>
+      </BoxContainer>
+
+      {/* 로드맵 */}
+      <BoxContainer>
+        <Title>13기 활동 로드맵</Title>
+        <Roadmap src={RoadmapImg} />
       </BoxContainer>
 
       {/* 모집 절차 */}
@@ -275,6 +282,17 @@ const ArrowIC = styled(Arrow)`
 const PartBox = styled.div`
   display: flex;
   align-items: end;
+`;
+
+// 로드맵
+const Roadmap = styled.img`
+  width: 90rem;
+  height: 90rem;
+
+  ${media.small`
+  width: 38rem;
+  height: 38rem;
+  `};
 `;
 
 // 모집 절차
