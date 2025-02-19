@@ -124,7 +124,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  z-index: 200;
+  z-index: 1000;
 `;
 
 const NavBarContainer = styled.div<{ $isClosing: boolean }>`

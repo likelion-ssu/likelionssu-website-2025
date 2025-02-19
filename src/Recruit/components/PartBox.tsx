@@ -127,12 +127,10 @@ const PartIcon = styled.div`
 `;
 
 const ArrowIC = styled(Arrow)`
-  width: 1.6rem;
-  height: 0.9rem;
+  width: 2rem;
 
   ${media.small`
-    width: 2rem;
-    height: 2rem;
+    width: 0.7rem;
   `};
 `;
 
