@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import { useEffect, useState } from "react";
+import styled, { keyframes, css } from "styled-components";
 import { Link } from "react-router-dom";
-
+import media from "../../common/styles/media";
 import IcClose from "./../assets/ic_close.svg?react";
 
 interface NavBarProps {
@@ -9,7 +9,8 @@ interface NavBarProps {
 }
 
 const NavBar = ({ onClose }: NavBarProps) => {
-  // 네비바 열렸을 때 스크롤 금지
+  const [isClosing, setIsClosing] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -17,39 +18,56 @@ const NavBar = ({ onClose }: NavBarProps) => {
     };
   }, []);
 
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(onClose, 300);
+  };
+
   return (
-    <Overlay onClick={onClose}>
-      <NavBarContainer onClick={e => e.stopPropagation()}>
-        <IcClose onClick={onClose} />
+    <Overlay onClick={handleClose}>
+      <NavBarContainer $isClosing={isClosing} onClick={e => e.stopPropagation()}>
+        <IcClose onClick={handleClose} />
         <NavList>
           <li>
-            <Link to="/about#aboutus-section">ABOUT</Link>
+            <Link to="/about#aboutus-section" onClick={handleClose}>
+              ABOUT
+            </Link>
             <p>
-              <Link to="/about#activity-section">Roadmap</Link>
+              <Link to="/about#activity-section" onClick={handleClose}>
+                Roadmap
+              </Link>
               <br />
-              <Link to="/about#team-section">Management Team</Link>
+              <Link to="/about#team-section" onClick={handleClose}>
+                Management Team
+              </Link>
             </p>
           </li>
 
           <li>
-            <Link to="/part">PART</Link>
+            <Link to="/part" onClick={handleClose}>
+              PART
+            </Link>
             <p>
-              Project Manager
+              <span onClick={handleClose}>Project Manager</span>
               <br />
-              Product Designer
+              <span onClick={handleClose}>Product Designer</span>
               <br />
-              Frontend Developer
+              <span onClick={handleClose}>Frontend Developer</span>
               <br />
-              Backend Developer
+              <span onClick={handleClose}>Backend Developer</span>
             </p>
           </li>
 
           <li>
-            <Link to="/project">PROJECT</Link>
+            <Link to="/project" onClick={handleClose}>
+              PROJECT
+            </Link>
           </li>
 
           <li>
-            <Link to="/recruit">RECRUIT</Link>
+            <Link to="/recruit" onClick={handleClose}>
+              RECRUIT
+            </Link>
           </li>
         </NavList>
       </NavBarContainer>
@@ -68,6 +86,15 @@ const slideIn = keyframes`
   }
 `;
 
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+`;
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -80,13 +107,25 @@ const Overlay = styled.div`
   z-index: 200;
 `;
 
-const NavBarContainer = styled.div`
+const NavBarContainer = styled.div<{ $isClosing: boolean }>`
   border: 2px solid #1a1a1a;
   background: #000;
   width: 34rem;
   height: 100vh;
   padding: 4.9rem 0 0 3.3rem;
-  animation: ${slideIn} 0.3s ease-out;
+
+  ${({ $isClosing }) =>
+    $isClosing
+      ? css`
+          animation: ${slideOut} 0.3s ease-out forwards;
+        `
+      : css`
+          animation: ${slideIn} 0.3s ease-out forwards;
+        `}
+
+  ${media.small`
+    width: 100vw;
+  `};
 `;
 
 const NavList = styled.ul`
@@ -103,22 +142,15 @@ const NavList = styled.ul`
   li {
     color: #fff;
 
-    font-size: 2.2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.44px;
+    ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle2)}
   }
 
   p {
     color: rgba(255, 255, 255, 0.6);
     font-feature-settings: "calt" off;
 
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 400;
+    ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body3)}
     line-height: 2;
-    letter-spacing: 0.32px;
     margin-top: 1.4rem;
   }
 `;
