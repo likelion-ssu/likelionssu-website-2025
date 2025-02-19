@@ -157,7 +157,7 @@ const SkillCard = styled.div`
 `;
 
 const SkillIcon = styled.img`
-  width: 20rem;
+  width: auto;
   height: 20rem;
 
   ${media.small`

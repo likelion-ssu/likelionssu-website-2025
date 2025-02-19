@@ -1,16 +1,35 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import Arrow from "../../common/assets/arrow_down.svg?react";
 import { partDataWithIcons } from "../constants";
-
+import useRoleStore from "../../Part/store/useRoleStore";
 import media from "../../common/styles/media";
 
+const roleMap: Record<number, "pm" | "de" | "fe" | "be"> = {
+  1: "pm",
+  2: "de",
+  3: "fe",
+  4: "be"
+};
+
 const PartBox = () => {
+  const navigate = useNavigate();
+  const { setRole } = useRoleStore();
+
+  const handlePartClick = (id: number) => {
+    const role = roleMap[id];
+    if (role) {
+      setRole(role);
+      navigate("/part");
+    }
+  };
+
   return (
     <BoxContainer>
       <Title>모집 파트</Title>
       <PartSection>
         {partDataWithIcons.map(({ id, name, icon: Icon }) => (
-          <PartCard key={id}>
+          <PartCard key={id} onClick={() => handlePartClick(id)}>
             <ArrowIC />
             <PartContainer>
               <PartName>{name}</PartName>
@@ -67,7 +86,7 @@ const PartCard = styled.div`
   flex-shrink: 0;
   border-radius: 10px;
   padding: 2rem;
-
+  cursor: pointer;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.1) 0%,
