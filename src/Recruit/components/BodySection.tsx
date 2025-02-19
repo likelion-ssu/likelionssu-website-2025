@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import media from "../../common/styles/media";
 import RoadmapImg from "../assets/roadmap.png";
 import PartBox from "./PartBox";
+// import bgImg from "../assets/recruitCover/bgImg.png";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
@@ -17,6 +18,8 @@ const Body = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <BgImg src="/images/recruitCover/bgImg.png" loading="lazy" alt="배경 이미지" />
+
       {/* 인재상 */}
       <BoxContainer>
         <Title>숭실대 멋쟁이사자처럼은 이런 사람을 원해요</Title>
@@ -79,20 +82,30 @@ const BGC = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 26rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-
   width: 100%;
-  padding-top: 16rem;
+  padding: 16rem 0 34rem 0;
+  position: relative;
 
   ${media.small`
     gap: 4rem;
     padding-top: 7rem;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
+
+    background : black;
+    padding-bottom : 10rem
   `};
 `;
 
+const BgImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+`;
 const BoxContainer = styled.div`
   text-align: center;
 `;
@@ -277,11 +290,10 @@ const ApplyContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding-bottom: 34rem;
 
-  ${media.small`
+  /* ${media.small`
     padding-bottom: 10rem;
-  `};
+  `}; */
 `;
 
 const LineBox = styled.div<{ $topBorder?: boolean; $bottomBorder?: boolean }>`
