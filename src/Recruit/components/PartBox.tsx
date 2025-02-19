@@ -5,23 +5,13 @@ import { partDataWithIcons } from "../constants";
 import useRoleStore from "../../Part/store/useRoleStore";
 import media from "../../common/styles/media";
 
-const roleMap: Record<number, "pm" | "de" | "fe" | "be"> = {
-  1: "pm",
-  2: "de",
-  3: "fe",
-  4: "be"
-};
-
 const PartBox = () => {
   const navigate = useNavigate();
   const { setRole } = useRoleStore();
 
-  const handlePartClick = (id: number) => {
-    const role = roleMap[id];
-    if (role) {
-      setRole(role);
-      navigate("/part");
-    }
+  const handlePartClick = (id: "pm" | "de" | "fe" | "be") => {
+    setRole(id);
+    navigate("/part");
   };
 
   return (
