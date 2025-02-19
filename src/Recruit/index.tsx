@@ -42,10 +42,7 @@ const SnapContainer = styled.div`
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   position: relative;
-
-  ${media.small`
-    overflow:hidden;
-  `};
+  overflow: hidden;
 `;
 
 const Container = styled.div`
