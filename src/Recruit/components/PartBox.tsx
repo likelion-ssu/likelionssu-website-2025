@@ -93,7 +93,11 @@ const PartCard = styled.div`
     rgba(255, 255, 255, 0.08) 55.49%,
     rgba(255, 255, 255, 0.04) 100%
   );
+  transition: transform 0.2s ease-in-out;
 
+  &:hover {
+    transform: scale(1.05);
+  }
   ${media.small`
     width: 16rem;
     height: 11rem;

@@ -340,6 +340,12 @@ const ApplyBtn = styled.button`
   font-size: 1.8rem;
   font-weight: 600;
 
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
   ${media.small`
     font-size: 1.4rem;
     padding: 1.6rem 3.4rem;
