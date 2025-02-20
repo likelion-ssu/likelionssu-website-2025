@@ -19,7 +19,7 @@ const ProjectDetailComponent = () => {
       <BG>
         <ProjectContainer>
           <ImgContainer>
-            <Img src="/images/projectCover/cover_1.png" alt="Project Cover" />
+            <Img src={`/images/projectCover/${project.name}-1.png`} alt="Project Cover" />
             <BtnContainer>
               <ArrowLeft />
               <PageText>1/22</PageText>
@@ -30,7 +30,7 @@ const ProjectDetailComponent = () => {
           <ContentsContainer>
             <div>
               <TextBody4>{project.generation}기</TextBody4>
-              <TextSub2>{project.name}</TextSub2>
+              <TextSub2>{project.title}</TextSub2>
               <TagContainer>
                 {project.tech.map(tech => (
                   <Tag key={tech}>{tech}</Tag>
@@ -68,7 +68,7 @@ const ProjectContainer = styled.div`
   align-items: center;
   gap: 1rem;
 
-  width: 160rem;
+  max-width: 160rem;
   padding: 6rem;
   margin: 0 20rem;
   border-radius: 10px;
@@ -105,7 +105,11 @@ const ImgContainer = styled.div`
 `;
 
 const Img = styled.img`
-  width: 90rem;
+  width: 80%;
+  height: auto;
+  border-radius: 1rem;
+
+  object-fit: cover;
 `;
 
 const BtnContainer = styled.div`
@@ -200,4 +204,6 @@ const Name = styled(TextBody5)`
 
 const Comment = styled(TextBody4)`
   line-height: 1.8;
+
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
 `;

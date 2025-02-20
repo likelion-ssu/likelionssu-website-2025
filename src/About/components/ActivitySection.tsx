@@ -6,38 +6,38 @@ import ActivitySectionDesktop from "./ActivitySectionDesktop";
 import ActivitySectionMobile from "./ActivitySectionMobile";
 import useScrollToElement from "../../common/hooks/useScrollToElement";
 
-const ActivitySection = () => {
-  useScrollToElement(); // 페이지 로드 시 특정 요소로 스크롤하기 위함
-
-  // 모바일과 태블릿/데스크탑 뷰 상태 관리
-  const [isMobile, setIsMobile] = useState(true);
+const useIsDesktop = () => {
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1048);
 
   useEffect(() => {
     const update = () => {
-      if (window.innerWidth < 1047) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
+      setIsDesktop(window.innerWidth > 1048);
     };
 
     window.addEventListener("resize", update);
 
-    update();
+    return () => {
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
-    return () => window.removeEventListener("resize", update);
-  });
+  return isDesktop;
+};
+
+const ActivitySection = () => {
+  useScrollToElement(); // 페이지 로드 시 특정 요소로 스크롤하기 위함
+
+  // 모바일과 태블릿/데스크탑 뷰 상태 관리
+  const isDesktop = useIsDesktop();
 
   // 데스크탑/ 태블릿을 위한 부모 컨테이너 ref
   const containerRef = useRef<HTMLDivElement>(null); // 스크롤 측정 영역의 전체 컨테이너
 
-  // 모바일뷰를 위한 가로 스크롤 기능
-
   return (
     <BG ref={containerRef}>
       <Title>Activity</Title>
-      {isMobile && <SubTitle>숭멋사 주요 활동</SubTitle>}
-      {!isMobile ? <ActivitySectionDesktop parentRef={containerRef} /> : <ActivitySectionMobile />}
+      {!isDesktop && <SubTitle>숭멋사 주요 활동</SubTitle>}
+      {isDesktop ? <ActivitySectionDesktop parentRef={containerRef} /> : <ActivitySectionMobile />}
     </BG>
   );
 };

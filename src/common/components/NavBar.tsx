@@ -32,11 +32,7 @@ const NavBar = ({ onClose }: NavBarProps) => {
           </li>
 
           <li>
-<<<<<<< Updated upstream
             <Link to="/part">PART</Link>
-=======
-            <Link to="/">PART</Link>
->>>>>>> Stashed changes
             <p>
               Project Manager
               <br />

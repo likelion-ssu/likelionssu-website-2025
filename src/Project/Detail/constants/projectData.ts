@@ -3,6 +3,7 @@ export interface Project {
   generation: number;
   name: string;
   title: string;
+  subtitle: string;
   tech: string[];
   members: string[];
   description: string;
@@ -12,8 +13,9 @@ export const projectData: Project[] = [
   {
     id: 1,
     generation: 12,
-    name: "Dotoread 도토릿",
-    title: "언제든 맛있게 꺼내먹는 Read It Later 서비스",
+    name: "dotoread",
+    title: "Dotoread 도토릿",
+    subtitle: "언제든 맛있게 꺼내먹는 Read It Later 서비스",
     tech: ["Typescript", "React", "MySQL", "Docker", "Python", "Spring Boot"],
     members: ["유승빈", "김상우", "김건휘", "박채연", "유태연", "정서윤", "이상은", "정연재"],
     description:
@@ -22,8 +24,9 @@ export const projectData: Project[] = [
   {
     id: 2,
     generation: 12,
-    name: "Greenspark 그린스파크",
-    title: "전기요금 절약으로 지속가능한 도약을 만들어내는 서비스",
+    name: "greenspark",
+    title: "Greenspark 그린스파크",
+    subtitle: "전기요금 절약으로 지속가능한 도약을 만들어내는 서비스",
     tech: ["Typescript", "React", "NextJs", "FastApi", "Spring Boot", "MySQL"],
     members: ["최지예", "박하은", "김하연", "지하윤", "백승현", "이시온", "김선정", "전형준"],
     description:
@@ -32,8 +35,9 @@ export const projectData: Project[] = [
   {
     id: 3,
     generation: 12,
-    name: "Salary 샐러리",
-    title: "금융/경제 지식을 부담없이 학습 가능한 앱서비스 ",
+    name: "salary",
+    title: "Salary 샐러리",
+    subtitle: "금융/경제 지식을 부담없이 학습 가능한 앱서비스 ",
     tech: ["Javascript", "React", "Spring Boot", "MySQL"],
     members: ["류다인", "고영명", "박지효", "신유정", "공윤호", "유민주", "신민경", "신지환"],
     description:
@@ -42,8 +46,9 @@ export const projectData: Project[] = [
   {
     id: 4,
     generation: 12,
-    name: "Wellness Coach 웰니스 코치",
-    title: "건강하게 나이드는 당신을 위한 식단 메이트",
+    name: "wellnesscoach",
+    title: "Wellness Coach 웰니스 코치",
+    subtitle: "건강하게 나이드는 당신을 위한 식단 메이트",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["류다인", "정서윤", "지하윤", "공윤호", "이시온", "정연재"],
     description:
@@ -52,8 +57,9 @@ export const projectData: Project[] = [
   {
     id: 5,
     generation: 12,
-    name: "Don't 스파이크",
-    title: "혈당 스파이크를 방지할 작은 시작",
+    name: "dontspike",
+    title: "Don't 스파이크",
+    subtitle: "혈당 스파이크를 방지할 작은 시작",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["김상우", "최지예", "박지효", "유민주", "김선정", "신지환"],
     description:
@@ -62,8 +68,9 @@ export const projectData: Project[] = [
   {
     id: 6,
     generation: 12,
-    name: "Yes, sir 예썰",
-    title: "남성 피부 관리 플랫폼",
+    name: "yessir",
+    title: "Yes, sir 예썰",
+    subtitle: "남성 피부 관리 플랫폼",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["박하은", "유승빈", "김하연", "김건휘", "백승현", "신민경"],
     description:
@@ -72,8 +79,9 @@ export const projectData: Project[] = [
   {
     id: 7,
     generation: 12,
-    name: "스튜",
-    title: "스포츠 튜터 매칭 서비스, 스튜와 함께해요!",
+    name: "stew",
+    title: "스튜",
+    subtitle: "스포츠 튜터 매칭 서비스, 스튜와 함께해요!",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["고영명", "유태연", "신유정", "박채연", "이상은", "전형준"],
     description:
@@ -82,8 +90,9 @@ export const projectData: Project[] = [
   {
     id: 8,
     generation: 11,
-    name: "PicPic",
-    title: "나만의 Picture을 Pick하여 간직하자",
+    name: "picpic",
+    title: "PicPic",
+    subtitle: "나만의 Picture을 Pick하여 간직하자",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["김지은", "정의민", "유해인", "강해솔", "한지원", "김교휘", "박정우"],
     description:
@@ -92,8 +101,9 @@ export const projectData: Project[] = [
   {
     id: 9,
     generation: 11,
-    name: "Remini",
-    title: "맞춤 회고 유형 추천 및 가이드",
+    name: "remini",
+    title: "Remini",
+    subtitle: "맞춤 회고 유형 추천 및 가이드",
     tech: ["Typescript", "React", "Styled-Components", "Spring Boot", "JDK 11", "MySQL"],
     members: ["이혜민", "유나경", "최서현", "오유은", "유승한", "박수영"],
     description:
@@ -102,8 +112,9 @@ export const projectData: Project[] = [
   {
     id: 10,
     generation: 11,
-    name: "Flexrate",
-    title: "대출은 AI로 최적으로 관리는 대시보드로 체계적으로",
+    name: "flexrate",
+    title: "Flexrate",
+    subtitle: "대출은 AI로 최적으로 관리는 대시보드로 체계적으로",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["박재영", "윤주호", "소희연", "신수연", "허동윤", "유예지", "조수민"],
     description:
@@ -112,8 +123,9 @@ export const projectData: Project[] = [
   {
     id: 11,
     generation: 11,
-    name: "ASSUM",
-    title: "어렵고 긴 글들, 쉽고 간략하게 듣자",
+    name: "assum",
+    title: "ASSUM",
+    subtitle: "어렵고 긴 글들, 쉽고 간략하게 듣자",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["정의민", "최신임", "강해솔", "최서현", "박정우"],
     description:
@@ -122,8 +134,9 @@ export const projectData: Project[] = [
   {
     id: 12,
     generation: 11,
-    name: "담다",
-    title: "우리 동네 전통시장을 내 손 안에",
+    name: "damda",
+    title: "담다",
+    subtitle: "우리 동네 전통시장을 내 손 안에",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["윤주호", "소희연", "허동윤", "유승한", "조수민"],
     description:
@@ -132,8 +145,9 @@ export const projectData: Project[] = [
   {
     id: 13,
     generation: 11,
-    name: "길JOB이",
-    title: "청년 일자리 정책을 한 눈에",
+    name: "giljoby",
+    title: "길JOB이",
+    subtitle: "청년 일자리 정책을 한 눈에",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["이혜민", "유나경", "한지원", "오유은", "박수영"],
     description:
@@ -142,8 +156,9 @@ export const projectData: Project[] = [
   {
     id: 14,
     generation: 11,
-    name: "zero market 제로마켓",
-    title: "우리동네 가게 재고 솔루션",
+    name: "zeromarket",
+    title: "zero market 제로마켓",
+    subtitle: "우리동네 가게 재고 솔루션",
     tech: ["Typescript", "React", "Spring Boot", "MySQL"],
     members: ["김지은", "유해인", "신수연", "김교휘", "유예지"],
     description: "제로 마켓은 아쉽게 남은 동네 가게 재고를 저렴한 가격으로 이웃에게 연결합니다. "
