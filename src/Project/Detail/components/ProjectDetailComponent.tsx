@@ -220,7 +220,6 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-track {
     display: flex !important;
-    gap: 3rem;
     margin-left: 0;
 
     ${media.large`
