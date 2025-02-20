@@ -9,7 +9,6 @@ import TopBar from "../common/components/TopBar";
 
 const Recruit = () => {
   const { isExpired } = useCountDownStore();
-  console.log("isExpired:", isExpired);
   const snapContainerRef = useRef<HTMLDivElement>(null);
 
   return (

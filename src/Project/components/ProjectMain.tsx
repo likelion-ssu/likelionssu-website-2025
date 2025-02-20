@@ -55,7 +55,6 @@ const ProjectMain = () => {
 
   return (
     <>
-      <TopBar />
       <BG>
         <TitleContainer>
           OUR PROJECTS
@@ -115,6 +114,9 @@ const BG = styled.div`
   background-size: contain;
   background-size: center;
   background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
 `;
 
 const TitleContainer = styled.div`
@@ -173,9 +175,11 @@ const PaginationContainer = styled.div`
 const PageButton = styled.button<{ $isActive: boolean | undefined }>`
   width: 4.4rem;
   height: 4.4rem;
+  margin: auto auto;
   border: none;
   transition: background-color 0.3s ease-in-out;
 
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -185,8 +189,9 @@ const PageButton = styled.button<{ $isActive: boolean | undefined }>`
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: ${({ theme, $isActive }) => ($isActive ? theme.colors[90] : theme.colors.Black)};
 
-  align-self: stretch;
   color: ${({ theme }) => theme.colors.White};
+  vertical-align: middle;
+  text-align: center;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors[60]};

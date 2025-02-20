@@ -1,11 +1,7 @@
 import ProjectMain from "./components/ProjectMain";
 
 const Project = () => {
-  return (
-    <div>
-      <ProjectMain />
-    </div>
-  );
+  return <ProjectMain />;
 };
 
 export default Project;
