@@ -59,7 +59,7 @@ const StaticTitle = styled.div`
 
 const Title = styled(motion.div)`
   color: ${({ theme }) => theme.colors.White};
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 7rem;
   font-weight: 600;
 `;

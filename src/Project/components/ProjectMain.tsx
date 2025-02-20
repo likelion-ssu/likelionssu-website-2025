@@ -109,14 +109,12 @@ const BG = styled.div`
   margin: 12rem 0;
   padding: 3rem 0;
 
-  // 너무 느려져서 일단 주석처리
   background: url(${BgImg});
   background-size: contain;
   background-size: center;
   background-repeat: no-repeat;
 
   position: relative;
-  overflow: hidden;
 `;
 
 const TitleContainer = styled.div`
