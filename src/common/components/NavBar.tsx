@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import media from "../../common/styles/media";
 import IcClose from "./../assets/ic_close.svg?react";
+import useRoleStore from "../../Part/store/useRoleStore";
 
 interface NavBarProps {
   onClose: () => void;
 }
+
+const roleMap: Record<number, "pm" | "de" | "fe" | "be"> = {
+  1: "pm",
+  2: "de",
+  3: "fe",
+  4: "be"
+};
 
 const NavBar = ({ onClose }: NavBarProps) => {
   const [isClosing, setIsClosing] = useState(false);
@@ -21,6 +29,18 @@ const NavBar = ({ onClose }: NavBarProps) => {
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(onClose, 300);
+  };
+
+  const navigate = useNavigate();
+  const { setRole } = useRoleStore();
+
+  const handlePartClick = (id: number) => {
+    const role = roleMap[id];
+    if (role) {
+      setRole(role);
+      handleClose();
+      navigate("/part");
+    }
   };
 
   return (
@@ -48,13 +68,13 @@ const NavBar = ({ onClose }: NavBarProps) => {
               PART
             </Link>
             <p>
-              <span onClick={handleClose}>Project Manager</span>
+              <span onClick={() => handlePartClick(1)}>Project Manager</span>
               <br />
-              <span onClick={handleClose}>Product Designer</span>
+              <span onClick={() => handlePartClick(2)}>Product Designer</span>
               <br />
-              <span onClick={handleClose}>Frontend Developer</span>
+              <span onClick={() => handlePartClick(3)}>Frontend Developer</span>
               <br />
-              <span onClick={handleClose}>Backend Developer</span>
+              <span onClick={() => handlePartClick(4)}>Backend Developer</span>
             </p>
           </li>
 
@@ -104,7 +124,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  z-index: 200;
+  z-index: 1000;
 `;
 
 const NavBarContainer = styled.div<{ $isClosing: boolean }>`

@@ -225,6 +225,12 @@ const ApplyBtn = styled.button`
   align-items: center;
   gap: 1rem;
 
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
   ${media.small`
     font-size: 1.4rem;
     padding: 1.6rem 3.4rem;
@@ -259,6 +265,7 @@ const IcArrowStyled = styled(IcArrow)`
   bottom: 4.8rem;
   transform: rotate(90deg);
   cursor: pointer;
+  width: 3rem;
   path {
     stroke: #000;
   }

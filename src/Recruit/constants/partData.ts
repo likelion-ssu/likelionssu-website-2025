@@ -1,24 +1,25 @@
-import Part_1 from "../assets/part_1.svg?react";
-import Part_2 from "../assets/part_2.svg?react";
-import Part_3 from "../assets/part_3.svg?react";
-import Part_4 from "../assets/part_4.svg?react";
+import Part_pm from "../assets/part_pm.svg?react";
+import Part_de from "../assets/part_de.svg?react";
+import Part_fe from "../assets/part_fe.svg?react";
+import Part_be from "../assets/part_be.svg?react";
 
 interface Part {
-  id: number;
+  id: "pm" | "de" | "fe" | "be";
   name: string;
 }
-const PartComponents: Record<number, React.FC<React.SVGProps<SVGSVGElement>>> = {
-  1: Part_1,
-  2: Part_2,
-  3: Part_3,
-  4: Part_4
+
+const PartComponents: Record<Part["id"], React.FC<React.SVGProps<SVGSVGElement>>> = {
+  pm: Part_pm,
+  de: Part_de,
+  fe: Part_fe,
+  be: Part_be
 };
 
 export const partData: Part[] = [
-  { id: 1, name: "PROJECT\nMANAGER" },
-  { id: 2, name: "PRODUCT\nDESIGN" },
-  { id: 3, name: "FRONTEND\nDEVELOPER" },
-  { id: 4, name: "BACKEND\nDEVELOPER" }
+  { id: "pm", name: "PROJECT\nMANAGER" },
+  { id: "de", name: "PRODUCT\nDESIGN" },
+  { id: "fe", name: "FRONTEND\nDEVELOPER" },
+  { id: "be", name: "BACKEND\nDEVELOPER" }
 ];
 
 export const partDataWithIcons = partData.map(data => ({

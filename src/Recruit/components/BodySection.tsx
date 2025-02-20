@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Circle from "../assets/Circle.svg?react";
-import Arrow from "../../common/assets/arrow_down.svg?react";
-import { skillDataWithIcons, partDataWithIcons, stepData } from "../constants";
+import { skillDataWithIcons, stepData } from "../constants";
 import { useCountDownStore } from "../../common/components/CountDown";
 import { motion } from "framer-motion";
 import media from "../../common/styles/media";
+import RoadmapImg from "../assets/roadmap.png";
+import PartBox from "./PartBox";
+// import bgImg from "../assets/recruitCover/bgImg.png";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
@@ -16,14 +18,15 @@ const Body = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <BgImg src="/images/recruitCover/bgImg.png" loading="lazy" alt="배경 이미지" />
+
       {/* 인재상 */}
       <BoxContainer>
         <Title>숭실대 멋쟁이사자처럼은 이런 사람을 원해요</Title>
         <CardSection>
-          {skillDataWithIcons.map(({ id, icon: Icon, title, text }) => (
+          {skillDataWithIcons.map(({ id, icon, title, text }) => (
             <SkillCard key={id}>
-              {Icon ? <SkillIcon as={Icon} /> : null}
-              {/*아이콘 있을 때만 렌더링 되도록 */}
+              <SkillIcon src={icon} alt={title} />
               <Text>
                 <TextBody4>{title}</TextBody4>
                 <CardText>{text}</CardText>
@@ -33,20 +36,12 @@ const Body = () => {
         </CardSection>
       </BoxContainer>
 
-      {/* 모집 파트 */}
+      <PartBox />
+
+      {/* 로드맵 */}
       <BoxContainer>
-        <Title>모집 파트</Title>
-        <PartSection>
-          {partDataWithIcons.map(({ id, name, icon: Icon }) => (
-            <PartCard key={id}>
-              <ArrowIC />
-              <PartBox>
-                <PartName>{name}</PartName>
-                {Icon ? <PartIcon as={Icon} /> : null}
-              </PartBox>
-            </PartCard>
-          ))}
-        </PartSection>
+        <Title>13기 활동 로드맵</Title>
+        <Roadmap src={RoadmapImg} />
       </BoxContainer>
 
       {/* 모집 절차 */}
@@ -87,20 +82,30 @@ const BGC = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 26rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-
   width: 100%;
-  padding-top: 16rem;
+  padding: 16rem 0 34rem 0;
+  position: relative;
 
   ${media.small`
     gap: 4rem;
     padding-top: 7rem;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
+
+    background : black;
+    padding-bottom : 10rem
   `};
 `;
 
+const BgImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+`;
 const BoxContainer = styled.div`
   text-align: center;
 `;
@@ -140,6 +145,7 @@ const SkillCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 5rem;
 
   width: 32rem;
   height: 40rem;
@@ -159,11 +165,12 @@ const SkillCard = styled.div`
     border-radius: 5.94px;
     display: flex;
     flex-direction: row;
+    padding-top:0;
   `};
 `;
 
-const SkillIcon = styled.div`
-  width: 20rem;
+const SkillIcon = styled.img`
+  width: auto;
   height: 20rem;
 
   ${media.small`
@@ -201,80 +208,15 @@ const CardText = styled.p`
   `};
 `;
 
-// 파트
-const PartSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
+// 로드맵
+const Roadmap = styled.img`
+  width: 90rem;
+  height: 90rem;
 
   ${media.small`
-    flex-wrap: wrap;
-    gap: 1rem;
+  width: 38rem;
+  height: 38rem;
   `};
-`;
-
-const PartCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
-
-  width: 30rem;
-  height: 20rem;
-  flex-shrink: 0;
-  border-radius: 10px;
-  padding: 2rem;
-
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.08) 55.49%,
-    rgba(255, 255, 255, 0.04) 100%
-  );
-
-  ${media.small`
-    width: 16rem;
-    height: 11rem;
-  `};
-`;
-
-const PartName = styled.p`
-  text-align: left;
-  font-feature-settings: "calt" off;
-
-  ${({ theme }) => theme.mixins.font(theme.fonts.Suit.body1)}
-  line-height: normal;
-
-  ${({ theme }) => media.small`
-    ${theme.mixins.font(theme.fonts.Suit.body5)}
-  `};
-`;
-
-const PartIcon = styled.div`
-  width: 14.5rem;
-  height: 14.5rem;
-
-  ${media.small`
-    width: 6rem;
-    height: 6rem;
-  `};
-`;
-
-const ArrowIC = styled(Arrow)`
-  width: 1.6rem;
-  height: 0.9rem;
-
-  ${media.small`
-    width: 2rem;
-    height: 2rem;
-  `};
-`;
-
-const PartBox = styled.div`
-  display: flex;
-  align-items: end;
 `;
 
 // 모집 절차
@@ -295,8 +237,8 @@ const CircleContent = styled.div`
 `;
 
 const CircleIC = styled(Circle)`
-  width: 25rem;
-  height: 25rem;
+  width: 20rem;
+  height: 20rem;
 
   ${media.small`
     width: 10rem;
@@ -309,7 +251,7 @@ const CircleTextContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.6rem;
+  gap: 2rem;
   position: absolute;
   width: 100%;
   top: 50%;
@@ -324,7 +266,7 @@ const CircleTextContainer = styled.div`
 const CircleTitle = styled.p`
   color: #fff;
   text-align: center;
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.subtitle2)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
 
   ${media.small`
     font-size: 1.2rem;
@@ -333,7 +275,9 @@ const CircleTitle = styled.p`
   `};
 `;
 
-const CircleDate = styled(TextBody4)`
+const CircleDate = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+
   ${media.small`
     font-size: 1rem;
     font-weight: 400;
@@ -346,11 +290,10 @@ const ApplyContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding-bottom: 34rem;
 
-  ${media.small`
+  /* ${media.small`
     padding-bottom: 10rem;
-  `};
+  `}; */
 `;
 
 const LineBox = styled.div<{ $topBorder?: boolean; $bottomBorder?: boolean }>`
@@ -405,8 +348,15 @@ const ApplyBtn = styled.button`
   gap: 1rem;
   border-radius: 10px;
   background: #fff;
+  color: black;
   font-size: 1.8rem;
   font-weight: 600;
+
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   ${media.small`
     font-size: 1.4rem;
