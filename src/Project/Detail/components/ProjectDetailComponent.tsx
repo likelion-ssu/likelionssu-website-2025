@@ -1,36 +1,112 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Arrow from "../../../common/assets/arrow_down.svg?react";
 import TopBar from "../../../common/components/TopBar";
 import Footer from "../../../common/components/Footer";
 import { projectData } from "../constants/projectData";
+import media from "../../../common/styles/media";
+import BackArrow from "../../assets/ic_arrow_back.svg?react";
+import { useState, useEffect, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const useIsMobile = () => {
+  const [isMobile, setisMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const update = () => {
+      setisMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener("resize", update);
+
+    return () => {
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return isMobile;
+};
 
 const ProjectDetailComponent = () => {
   const { id } = useParams<{ id: string }>();
   const project = projectData.find(p => p.id === Number(id));
-
   if (!project) {
     return <p>해당 프로젝트를 찾을 수 없습니다.</p>;
   }
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
+  const sliderRef = useRef<Slider | null>(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 이미지 로드 관련
+  const imageFiles: { [key: string]: string } = import.meta.glob(
+    "/src/Project/assets/projectImgs/*.{png,PNG}",
+    {
+      eager: true,
+      as: "url"
+    }
+  );
+
+  // 필터링하여 필요한 이미지들만 가져오기
+  const filteredImages = Object.entries(imageFiles)
+    .filter(([path]) => path.includes(project.name))
+    .map(([_, url]) => url)
+    .sort((a, b) => {
+      const numA = parseInt(a.match(/\d+/)?.[0] || "0", 10);
+      const numB = parseInt(b.match(/\d+/)?.[0] || "0", 10);
+      return numA - numB; // 숫자 기준으로 오름차순 정렬
+    });
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    beforeChange: (_oldIndex: number, newIndex: number) => setCurrentSlide(newIndex) // 인덱스 추적
+  };
 
   return (
     <>
       <TopBar />
       <BG>
+        <BackBtnWrapper onClick={() => navigate(-1)}>
+          <BackArrow />
+        </BackBtnWrapper>
+
         <ProjectContainer>
           <ImgContainer>
-            <Img src="/images/projectCover/cover_1.png" alt="Project Cover" />
+            <StyledSlider {...settings} ref={sliderRef}>
+              {filteredImages.map((src, index) => (
+                <Img key={index} src={src} alt={`guide-${index}`} />
+              ))}
+            </StyledSlider>
             <BtnContainer>
-              <ArrowLeft />
-              <PageText>1/22</PageText>
-              <ArrowRight />
+              {/* 왼쪽 화살표 */}
+              <ArrowLeft onClick={() => sliderRef.current?.slickPrev()} />
+              <PageText>
+                {currentSlide + 1}/{filteredImages.length}
+              </PageText>
+              <ArrowRight onClick={() => sliderRef.current?.slickNext()} />
             </BtnContainer>
           </ImgContainer>
 
           <ContentsContainer>
             <div>
-              <TextBody4>{project.generation}기</TextBody4>
-              <TextSub2>{project.name}</TextSub2>
+              {isMobile ? (
+                <TextBody7>{project.generation}기</TextBody7>
+              ) : (
+                <TextBody4>{project.generation}기</TextBody4>
+              )}
+              <TextSub2>{project.title}</TextSub2>
               <TagContainer>
                 {project.tech.map(tech => (
                   <Tag key={tech}>{tech}</Tag>
@@ -55,11 +131,22 @@ export default ProjectDetailComponent;
 
 const BG = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   margin-top: 10rem;
   padding-bottom: 8rem;
+`;
+
+const BackBtnWrapper = styled.div`
+  padding: 1rem;
+  padding-left: 3.5rem;
+
+  display: flex;
+  justify-content: left;
+
+  cursor: pointer;
 `;
 
 const ProjectContainer = styled.div`
@@ -68,9 +155,19 @@ const ProjectContainer = styled.div`
   align-items: center;
   gap: 1rem;
 
-  width: 160rem;
   padding: 6rem;
-  margin: 0 20rem;
+  margin: 0 15rem;
+
+  ${media.small`
+    padding: 1rem 3.5rem;
+    margin: 0 auto;
+  `}
+
+  ${media.medium`
+    padding: 3rem 6rem;
+    margin: 0 auto;
+  `}
+
   border-radius: 10px;
   border: 1.5px;
 
@@ -84,6 +181,10 @@ const ProjectContainer = styled.div`
     border-radius: 10px;
     padding: 1.5px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+    ${media.small`
+    background: transparent;
+    `}
+
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -97,6 +198,48 @@ const ProjectContainer = styled.div`
   }
 `;
 
+const StyledSlider = styled(Slider as any)`
+  width: 100%;
+  overflow: hidden;
+
+  .slick-list {
+    overflow: visible;
+
+    ${media.large`
+      width: 80rem;
+    `}
+
+    ${media.medium`
+      width: 65rem;
+    `}
+
+    ${media.small`
+      width: 40rem;
+    `}
+  }
+
+  .slick-track {
+    display: flex !important;
+    margin-left: 0;
+
+    ${media.large`
+      max-height: 45rem;
+    `};
+
+    ${media.medium`
+      max-height: 35rem;
+    `}
+
+    ${media.small`
+      max-height: 23rem;
+    `}
+  }
+
+  .slick-slide {
+    transition: opacity 0.3s ease-in-out;
+  }
+`;
+
 const ImgContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -105,7 +248,11 @@ const ImgContainer = styled.div`
 `;
 
 const Img = styled.img`
-  width: 90rem;
+  width: 80%;
+  height: auto;
+  border-radius: 1rem;
+
+  object-fit: cover;
 `;
 
 const BtnContainer = styled.div`
@@ -130,9 +277,7 @@ const ArrowRight = styled(Arrow)`
 
   background: var(--30, #9a9a9a);
 
-  path {
-    stroke: black;
-  }
+  z-index: 10; // 클릭 불가를 방지
 `;
 
 const ArrowLeft = styled(ArrowRight)`
@@ -156,6 +301,12 @@ const ContentsContainer = styled.div`
   width: 100%;
 `;
 
+const TextBody7 = styled.div`
+  width: 100%;
+  color: ${({ theme }) => theme.colors.White};
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+`;
+
 const TextBody4 = styled.div`
   width: 100%;
   color: ${({ theme }) => theme.colors.White};
@@ -166,11 +317,17 @@ const TextSub2 = styled.p`
   margin-top: 0.8rem;
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.subtitle2)}
+
+  ${media.small`
+    font-size: 1.6rem;
+    margin-top: 0rem;
+  `}
 `;
 
 const TagContainer = styled.div`
   display: flex;
   gap: 0.6rem;
+  flex-wrap: wrap;
 
   margin: 1.2rem 0;
 `;
@@ -187,17 +344,36 @@ const Tag = styled(TextBody5)`
 
   background: ${({ theme }) => theme.colors[90]};
   color: ${({ theme }) => theme.colors[60]};
+
+  word-break: keep-all;
+
+  ${media.small`
+  font-size: 1rem;
+  padding: 0.2rem 0.8rem;
+  gap: 0.5rem;
+ `}
 `;
 
 const NameContainer = styled.div`
   display: flex;
   gap: 1.2rem;
+
+  word-break: keep-all;
 `;
 
 const Name = styled(TextBody5)`
   color: ${({ theme }) => theme.colors[60]};
+
+  ${media.small`
+  font-size: 1rem;
+ `}
 `;
 
 const Comment = styled(TextBody4)`
   line-height: 1.8;
+  word-break: keep-all;
+
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+  ${({ theme }) => media.small`
+  ${theme.mixins.font(theme.fonts.Pretendard.body7)}`}
 `;

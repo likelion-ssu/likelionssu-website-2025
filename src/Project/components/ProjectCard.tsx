@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { Project } from "../Detail/constants/projectData";
 
 interface ProjectCardProps {
-  project: Pick<Project, "id" | "generation" | "name" | "title">;
+  project: Pick<Project, "id" | "generation" | "name" | "title" | "subtitle">;
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <CardContainer>
-      <CoverImg src="images/projectCover/cover_1.png" alt="Project Cover" />
+      <CoverImg src={`/images/projectCover/${project.name}-1.png`} alt="Project Cover" />
       <TextContainer>
-        <TextBody5>{project.generation}기</TextBody5>
-        <TextBody2>{project.name}</TextBody2>
-        <TextBody5>{project.title}</TextBody5>
+        <TextBody7>{project.generation}기</TextBody7>
+        <TextBody2>{project.title}</TextBody2>
+        <TextBody6>{project.subtitle}</TextBody6>
       </TextContainer>
     </CardContainer>
   );
@@ -28,8 +28,8 @@ const CardContainer = styled.div`
   overflow: hidden;
   cursor: pointer;
 
-  width: 43rem;
-  height: 34.6rem;
+  max-width: 46rem;
+  height: 33rem;
   flex-shrink: 0;
   padding: 1.6rem;
   gap: 1.6rem;
@@ -67,18 +67,29 @@ const CardContainer = styled.div`
 `;
 
 const CoverImg = styled.img`
-  width: 40rem;
+  max-width: 35rem;
+  max-height: 24rem;
+  border-radius: 1rem;
+
+  object-fit: cover;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.6rem;
+
   width: 100%;
 `;
 
-const TextBody5 = styled.div`
+const TextBody7 = styled.div`
   color: ${({ theme }) => theme.colors.White};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body7)}
+`;
+
+const TextBody6 = styled.div`
+  color: ${({ theme }) => theme.colors.White};
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body6)}
 `;
 
 const TextBody2 = styled.div`
