@@ -31,7 +31,6 @@ const useIsMobile = () => {
 
 const ProjectDetailComponent = () => {
   const { id } = useParams<{ id: string }>();
-  // id를 통해서 name을 구한다 -> import.어쩌구를 통해 해당 폴더의 모든 이미지를 불러온다.
   const project = projectData.find(p => p.id === Number(id));
   if (!project) {
     return <p>해당 프로젝트를 찾을 수 없습니다.</p>;
@@ -69,9 +68,10 @@ const ProjectDetailComponent = () => {
     dots: false,
     infinite: true,
     speed: 500,
+    arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    beforeChange: (oldIndex: number, newIndex: number) => setCurrentSlide(newIndex) // 인덱스 추적
+    beforeChange: (_oldIndex: number, newIndex: number) => setCurrentSlide(newIndex) // 인덱스 추적
   };
 
   return (
@@ -222,6 +222,18 @@ const StyledSlider = styled(Slider as any)`
     display: flex !important;
     gap: 3rem;
     margin-left: 0;
+
+    ${media.large`
+      max-height: 45rem;
+    `};
+
+    ${media.medium`
+      max-height: 35rem;
+    `}
+
+    ${media.small`
+      max-height: 23rem;
+    `}
   }
 
   .slick-slide {

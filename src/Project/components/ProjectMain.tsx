@@ -170,7 +170,6 @@ const PaginationContainer = styled.div`
   gap: 0.8rem;
 `;
 
-// 📌 숫자 버튼 스타일
 const PageButton = styled.button<{ $isActive: boolean | undefined }>`
   width: 4.4rem;
   height: 4.4rem;
