@@ -1,31 +1,11 @@
 import styled, { keyframes, DefaultTheme } from "styled-components";
 import BgImg from "../assets/BgImg.jpg";
-import BgPhrase from "../assets/BgPhrase.svg?react";
+import BgPhrase from "../assets/BgPhrase.png";
 import { motion } from "framer-motion";
-import { aboutUsDesktopText } from "../constants/aboutUsText";
-import { aboutUsMobileText } from "../constants/aboutUsText";
-import { useEffect, useState } from "react";
 import media from "../../common/styles/media";
+import { aboutUsText } from "../constants/aboutUsText";
 
 const AboutUsSection = () => {
-  const [text, setText] = useState(aboutUsDesktopText);
-
-  useEffect(() => {
-    const update = () => {
-      if (window.innerWidth < 639) {
-        setText(aboutUsMobileText);
-      } else {
-        setText(aboutUsDesktopText);
-      }
-    };
-
-    window.addEventListener("resize", update);
-
-    update();
-
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
   return (
     <BG
       initial={{ opacity: 0, y: 50 }}
@@ -33,11 +13,9 @@ const AboutUsSection = () => {
       transition={{ duration: 0.5 }}
     >
       <BGBottom>
-        <StyledBgPhrase>
-          <BgPhrase />
-        </StyledBgPhrase>
+        <StyledBgPhrase src={BgPhrase} />
         <Description>
-          {text.map((item, index) =>
+          {aboutUsText.map((item, index) =>
             typeof item === "string" ? (
               <span key={index}>{item} </span>
             ) : (
@@ -151,11 +129,12 @@ const fadeInOut = keyframes`
   100% { opacity: 1; transform: scale(1); }
 `;
 
-const StyledBgPhrase = styled(BgPhrase)`
+const StyledBgPhrase = styled.img`
   animation: ${fadeInOut} 2s linear 1;
+  object-fit: cover;
+  width: 100%;
 
   ${media.small`
-    height: 10rem;
 
     z-index: 1;
   `}

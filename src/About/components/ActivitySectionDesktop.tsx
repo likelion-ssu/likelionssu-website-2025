@@ -7,6 +7,7 @@ import { ActivityType } from "../type/activity";
 import { findActivityType } from "../utils/activityImageUtil";
 import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import media from "../../common/styles/media";
+import SideSvg from "../assets/sideSVG.png";
 
 interface RefProp {
   parentRef: RefObject<HTMLDivElement>;
@@ -24,7 +25,8 @@ const ActivitySectionDesktop = ({ parentRef }: RefProp) => {
   const { scrollYProgress } = useScroll({
     container: parentRef,
     target: targetRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
+    layoutEffect: false //렌더링 이후 실행하도록
   }); // 현재 스크롤의 위치를 추적합니다.
 
   const imgIndex = useTransform(
@@ -45,11 +47,10 @@ const ActivitySectionDesktop = ({ parentRef }: RefProp) => {
 
   return (
     <SectionContainer ref={targetRef}>
-      {/* 좌측의 텍스트 영역 */}
+      <Side src={SideSvg} />
       <TextSection>
         <Activity_TextAnimation activeActivityType={activeActivityType} />
       </TextSection>
-      {/* 우측의 이미지 영역 */}
       <ImgSection>
         {imgPaths.map((img, index) => (
           <Activity_ImgAnimation key={index} src={img} isActive={activeImgIndex === index} />
@@ -68,6 +69,14 @@ const SectionContainer = styled.div`
   align-items: flex-start;
 
   position: relative;
+`;
+
+const Side = styled.img`
+  object-fit: cover;
+  height: 70rem;
+
+  position: sticky;
+  top: 0rem;
 `;
 
 const TextSection = styled.div`

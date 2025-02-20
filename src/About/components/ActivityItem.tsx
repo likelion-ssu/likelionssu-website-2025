@@ -114,6 +114,7 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-list {
     overflow: visible;
+    padding: 0 !important;
 
     ${media.medium`
       width: 65rem;
@@ -126,7 +127,7 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-track {
     display: flex !important;
-    gap: 3rem;
+    gap: 1rem;
     margin-left: 0;
   }
 

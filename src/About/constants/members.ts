@@ -1,12 +1,12 @@
 export const MEMBER_CORE_LIST = [
   {
     name: "신지환",
-    role: "회장",
+    role: "대표",
     imagePath: "/images/members/img_1.png"
   },
   {
     name: "유민주",
-    role: "부회장",
+    role: "부대표",
     imagePath: "/images/members/img_2.png"
   }
 ];
