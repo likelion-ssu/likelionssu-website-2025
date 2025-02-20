@@ -7,8 +7,11 @@ import { Suspense } from "react";
 import Loading from "./common/components/Loading";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./common/components/ErrorBoundary";
+import useViewportHeight from "./common/hooks/useViewportHeight";
 
 function App() {
+  useViewportHeight();
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

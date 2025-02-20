@@ -21,9 +21,14 @@ const GlobalStyles = createGlobalStyle`
         font-style: normal;
     }
 
+    :root {
+        --vh: 1vh;
+}
+
     html {
         font-size: 62.5%;
         // 1rem = 10px로 지정
+        height: calc(var(--vh, 1vh) * 100);
     }
 
     * {
@@ -58,6 +63,7 @@ const GlobalStyles = createGlobalStyle`
         font-style: normal;
         color: ${theme.colors.White};
         background-color: ${theme.colors.Black};
+        height: calc(var(--vh, 1vh) * 100);
     }
 
     h1 {
