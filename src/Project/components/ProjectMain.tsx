@@ -29,17 +29,30 @@ const useIsMobile = () => {
 
 const ProjectMain = () => {
   const isMobile = useIsMobile();
-  const [currentPage, setCurrentPage] = useState(1);
+  const storedPage = Number(sessionStorage.getItem("currentPage")) || 1;
+  const storedScroll = Number(sessionStorage.getItem("scrollPosition")) || 0;
+
+  const [currentPage, setCurrentPage] = useState(storedPage);
   const totalPages = Math.ceil(projectData.length / ITEMS_PER_PAGE);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
-
+  // 현재 페이지 데이터 계산
   const paginatedProjects = projectData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+
+  const handleProjectClick = (projectId: number) => {
+    sessionStorage.setItem("currentPage", currentPage.toString());
+    sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+  };
+
+  useEffect(() => {
+    if (isMobile) {
+      setTimeout(() => {
+        window.scrollTo(0, storedScroll);
+      }, 50);
+    }
+  }, [isMobile]);
 
   return (
     <>
@@ -49,37 +62,39 @@ const ProjectMain = () => {
           OUR PROJECTS
           <KorTitle>최근 진행된 프로젝트 몰아보기</KorTitle>
         </TitleContainer>
-        {isMobile ? (
-          <CardContainer>
-            {paginatedProjects.map(project => (
-              <StyledLink key={project.id} to={`/project/${project.id}`}>
-                <ProjectCard project={project} />
-              </StyledLink>
-            ))}
-          </CardContainer>
-        ) : (
-          <CardContainer>
-            {projectData.map(project => (
-              <StyledLink key={project.id} to={`/project/${project.id}`}>
-                <ProjectCard key={project.id} project={project} />
-              </StyledLink>
-            ))}
-          </CardContainer>
-        )}
+        <CardContainer>
+          {isMobile
+            ? paginatedProjects.map(project => (
+                <StyledLink
+                  key={project.id}
+                  to={`/project/${project.id}`}
+                  onClick={() => handleProjectClick(project.id)}
+                >
+                  <ProjectCard project={project} />
+                </StyledLink>
+              ))
+            : projectData.map(project => (
+                <StyledLink key={project.id} to={`/project/${project.id}`}>
+                  <ProjectCard key={project.id} project={project} />
+                </StyledLink>
+              ))}
+        </CardContainer>
 
-        {isMobile && (
-          <PaginationContainer>
-            {Array.from({ length: totalPages }, (_, i) => (
+        <PaginationContainer>
+          {isMobile &&
+            Array.from({ length: totalPages }, (_, i) => (
               <PageButton
                 key={i}
                 $isActive={currentPage === i + 1}
-                onClick={() => setCurrentPage(i + 1)}
+                onClick={() => {
+                  setCurrentPage(i + 1);
+                  sessionStorage.setItem("scrollPosition", "0"); // 페이지 이동 시 최상단
+                }}
               >
                 {i + 1}
               </PageButton>
             ))}
-          </PaginationContainer>
-        )}
+        </PaginationContainer>
       </BG>
       <Footer />
     </>
