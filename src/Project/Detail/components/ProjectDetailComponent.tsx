@@ -6,7 +6,10 @@ import Footer from "../../../common/components/Footer";
 import { projectData } from "../constants/projectData";
 import media from "../../../common/styles/media";
 import BackArrow from "../../assets/ic_arrow_back.svg?react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const useIsMobile = () => {
   const [isMobile, setisMobile] = useState(window.innerWidth < 640);
@@ -28,18 +31,48 @@ const useIsMobile = () => {
 
 const ProjectDetailComponent = () => {
   const { id } = useParams<{ id: string }>();
+  // id를 통해서 name을 구한다 -> import.어쩌구를 통해 해당 폴더의 모든 이미지를 불러온다.
   const project = projectData.find(p => p.id === Number(id));
-  const isMobile = useIsMobile();
-  const navigate = useNavigate();
-
   if (!project) {
     return <p>해당 프로젝트를 찾을 수 없습니다.</p>;
   }
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
+  const sliderRef = useRef<Slider | null>(null);
 
-  // 🔥 페이지 변경 시 스크롤 최상단 이동
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  // 이미지 로드 관련
+  const imageFiles: { [key: string]: string } = import.meta.glob(
+    "/src/Project/assets/projectImgs/*.{png,PNG}",
+    {
+      eager: true,
+      as: "url"
+    }
+  );
+
+  // 필터링하여 필요한 이미지들만 가져오기
+  const filteredImages = Object.entries(imageFiles)
+    .filter(([path]) => path.includes(project.name))
+    .map(([_, url]) => url)
+    .sort((a, b) => {
+      const numA = parseInt(a.match(/\d+/)?.[0] || "0", 10);
+      const numB = parseInt(b.match(/\d+/)?.[0] || "0", 10);
+      return numA - numB; // 숫자 기준으로 오름차순 정렬
+    });
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    beforeChange: (oldIndex: number, newIndex: number) => setCurrentSlide(newIndex) // 인덱스 추적
+  };
 
   return (
     <>
@@ -51,11 +84,18 @@ const ProjectDetailComponent = () => {
 
         <ProjectContainer>
           <ImgContainer>
-            <Img src={`/images/projectCover/${project.name}-1.png`} alt="Project Cover" />
+            <StyledSlider {...settings} ref={sliderRef}>
+              {filteredImages.map((src, index) => (
+                <Img key={index} src={src} alt={`guide-${index}`} />
+              ))}
+            </StyledSlider>
             <BtnContainer>
-              <ArrowLeft />
-              <PageText>1/22</PageText>
-              <ArrowRight />
+              {/* 왼쪽 화살표 */}
+              <ArrowLeft onClick={() => sliderRef.current?.slickPrev()} />
+              <PageText>
+                {currentSlide + 1}/{filteredImages.length}
+              </PageText>
+              <ArrowRight onClick={() => sliderRef.current?.slickNext()} />
             </BtnContainer>
           </ImgContainer>
 
@@ -115,15 +155,17 @@ const ProjectContainer = styled.div`
   align-items: center;
   gap: 1rem;
 
-  max-width: 160rem;
   padding: 6rem;
-  margin: 0 20rem;
-  ${media.medium`
-    margin: 0 10rem;
-  `}
+  margin: 0 15rem;
+
   ${media.small`
-    margin: 0 auto;
     padding: 1rem 3.5rem;
+    margin: 0 auto;
+  `}
+
+  ${media.medium`
+    padding: 3rem 6rem;
+    margin: 0 auto;
   `}
 
   border-radius: 10px;
@@ -152,6 +194,37 @@ const ProjectContainer = styled.div`
     mask-composite: exclude;
     -webkit-mask-composite: destination-out;
     opacity: 0.3;
+    transition: opacity 0.3s ease-in-out;
+  }
+`;
+
+const StyledSlider = styled(Slider as any)`
+  width: 100%;
+  overflow: hidden;
+
+  .slick-list {
+    overflow: visible;
+
+    ${media.large`
+      width: 80rem;
+    `}
+
+    ${media.medium`
+      width: 65rem;
+    `}
+
+    ${media.small`
+      width: 40rem;
+    `}
+  }
+
+  .slick-track {
+    display: flex !important;
+    gap: 3rem;
+    margin-left: 0;
+  }
+
+  .slick-slide {
     transition: opacity 0.3s ease-in-out;
   }
 `;
@@ -193,9 +266,7 @@ const ArrowRight = styled(Arrow)`
 
   background: var(--30, #9a9a9a);
 
-  path {
-    stroke: black;
-  }
+  z-index: 10; // 클릭 불가를 방지
 `;
 
 const ArrowLeft = styled(ArrowRight)`

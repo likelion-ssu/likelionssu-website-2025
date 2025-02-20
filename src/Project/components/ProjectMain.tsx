@@ -10,11 +10,11 @@ import { useEffect, useState } from "react";
 const ITEMS_PER_PAGE = 6;
 
 const useIsMobile = () => {
-  const [isMobile, setisMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setisMobile] = useState(window.innerWidth < 800);
 
   useEffect(() => {
     const update = () => {
-      setisMobile(window.innerWidth < 640);
+      setisMobile(window.innerWidth < 800);
     };
 
     window.addEventListener("resize", update);
@@ -35,13 +35,12 @@ const ProjectMain = () => {
   const [currentPage, setCurrentPage] = useState(storedPage);
   const totalPages = Math.ceil(projectData.length / ITEMS_PER_PAGE);
 
-  // 현재 페이지 데이터 계산
   const paginatedProjects = projectData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
 
-  const handleProjectClick = (projectId: number) => {
+  const handleProjectClick = () => {
     sessionStorage.setItem("currentPage", currentPage.toString());
     sessionStorage.setItem("scrollPosition", window.scrollY.toString());
   };
@@ -52,7 +51,7 @@ const ProjectMain = () => {
         window.scrollTo(0, storedScroll);
       }, 50);
     }
-  }, [isMobile]);
+  }, [currentPage]);
 
   return (
     <>
@@ -68,7 +67,7 @@ const ProjectMain = () => {
                 <StyledLink
                   key={project.id}
                   to={`/project/${project.id}`}
-                  onClick={() => handleProjectClick(project.id)}
+                  onClick={() => handleProjectClick()}
                 >
                   <ProjectCard project={project} />
                 </StyledLink>
