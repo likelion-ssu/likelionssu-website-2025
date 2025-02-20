@@ -56,6 +56,7 @@ const ProjectMain = () => {
   return (
     <>
       <BG>
+        <TopBar />
         <TitleContainer>
           OUR PROJECTS
           <KorTitle>최근 진행된 프로젝트 몰아보기</KorTitle>
