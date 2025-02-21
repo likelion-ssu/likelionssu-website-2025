@@ -156,8 +156,8 @@ const ProjectContainer = styled.div`
   margin: 0 15rem;
 
   ${media.small`
-    padding: 1rem 3.5rem !important;
-    margin: 0 auto;
+    padding: 1.5rem !important;
+    margin: 1.5rem 3rem !important; 
   `}
 
   ${media.medium`
