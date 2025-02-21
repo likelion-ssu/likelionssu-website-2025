@@ -32,7 +32,7 @@ export default AboutUsSection;
 
 const BG = styled(motion.div).attrs({ id: "aboutus-section" })`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
   scroll-snap-align: start;
   scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
@@ -61,13 +61,12 @@ const BG = styled(motion.div).attrs({ id: "aboutus-section" })`
   ${media.small`
    /* 초기화 */
    scroll-snap-align: none;
-    scroll-snap-stop: normal;
+   scroll-snap-stop: normal;
 
-    width: 100%;
-    height: auto;
+    min-height: auto;
     
     background: none;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
 
     justify-content: flex-start;
@@ -88,6 +87,8 @@ const BGBottom = styled.div`
   align-items: center;
   gap: 3rem;
 
+  position: relative;
+
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 
   ${media.medium`
@@ -95,13 +96,15 @@ const BGBottom = styled.div`
   `}
 
   ${media.small`
-    margin-top: 15rem;
-    min-height: 37rem;
+    height: auto;
+    margin-top: 5rem;
     max-height: 40rem;
+    min-height: 37rem;
 
     justify-content: flex-start;
     padding-top: 5rem;
     align-items: flex-start;
+    gap: 5rem;
 
     position: relative;
 
@@ -110,7 +113,8 @@ const BGBottom = styled.div`
     background-repeat: no-repeat;
 
     &::after {
-      height: 100%;
+      height: auto;
+      max-height: 40rem;
       content: "";
       position: absolute;
       bottom: 0;

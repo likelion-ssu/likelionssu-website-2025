@@ -62,6 +62,11 @@ const BG = styled(motion.div).attrs({ id: "team-section" })`
 
   scroll-snap-align: start;
   scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
+
+  ${media.small`
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  `}
 `;
 
 const Header = styled.div`
