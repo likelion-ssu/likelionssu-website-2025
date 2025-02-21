@@ -131,12 +131,13 @@ const BG = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
   padding-bottom: 8rem;
 `;
 
 const BackBtnWrapper = styled.div`
+  width: 100%;
   padding: 1rem;
   padding-left: 3.5rem;
 
