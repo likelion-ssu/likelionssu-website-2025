@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Arrow from "../../../common/assets/arrow_down.svg?react";
-import TopBar from "../../../common/components/TopBar";
 import Footer from "../../../common/components/Footer";
 import { projectData } from "../constants/projectData";
 import media from "../../../common/styles/media";
@@ -76,7 +75,6 @@ const ProjectDetailComponent = () => {
 
   return (
     <>
-      <TopBar />
       <BG>
         <BackBtnWrapper onClick={() => navigate(-1)}>
           <BackArrow />
@@ -135,7 +133,6 @@ const BG = styled.div`
   justify-content: center;
   align-items: flex-start;
 
-  margin-top: 10rem;
   padding-bottom: 8rem;
 `;
 

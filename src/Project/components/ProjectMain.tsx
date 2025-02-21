@@ -55,8 +55,8 @@ const ProjectMain = () => {
 
   return (
     <>
+      <TopBar type="project" />
       <BG>
-        <TopBar />
         <TitleContainer>
           OUR PROJECTS
           <KorTitle>최근 진행된 프로젝트 몰아보기</KorTitle>
@@ -107,7 +107,6 @@ const BG = styled.div`
   flex-direction: column;
 
   width: 100vw;
-  margin: 12rem 0;
   padding: 3rem 0;
 
   background: url(${BgImg});
@@ -172,10 +171,12 @@ const PaginationContainer = styled.div`
 `;
 
 const PageButton = styled.button<{ $isActive: boolean | undefined }>`
+  margin: none;
+  border: none;
+  padding: none;
+
   width: 4.4rem;
   height: 4.4rem;
-  margin: auto auto;
-  border: none;
   transition: background-color 0.3s ease-in-out;
 
   display: flex;

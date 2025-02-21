@@ -56,9 +56,9 @@ const BG = styled(motion.div).attrs({ id: "activity-section" })`
   scroll-snap-stop: always; // 스크롤 할 때에만 snap 적용
 
   ${media.small`
-    height: auto;
+    height: auto; // 모바일에선 100vh 제거
+    overflow-y: scroll; 
 
-    /* 초기화 */
     scroll-snap-align: none;
     scroll-snap-stop: normal;
   `}
