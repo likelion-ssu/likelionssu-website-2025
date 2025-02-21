@@ -27,7 +27,11 @@ const TopBar = ({ type }: TopBarProps) => {
           </LogoContainer>
         </Link>
         <BtnContainer>
-          {type !== "recruit" && <ApplyBtn>13기 지원하기</ApplyBtn>}
+          {type !== "recruit" && (
+            <Link to="/recruit">
+              <ApplyBtn>13기 지원하기</ApplyBtn>
+            </Link>
+          )}
           <IcMenuStyled onClick={() => setIsNavOpen(true)} />
         </BtnContainer>
       </TopBarContainer>
