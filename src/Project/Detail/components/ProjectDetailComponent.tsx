@@ -159,7 +159,7 @@ const ProjectContainer = styled.div`
   margin: 0 15rem;
 
   ${media.small`
-    padding: 1rem 3.5rem;
+    padding: 1rem 3.5rem !important;
     margin: 0 auto;
   `}
 
@@ -214,7 +214,7 @@ const StyledSlider = styled(Slider as any)`
     `}
 
     ${media.small`
-      width: 40rem;
+      width: 30rem;
     `}
   }
 
@@ -231,7 +231,7 @@ const StyledSlider = styled(Slider as any)`
     `}
 
     ${media.small`
-      max-height: 23rem;
+      max-height: 20rem;
     `}
   }
 
@@ -369,11 +369,15 @@ const Name = styled(TextBody5)`
  `}
 `;
 
-const Comment = styled(TextBody4)`
-  line-height: 1.8;
+const Comment = styled.div`
+  width: 100%;
+  color: ${({ theme }) => theme.colors.White};
   word-break: keep-all;
 
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
+  line-height: 4rem;
+
   ${({ theme }) => media.small`
+  line-height: 2rem !important;
   ${theme.mixins.font(theme.fonts.Pretendard.body7)}`}
 `;

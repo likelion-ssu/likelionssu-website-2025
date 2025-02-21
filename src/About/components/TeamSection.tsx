@@ -65,13 +65,12 @@ const BG = styled(motion.div).attrs({ id: "team-section" })`
 `;
 
 const Header = styled.div`
-  /* 초기화 */
   scroll-snap-align: none;
   scroll-snap-stop: normal;
 
   position: absolute;
   left: 5.6rem;
-  top: 3rem;
+  top: 10rem;
 
   color: rgba(0, 0, 0, 0.2);
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}

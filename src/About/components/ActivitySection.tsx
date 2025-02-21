@@ -66,13 +66,10 @@ const BG = styled(motion.div).attrs({ id: "activity-section" })`
 
 const Title = styled.div`
   width: 100%;
-  padding: 5rem;
+  padding: 10rem 5.8rem;
   color: rgba(255, 255, 255, 0.3);
 
   ${({ theme }: { theme: DefaultTheme }) => theme.mixins.font(theme.fonts.Suit.subtitle1)}
-
-  position: sticky;
-  top: 0;
 
   ${media.small`
     padding: 2rem;

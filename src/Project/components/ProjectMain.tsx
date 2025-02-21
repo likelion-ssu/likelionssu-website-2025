@@ -55,8 +55,8 @@ const ProjectMain = () => {
 
   return (
     <>
-      <TopBar />
       <BG>
+        <TopBar />
         <TitleContainer>
           OUR PROJECTS
           <KorTitle>최근 진행된 프로젝트 몰아보기</KorTitle>
@@ -110,11 +110,12 @@ const BG = styled.div`
   margin: 12rem 0;
   padding: 3rem 0;
 
-  // 너무 느려져서 일단 주석처리
   background: url(${BgImg});
   background-size: contain;
   background-size: center;
   background-repeat: no-repeat;
+
+  position: relative;
 `;
 
 const TitleContainer = styled.div`
@@ -173,9 +174,11 @@ const PaginationContainer = styled.div`
 const PageButton = styled.button<{ $isActive: boolean | undefined }>`
   width: 4.4rem;
   height: 4.4rem;
+  margin: auto auto;
   border: none;
   transition: background-color 0.3s ease-in-out;
 
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -185,8 +188,9 @@ const PageButton = styled.button<{ $isActive: boolean | undefined }>`
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: ${({ theme, $isActive }) => ($isActive ? theme.colors[90] : theme.colors.Black)};
 
-  align-self: stretch;
   color: ${({ theme }) => theme.colors.White};
+  vertical-align: middle;
+  text-align: center;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors[60]};

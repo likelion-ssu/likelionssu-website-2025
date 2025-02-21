@@ -53,13 +53,13 @@ const TitleContainer = styled.div`
 `;
 
 const StaticTitle = styled.div`
-  color: ${({ theme }) => theme.colors["60"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.subtitle2)}
+  color: rgba(255, 255, 255, 0.18);
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
 `;
 
 const Title = styled(motion.div)`
   color: ${({ theme }) => theme.colors.White};
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 7rem;
   font-weight: 600;
 `;
