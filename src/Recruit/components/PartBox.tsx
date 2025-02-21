@@ -35,7 +35,10 @@ const PartBox = () => {
 export default PartBox;
 
 const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
 `;
 
 const Title = styled.p`
@@ -53,14 +56,17 @@ const Title = styled.p`
 `;
 
 const PartSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
-  flex-wrap: wrap;
+
+  ${media.medium`
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  `};
 
   ${media.small`
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   `};
 `;

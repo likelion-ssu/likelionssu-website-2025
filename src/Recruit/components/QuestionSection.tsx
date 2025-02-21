@@ -65,6 +65,7 @@ const BG = styled(motion.div)`
 `;
 const Title = styled.div`
   color: #1a1a1a;
+  font-family: Pretendard;
   font-size: 4rem;
   font-style: normal;
   font-weight: 400;
@@ -72,12 +73,24 @@ const Title = styled.div`
   letter-spacing: 0.4px;
   width: 120rem;
 
+  ${media.medium`
+    color: var(--90, #1A1A1A);
+text-align: center;
+font-feature-settings: 'calt' off;
+font-family: Pretendard;
+font-size: 3rem;
+font-style: normal;
+font-weight: 600;
+line-height: 26px; /* 162.5% */
+letter-spacing: -0.16px;
+  `};
+
   ${media.small`
     color: var(--90, #1A1A1A);
 text-align: center;
 font-feature-settings: 'calt' off;
 font-family: Pretendard;
-font-size: 16px;
+font-size: 1.6rem;
 font-style: normal;
 font-weight: 600;
 line-height: 26px; /* 162.5% */
@@ -100,6 +113,11 @@ const QuestionContainer = styled.div`
   gap: 1.6rem;
   padding: 4rem 0;
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.14);
+
+  ${media.medium`
+  width: 70rem;
+  /* height: 60rem; */
+  `};
 
   ${media.small`
   width:35rem;

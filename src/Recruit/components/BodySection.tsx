@@ -107,6 +107,9 @@ const BgImg = styled.img`
 `;
 const BoxContainer = styled.div`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const TextBody4 = styled.p`
@@ -134,6 +137,10 @@ const CardSection = styled.div`
   justify-content: center;
   gap: 2rem;
 
+  ${media.medium`
+    flex-direction: column;
+    gap: 3rem;
+  `};
   ${media.small`
     flex-direction: column;
     gap: 1.4rem;
@@ -158,13 +165,20 @@ const SkillCard = styled.div`
     rgba(255, 255, 255, 0.04) 100%
   );
 
+  ${media.medium`
+    width: 50rem;
+    height: 20rem;
+    flex-direction: row;
+    justify-content: center;
+
+  `};
   ${media.small`
     width: 33rem;
     height: 12rem;
     border-radius: 5.94px;
-    display: flex;
     flex-direction: row;
     padding-top:0;
+
   `};
 `;
 
@@ -172,8 +186,12 @@ const SkillIcon = styled.img`
   width: auto;
   height: 20rem;
 
+  ${media.medium`
+    height: 15rem;
+  `};
+
   ${media.small`
-    width: 8rem;
+    width: auto;
     height: 8rem;
   `};
 `;
@@ -212,6 +230,11 @@ const Roadmap = styled.img`
   width: 90rem;
   height: 90rem;
 
+  ${media.medium`
+  width: 60rem;
+  height: 60rem;
+  `};
+
   ${media.small`
   width: 38rem;
   height: 38rem;
@@ -226,7 +249,13 @@ const CircleContainer = styled.div`
   justify-content: center;
   gap: 3rem;
 
+  ${media.medium`
+    gap: 1.4rem;
+    width: 80%;
+  `};
+
   ${media.small`
+    width: 100%;
     gap: 1.4rem;
   `};
 `;
