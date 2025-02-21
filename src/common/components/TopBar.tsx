@@ -19,7 +19,7 @@ const TopBar = ({ type }: TopBarProps) => {
 
   return (
     <>
-      <TopBarContainer $isRecruit={isRecruitActive}>
+      <TopBarContainer $isRecruit={isRecruitActive} $type={type}>
         <Link to="/">
           <LogoContainer>
             <Logo style={{ width: "2rem" }} />
@@ -39,8 +39,8 @@ const TopBar = ({ type }: TopBarProps) => {
 
 export default TopBar;
 
-const TopBarContainer = styled.div<{ $isRecruit: boolean }>`
-  position: absolute;
+const TopBarContainer = styled.div<{ $isRecruit: boolean; $type?: string }>`
+  position: ${({ $type }) => ($type === "project" ? "sticky" : "absolute")};
   top: 0;
   left: 0;
   right: 0;
