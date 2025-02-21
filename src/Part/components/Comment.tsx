@@ -170,7 +170,7 @@ export default function Comment() {
 const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   position: absolute;
   top: 50%;
-  left: 5%;
+  left: 1%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.6);
   border: 0.903px solid #fff;
@@ -205,7 +205,7 @@ const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
 const CustomNextArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   position: absolute;
   top: 50%;
-  right: 5%;
+  right: 1%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.6);
   border: 0.903px solid #fff;
@@ -300,6 +300,8 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-list {
     overflow: visible;
+    width: 130rem;
+    padding: 0 3rem;
 
     ${media.medium`
     overflow: hidden;
@@ -316,9 +318,10 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-track {
     display: flex !important;
-    gap: 3rem;
+    gap: 4rem;
     margin-left: 0;
     padding-right: 0;
+    width: 1000px;
 
     ${media.medium`
       gap: 4rem;
@@ -350,8 +353,8 @@ const StyledSlider = styled(Slider as any)`
     }
   }
 `;
+
 const Container = styled.div`
-  width: 143.6rem;
   display: flex;
   justify-content: center;
   padding-bottom: 7rem;
@@ -376,7 +379,7 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 8.6rem;
+  padding-left: 6rem;
   height: 35.8rem;
 
   ${media.medium`
@@ -393,10 +396,10 @@ const LeftContainer = styled.div`
 `;
 
 const Card = styled.div<{ $expanded: boolean }>`
-  width: 45rem;
-  height: ${({ $expanded }) => ($expanded ? "auto" : "35.8rem")};
-  max-width: 45rem;
-  min-width: 45rem;
+  width: 40rem;
+  height: ${({ $expanded }) => ($expanded ? "auto" : "35rem")};
+  max-width: 40rem;
+  min-width: 40rem;
   border-radius: 20px;
   border: 1.5px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.06);
@@ -429,7 +432,8 @@ const Card = styled.div<{ $expanded: boolean }>`
 
 const CarouselWrapper = styled.div`
   display: flex;
-  width: 145rem;
+  width: 100%;
+  position: relative;
 
   ${media.medium`
     width: 100%;
@@ -451,7 +455,7 @@ export const RoleText = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.colors.White};
   font-family: "SUIT Variable";
-  font-size: 6rem;
+  font-size: 5.8rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -465,7 +469,7 @@ export const RoleText = styled.div`
 export const CommentSubTitle = styled.div`
   margin-top: 1rem;
   color: ${({ theme }) => theme.colors["10"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
   width: 41.6rem;
 
   ${media.small` 
@@ -491,7 +495,7 @@ export const Tag = styled.div`
 
 export const Name = styled.div`
   color: ${({ theme }) => theme.colors.White};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
 
   ${media.small` 
     font-size: 1.4rem;
@@ -500,7 +504,7 @@ export const Name = styled.div`
 
 export const CardinalNumber = styled.div`
   color: ${({ theme }) => theme.colors["30"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
 
   ${media.small` 
     font-size: 1rem;
@@ -509,7 +513,7 @@ export const CardinalNumber = styled.div`
 
 export const CommentCaption = styled.div`
   color: ${({ theme }) => theme.colors["10"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
   line-height: 190%;
   overflow-y: auto;
 

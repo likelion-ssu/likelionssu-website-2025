@@ -121,7 +121,7 @@ const CarouselWrapper = styled.div`
 `;
 
 const Logo = styled.div`
-  margin-top: 16rem;
+  margin-top: 7rem;
   background: linear-gradient(90deg, #1d1d1d 32.78%, #10103e 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -134,6 +134,6 @@ const Logo = styled.div`
 
   ${media.small`
     font-size: 3.6rem;
-    margin-top: 10.6rem;
+    margin-top: 5.4rem;
   `};
 `;
