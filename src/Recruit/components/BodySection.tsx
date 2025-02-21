@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import media from "../../common/styles/media";
 import RoadmapImg from "../assets/roadmap.png";
 import PartBox from "./PartBox";
-// import bgImg from "../assets/recruitCover/bgImg.png";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();

@@ -46,7 +46,7 @@ const BG = styled(motion.div).attrs({ id: "aboutus-section" })`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
   &::after {
@@ -92,19 +92,18 @@ const BGBottom = styled.div`
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 
   ${media.medium`
-    gap: 1rem;
+    gap: 5rem;
   `}
 
   ${media.small`
     height: auto;
     margin-top: 5rem;
     max-height: 40rem;
-    min-height: 37rem;
+    min-height: 35rem;
 
     justify-content: flex-start;
     padding-top: 5rem;
     align-items: flex-start;
-    gap: 5rem;
 
     position: relative;
 

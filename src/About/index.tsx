@@ -3,7 +3,6 @@ import AboutUsSection from "./components/AboutUsSection";
 import ActivitySection from "./components/ActivitySection";
 import TeamSection from "./components/TeamSection";
 import TopBar from "../common/components/TopBar";
-import media from "../common/styles/media";
 
 const About = () => {
   return (
