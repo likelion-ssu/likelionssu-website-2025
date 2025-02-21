@@ -207,7 +207,7 @@ const StyledSlider = styled(Slider as any)`
     `}
 
     ${media.medium`
-      width: 65rem;
+      width: 60rem;
     `}
 
     ${media.small`
