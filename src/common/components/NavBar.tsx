@@ -54,7 +54,7 @@ const NavBar = ({ onClose }: NavBarProps) => {
             </Link>
             <p>
               <Link to="/about#activity-section" onClick={handleClose}>
-                Roadmap
+                Activity
               </Link>
               <br />
               <Link to="/about#team-section" onClick={handleClose}>
@@ -132,7 +132,9 @@ const NavBarContainer = styled.div<{ $isClosing: boolean }>`
   background: #000;
   width: 34rem;
   height: 100vh;
-  padding: 4.9rem 0 0 3.3rem;
+  padding: 4.9rem 3.3rem 0 3.3rem;
+  display: flex;
+  flex-direction: column;
 
   ${({ $isClosing }) =>
     $isClosing
@@ -144,7 +146,8 @@ const NavBarContainer = styled.div<{ $isClosing: boolean }>`
         `}
 
   ${media.small`
-    width: 100vw;
+    width: 70vw;
+    align-items: end;
   `};
 `;
 
@@ -158,7 +161,7 @@ const NavList = styled.ul`
   flex-direction: column;
   gap: 3rem;
   padding: 0 0.9rem;
-
+  width: 100%;
   li {
     color: #fff;
 
