@@ -33,7 +33,7 @@ const ActivityItem = ({ index, title, description }: activityProps) => {
       <ImageContainer>
         <StyledSlider {...settings}>
           {images.map((src, index) => (
-            <CenterImage key={index} src={src} alt={`activity-${index}`} />
+            <CenterImage loading="lazy" key={index} src={src} alt={`activity-${index}`} />
           ))}
         </StyledSlider>
       </ImageContainer>

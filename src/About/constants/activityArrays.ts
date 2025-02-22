@@ -1,23 +1,23 @@
 import { ActivityType } from "../type/activity";
 
 export const imgPaths = [
-  "images/activities/img_edu1.png",
-  "images/activities/img_edu2.png",
-  "images/activities/img_hcktn1.png",
-  "images/activities/img_hcktn2.png",
-  "images/activities/img_hcktn3.png",
-  "images/activities/img_hcktn4.png",
-  "images/activities/img_ughHeung1.png",
-  "images/activities/img_ughHeung2.png",
-  "images/activities/img_ughHeung3.png",
-  "images/activities/img_network1.png",
-  "images/activities/img_network2.png",
-  "images/activities/img_winterProj1.png",
-  "images/activities/img_winterProj2.png",
-  "images/activities/img_winterProj3.png",
-  "images/activities/img_social1.png",
-  "images/activities/img_social2.png",
-  "images/activities/img_social3.png"
+  "images/activities/img_edu1.webp",
+  "images/activities/img_edu2.webp",
+  "images/activities/img_hcktn1.webp",
+  "images/activities/img_hcktn2.webp",
+  "images/activities/img_hcktn3.webp",
+  "images/activities/img_hcktn4.webp",
+  "images/activities/img_ughHeung1.webp",
+  "images/activities/img_ughHeung2.webp",
+  "images/activities/img_ughHeung3.webp",
+  "images/activities/img_network1.webp",
+  "images/activities/img_network2.webp",
+  "images/activities/img_winterProj1.webp",
+  "images/activities/img_winterProj2.webp",
+  "images/activities/img_winterProj3.webp",
+  "images/activities/img_social1.webp",
+  "images/activities/img_social2.webp",
+  "images/activities/img_social3.webp"
 ];
 
 export const imgToIndexMap = [

@@ -1,5 +1,5 @@
 import styled, { keyframes, DefaultTheme } from "styled-components";
-import BgImg from "../assets/BgImg.jpg";
+import BgImg from "../assets/BgImg.webp";
 import BgPhrase from "../assets/BgPhrase.png";
 import { motion } from "framer-motion";
 import media from "../../common/styles/media";
@@ -11,15 +11,18 @@ const AboutUsSection = () => {
 
   useEffect(() => {
     const update = () => {
-      if (window.innerWidth > 1048) setText(aboutUsText);
-      else setText(aboutUsShortText);
+      if (window.innerWidth < 639) {
+        setText(aboutUsShortText);
+      } else {
+        setText(aboutUsText);
+      }
     };
 
     window.addEventListener("resize", update);
 
-    return () => {
-      window.removeEventListener("resize", update);
-    };
+    update();
+
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   return (
