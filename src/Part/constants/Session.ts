@@ -4,6 +4,7 @@ export const roleContents: Record<"pm" | "de" | "fe" | "be", string[]> = {
     "프로젝트 구체화하기 : 툴 이용하기",
     "역기획과 모의 기획을 통해 PM으로 거듭나기",
     "IT PM으로 파고들기",
+    "PM-DE 합동 세션",
     "PM-DE 합동 세션"
   ],
   de: [
@@ -11,7 +12,8 @@ export const roleContents: Record<"pm" | "de" | "fe" | "be", string[]> = {
     "Figma 툴 익히기 : 기능과 구조",
     "디자인시스템 : 효율성과 일관성",
     "기업 예시로 알아보는 서비스 브랜딩",
-    "PM-DE 합동세션"
+    "PM-DE 합동세션",
+    "PM-DE 합동 세션"
   ],
   fe: [
     "자바스크립트 엔진과 기초 문법 & ES6 함수와 DOM",

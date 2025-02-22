@@ -65,6 +65,10 @@ const Btn = styled.div<{ $selected: boolean }>`
   line-height: 1.8rem;
   letter-spacing: 0.04rem;
 
+  &:hover {
+    background: ${({ $selected }) => ($selected ? "#9A9A9A" : "rgba(255, 255, 255, 0.2)")};
+  }
+
   ${media.small`
     padding: 0.7rem 2rem;
     font-size: 1.2rem;

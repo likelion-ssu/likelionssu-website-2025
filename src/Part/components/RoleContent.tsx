@@ -130,6 +130,7 @@ const RoleText = styled.div`
 
   ${media.small` 
    line-height: 166%;
+   font-size: 1.2rem;
   `};
 `;
 
