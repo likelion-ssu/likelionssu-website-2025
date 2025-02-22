@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import media from "../../common/styles/media";
 import RoadmapImg from "../assets/roadmap.png";
 import PartBox from "./PartBox";
+import { formlink } from "../constants/formlink";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
@@ -65,7 +66,7 @@ const Body = () => {
           <LineBox $bottomBorder />
           <ApplyBox>
             <ApplyTitle>지금 바로 지원하세요</ApplyTitle>
-            <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+            <ApplyBtn onClick={() => window.open(formlink)}>지원 서류 작성하기</ApplyBtn>
           </ApplyBox>
           <LineBox $topBorder />
         </ApplyContainer>
