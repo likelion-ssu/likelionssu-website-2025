@@ -1,5 +1,5 @@
 import styled, { keyframes, DefaultTheme } from "styled-components";
-import BgImg from "../assets/BgImg.jpg";
+import BgImg from "../assets/BgImg.png";
 import BgPhrase from "../assets/BgPhrase.png";
 import { motion } from "framer-motion";
 import media from "../../common/styles/media";

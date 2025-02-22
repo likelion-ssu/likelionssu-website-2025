@@ -84,7 +84,7 @@ const ProjectDetailComponent = () => {
           <ImgContainer>
             <StyledSlider {...settings} ref={sliderRef}>
               {filteredImages.map((src, index) => (
-                <Img key={index} src={src} alt={`guide-${index}`} />
+                <Img loading="lazy" key={index} src={src} alt={`guide-${index}`} />
               ))}
             </StyledSlider>
             <BtnContainer>
