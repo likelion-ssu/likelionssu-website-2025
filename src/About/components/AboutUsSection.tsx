@@ -3,9 +3,25 @@ import BgImg from "../assets/BgImg.jpg";
 import BgPhrase from "../assets/BgPhrase.png";
 import { motion } from "framer-motion";
 import media from "../../common/styles/media";
-import { aboutUsText } from "../constants/aboutUsText";
+import { aboutUsShortText, aboutUsText } from "../constants/aboutUsText";
+import { useEffect, useState } from "react";
 
 const AboutUsSection = () => {
+  const [text, setText] = useState(aboutUsText);
+
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth > 1048) setText(aboutUsText);
+      else setText(aboutUsShortText);
+    };
+
+    window.addEventListener("resize", update);
+
+    return () => {
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   return (
     <BG
       initial={{ opacity: 0, y: 50 }}
@@ -15,7 +31,7 @@ const AboutUsSection = () => {
       <BGBottom>
         <StyledBgPhrase src={BgPhrase} />
         <Description>
-          {aboutUsText.map((item, index) =>
+          {text.map((item, index) =>
             typeof item === "string" ? (
               <span key={index}>{item} </span>
             ) : (
@@ -154,7 +170,7 @@ const Description = styled.div`
   white-space: pre-wrap;
 
   word-break: keep-all;
-  line-height: 3.5rem;
+  line-height: 3rem;
 
   z-index: 1;
 

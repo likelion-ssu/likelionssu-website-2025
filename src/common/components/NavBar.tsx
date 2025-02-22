@@ -173,4 +173,8 @@ const NavList = styled.ul`
     line-height: 2;
     margin-top: 1.4rem;
   }
+
+  span {
+    cursor: pointer;
+  }
 `;
