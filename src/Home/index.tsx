@@ -10,47 +10,53 @@ import pc_titleImg from "./assets/pc_possible.png";
 import possibleImg from "./assets/possible.png";
 import toImg from "./assets/to.png";
 import realityImg from "./assets/reality.png";
+import ThreeScene from "./components/ThreeScene";
 
 const Home = () => {
   return (
     <>
       <TopBar type="home" />
-      <Container>
-        <MainContainer>
-          <TextContainer>
-            <TitleWrapper>
-              <Title>POSSIBILITY&nbsp;TO&nbsp;&nbsp;REALITY</Title>
-              <img src={pc_titleImg} />
-            </TitleWrapper>
+      <BackgroundWrapper>
+        <ThreeSceneContainer>
+          <ThreeScene />
+        </ThreeSceneContainer>
+        <Container>
+          <MainContainer>
+            <TextContainer>
+              <TitleWrapper>
+                <Title>POSSIBILITY&nbsp;TO&nbsp;&nbsp;REALITY</Title>
+                <img src={pc_titleImg} />
+              </TitleWrapper>
 
-            <MobileTitleWrapper>
-              <MobileTitleBg>
-                <MobileTitleItem>POSSIBILITY</MobileTitleItem>
-                <img src={possibleImg} />
-              </MobileTitleBg>
+              <MobileTitleWrapper>
+                <MobileTitleBg>
+                  <MobileTitleItem>POSSIBILITY</MobileTitleItem>
+                  <img src={possibleImg} />
+                </MobileTitleBg>
 
-              <MobileTitleBg>
-                <MobileTitleItem>TO</MobileTitleItem>
-                <img src={toImg} />
-              </MobileTitleBg>
+                <MobileTitleBg>
+                  <MobileTitleItem>TO</MobileTitleItem>
+                  <img src={toImg} />
+                </MobileTitleBg>
 
-              <MobileTitleBg>
-                <MobileTitleItem>REALITY</MobileTitleItem>
-                <img src={realityImg} />
-              </MobileTitleBg>
-            </MobileTitleWrapper>
+                <MobileTitleBg>
+                  <MobileTitleItem>REALITY</MobileTitleItem>
+                  <img src={realityImg} />
+                </MobileTitleBg>
+              </MobileTitleWrapper>
 
-            <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
-          </TextContainer>
-        </MainContainer>
+              <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
+            </TextContainer>
+          </MainContainer>
 
-        <MainBtnContainer>
-          {mainBtns.map((btn, index) => (
-            <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
-          ))}
-        </MainBtnContainer>
-        <Footer />
-      </Container>
+          <MainBtnContainer>
+            {mainBtns.map((btn, index) => (
+              <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
+            ))}
+          </MainBtnContainer>
+          <Footer />
+        </Container>
+      </BackgroundWrapper>
     </>
   );
 };
@@ -207,8 +213,25 @@ const MainBtnContainer = styled.div`
   `}
 `;
 
+const BackgroundWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+`;
+
+const ThreeSceneContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+`;
+
 const Container = styled.div`
+  position: relative;
   height: 100vh;
   max-width: 1440px;
   width: 100%;
+  z-index: 1;
 `;
