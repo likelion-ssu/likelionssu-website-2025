@@ -61,7 +61,7 @@ const TopBarContainer = styled.div<{ $isRecruit: boolean; $type?: string }>`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
 
   ${media.small`
-    height: 4rem;
+    height: 6rem;
     padding: 0.5rem 2rem;
   `};
 `;
@@ -95,7 +95,7 @@ const IcMenuStyled = styled(IcMenu)`
   }
 
   ${media.small`
-  width:2rem;
+  width:3rem;
   `};
 `;
 
