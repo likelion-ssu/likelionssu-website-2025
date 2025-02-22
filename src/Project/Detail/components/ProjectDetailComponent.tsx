@@ -131,12 +131,13 @@ const BG = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
   padding-bottom: 8rem;
 `;
 
 const BackBtnWrapper = styled.div`
+  width: 100%;
   padding: 1rem;
   padding-left: 3.5rem;
 
@@ -156,8 +157,8 @@ const ProjectContainer = styled.div`
   margin: 0 15rem;
 
   ${media.small`
-    padding: 1rem 3.5rem !important;
-    margin: 0 auto;
+    padding: 1.5rem !important;
+    margin: 1.5rem 3rem !important; 
   `}
 
   ${media.medium`
@@ -207,7 +208,7 @@ const StyledSlider = styled(Slider as any)`
     `}
 
     ${media.medium`
-      width: 65rem;
+      width: 60rem;
     `}
 
     ${media.small`
