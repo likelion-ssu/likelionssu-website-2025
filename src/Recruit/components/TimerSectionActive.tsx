@@ -199,6 +199,14 @@ const TimerSection = styled.div`
   line-height: normal;
   flex-wrap: wrap;
 
+  ${media.medium`
+    max-width: 50rem; 
+    flex-wrap: wrap; 
+    font-size: 8rem;
+    gap: 1.5rem;
+
+  `};
+
   ${media.small`
     font-size: 6rem;
     gap: 0.1rem;
@@ -206,6 +214,9 @@ const TimerSection = styled.div`
 `;
 
 const Colon = styled.span`
+  ${media.medium`
+    display: none;
+  `};
   ${media.small`
     display: none;
   `};
