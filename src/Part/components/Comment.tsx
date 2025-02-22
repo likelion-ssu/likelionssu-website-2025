@@ -256,7 +256,7 @@ const ExpandButton = styled.button`
   `};
 
   ${media.small`
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     svg {
       width: 80%;
       height: 80%;
@@ -412,19 +412,19 @@ const Card = styled.div<{ $expanded: boolean }>`
   transition: height 0.3s ease;
 
   ${media.medium`
-    width: 36rem;
-    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "40rem")};
-    min-width: 36rem;
-    max-width: 36rem;
+    width: 38rem;
+    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "33rem")};
+    min-width: 38rem;
+    max-width: 38rem;
     padding: 2rem;
     margin: 0;
   `};
 
   ${media.small`
-    width: 24.9rem;
-    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "24.2rem")};
-    min-width: 24.9rem;
-    max-width: 24.9rem;
+    width: 25.9rem;
+    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "25.2rem")};
+    min-width: 25.9rem;
+    max-width: 25.9rem;
     padding: 1.5rem;
     margin: 0;
   `};

@@ -62,6 +62,10 @@ const Wrapper = styled.div`
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+
+  ${media.small`
+    scroll-snap-type: none;
+  `};
 `;
 
 const SnapSection = styled(motion.div)`
@@ -76,7 +80,9 @@ const SnapSection = styled(motion.div)`
   position: relative;
 
   ${media.small`
-    overflow:hidden;
+    overflow: hidden;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
   `};
 `;
 
