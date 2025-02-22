@@ -9,7 +9,6 @@ import PartBox from "./PartBox";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
-  console.log("isExpired:", isExpired);
 
   return (
     <BGC
