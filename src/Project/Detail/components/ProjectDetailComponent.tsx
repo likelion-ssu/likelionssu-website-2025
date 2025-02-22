@@ -77,7 +77,9 @@ const ProjectDetailComponent = () => {
     <>
       <BG>
         <BackBtnWrapper onClick={() => navigate(-1)}>
-          <BackArrow />
+          <BackBtnSvgWrapper>
+            <BackArrow />
+          </BackBtnSvgWrapper>
         </BackBtnWrapper>
 
         <ProjectContainer>
@@ -138,13 +140,21 @@ const BG = styled.div`
 
 const BackBtnWrapper = styled.div`
   width: 100%;
-  padding: 1rem;
-  padding-left: 3.5rem;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+
+  ${media.small`
+    padding-top: 3rem;
+  `}
 
   display: flex;
   justify-content: left;
+`;
 
+const BackBtnSvgWrapper = styled.div`
   cursor: pointer;
+
+  padding: 2rem;
 `;
 
 const ProjectContainer = styled.div`
