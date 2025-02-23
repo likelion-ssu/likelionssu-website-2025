@@ -58,7 +58,7 @@ const Title = styled.div`
 
   color: #fff;
 
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
 
   font-style: normal;
   font-weight: 600;
