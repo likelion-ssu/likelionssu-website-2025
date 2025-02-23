@@ -376,6 +376,7 @@ const ApplyBtn = styled.button`
   gap: 1rem;
   border-radius: 10px;
   background: #fff;
+  font-family: "Pretendard Variable";
   color: black;
   font-size: 1.8rem;
   font-weight: 600;
@@ -401,7 +402,7 @@ const ApplyTitle = styled.p`
     color: #FFF;
     text-align: center;
     font-feature-settings: 'calt' off;
-    font-family: Pretendard;
+    font-family: "Pretendard Variable";
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 600;
