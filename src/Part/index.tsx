@@ -49,7 +49,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  max-width: 1440px;
+  /* max-width: 1440px; */
   width: 100%;
   margin: 0 auto;
   position: relative;
