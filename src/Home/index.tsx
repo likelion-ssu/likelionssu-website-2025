@@ -77,6 +77,7 @@ const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 100vw;
   height: 100vh;
   gap: 8rem;
 
@@ -94,8 +95,7 @@ const TextContainer = styled.div`
   align-items: center;
   gap: 4rem;
   position: relative;
-  min-width: 102.7rem;
-  margin-top: 10rem;
+  margin-top: 1rem;
 
   ${media.medium`
     min-width: 100%;
@@ -192,7 +192,8 @@ const SubTitle = styled.div`
 const MainBtnContainer = styled.div`
   display: flex;
   gap: 4rem;
-  width: 100vw;
+  width: 100%;
+  justify-content: center;
 
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   padding: 5.1rem 8.5rem 0rem 8.5rem;
@@ -225,7 +226,6 @@ const ThreeSceneContainer = styled.div`
 const Container = styled.div`
   position: relative;
   height: 100vh;
-  max-width: 1440px;
   width: 100%;
   z-index: 1;
 `;
