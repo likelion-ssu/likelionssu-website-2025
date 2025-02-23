@@ -6,51 +6,56 @@ import Footer from "../common/components/Footer";
 import media from "../common/styles/media";
 import type { DefaultTheme } from "styled-components";
 
-import pc_titleImg from "./assets/pc_possible.png";
+import pcTitle from "./assets/POSSIBILITY TO REALITY.png";
 import possibleImg from "./assets/possible.png";
 import toImg from "./assets/to.png";
 import realityImg from "./assets/reality.png";
+import ThreeScene from "./components/ThreeScene";
 
 const Home = () => {
   return (
     <>
       <TopBar type="home" />
-      <Container>
-        <MainContainer>
-          <TextContainer>
-            <TitleWrapper>
-              <Title>POSSIBILITY&nbsp;TO&nbsp;&nbsp;REALITY</Title>
-              <img src={pc_titleImg} />
-            </TitleWrapper>
+      <BackgroundWrapper>
+        <Container>
+          <MainContainer>
+            <TextContainer>
+              <TitleWrapper>
+                <img src={pcTitle} />
+                <ThreeSceneContainer>
+                  <ThreeScene />
+                </ThreeSceneContainer>
+              </TitleWrapper>
 
-            <MobileTitleWrapper>
-              <MobileTitleBg>
-                <MobileTitleItem>POSSIBILITY</MobileTitleItem>
-                <img src={possibleImg} />
-              </MobileTitleBg>
+              <MobileTitleWrapper>
+                <MobileTitleBg>
+                  <MobileTitleItem>POSSIBILITY</MobileTitleItem>
+                  <img src={possibleImg} />
+                </MobileTitleBg>
 
-              <MobileTitleBg>
-                <MobileTitleItem>TO</MobileTitleItem>
-                <img src={toImg} />
-              </MobileTitleBg>
+                <MobileTitleBg>
+                  <MobileTitleItem>TO</MobileTitleItem>
+                  <img src={toImg} />
+                </MobileTitleBg>
 
-              <MobileTitleBg>
-                <MobileTitleItem>REALITY</MobileTitleItem>
-                <img src={realityImg} />
-              </MobileTitleBg>
-            </MobileTitleWrapper>
+                <MobileTitleBg>
+                  <MobileTitleItem>REALITY</MobileTitleItem>
+                  <img src={realityImg} />
+                </MobileTitleBg>
+              </MobileTitleWrapper>
 
-            <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
-          </TextContainer>
-        </MainContainer>
+              <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
+            </TextContainer>
+          </MainContainer>
 
-        <MainBtnContainer>
-          {mainBtns.map((btn, index) => (
-            <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
-          ))}
-        </MainBtnContainer>
+          <MainBtnContainer>
+            {mainBtns.map((btn, index) => (
+              <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
+            ))}
+          </MainBtnContainer>
+        </Container>
         <Footer />
-      </Container>
+      </BackgroundWrapper>
     </>
   );
 };
@@ -65,7 +70,7 @@ const MainContainer = styled.div`
   gap: 8rem;
 
   margin: 0 8.5rem;
-  margin-top: 50.3rem;
+  margin-top: 21.6rem;
 
   ${media.small`
     margin: 0 5.5rem;
@@ -146,25 +151,9 @@ const TitleWrapper = styled.div`
   height: 10rem;
   position: relative;
 
-  background-color: ${({ theme }) => theme.colors.Black};
-
   ${media.small`
     display: none;
   `};
-`;
-
-const Title = styled.div`
-  position: absolute;
-  left: 0;
-
-  background: linear-gradient(90deg, #1cffff 0%, #74c8ff 48.5%, #bab0ff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  font-family: "SUIT Variable";
-  font-size: 8rem;
-  font-weight: 900;
 `;
 
 const SubTitle = styled.div`
@@ -195,7 +184,7 @@ const MainBtnContainer = styled.div`
   width: 100%;
 
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-  padding: 5.1rem 8.5rem 8rem 8.5rem;
+  padding: 5.1rem 8.5rem 0rem 8.5rem;
 
   ${media.small`
     flex-direction: column;
@@ -207,8 +196,25 @@ const MainBtnContainer = styled.div`
   `}
 `;
 
+const BackgroundWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+`;
+
+const ThreeSceneContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -999;
+`;
+
 const Container = styled.div`
+  position: relative;
   height: 100vh;
   max-width: 1440px;
   width: 100%;
+  z-index: 1;
 `;
