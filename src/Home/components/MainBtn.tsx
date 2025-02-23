@@ -33,6 +33,7 @@ const StyledMainBtn = styled(Link)`
   width: 45rem;
   height: 12rem;
   padding: 2rem 2.2rem;
+  border-radius: 10px;
 
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
