@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Footer from "../../common/components/Footer";
-import BgImg from "../assets/BgImg.jpg";
+import BgImg from "../assets/BgImg.png";
 import TopBar from "../../common/components/TopBar";
 import ProjectCard from "./ProjectCard";
 import { projectData } from "../Detail/constants/projectData";
@@ -110,7 +110,7 @@ const BG = styled.div`
   padding: 3rem 0;
 
   background: url(${BgImg});
-  background-size: contain;
+  background-size: cover;
   background-size: center;
   background-repeat: no-repeat;
 
