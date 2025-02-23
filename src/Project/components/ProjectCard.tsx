@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { Project } from "../Detail/constants/projectData";
+import React from "react";
 
 interface ProjectCardProps {
   project: Pick<Project, "id" | "generation" | "name" | "title" | "subtitle">;
 }
 
+// react.memo 사용
+const ProjectCover = React.memo(({ src }: { src: string }) => {
+  return <CoverImg src={src} alt="Project Cover" />;
+});
+
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <CardContainer>
-      <CoverImg src={`/images/projectCover/${project.name}-1.png`} alt="Project Cover" />
+      <ProjectCover src={`/images/projectCover/${project.name}-1.webp`} />
       <TextContainer>
         <TextBody7>{project.generation}기</TextBody7>
         <TextBody2>{project.title}</TextBody2>
@@ -95,4 +101,6 @@ const TextBody6 = styled.div`
 const TextBody2 = styled.div`
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  font-size: 1.8rem;
+  font-weight: 600;
 `;

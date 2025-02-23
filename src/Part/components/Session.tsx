@@ -8,10 +8,6 @@ export default function Session() {
   const weeks = ["WEEK 01", "WEEK 02", "WEEK 03", "WEEK 04", "WEEK 05", "WEEK 06"];
   const contents = roleContents[selectedRole] || [];
 
-  if (selectedRole === "pm" || selectedRole === "de") {
-    weeks.splice(-2, 2, "WEEK 05-06");
-  }
-
   return (
     <Container>
       <Title>SESSION</Title>
@@ -35,11 +31,12 @@ const Container = styled.div`
 
   margin-top: 15.4rem;
   margin-bottom: 13rem;
-  
+
   ${media.small`
     margin-top: 6rem;
     margin-bottom: 6rem;
     align-items: flex-start;
+    gap: 2rem;
   `};
 `;
 
@@ -87,7 +84,8 @@ const SectionCard = styled.div`
     padding: 1.2rem 1.6rem;
     align-items: center;
     gap: 1.6rem;
-    max-width: 31.8rem;
+    width: 31.8rem;
+    height: auto;
   `};
 `;
 
@@ -113,15 +111,12 @@ const SectionWeek = styled.div`
 `;
 
 const SectionContent = styled.div`
-  white-space: nowrap;
-  overflow-x: scroll;
-
   color: ${({ theme }) => theme.colors.White};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
 
   ${media.small`
-    padding: 0.8rem 1.2rem;
+    padding: 0.8rem 1rem;
     gap: 1rem;
-    ${({ theme }: any) => theme.mixins.font(theme.fonts.Pretendard.body6)}
+    ${({ theme }: any) => theme.mixins.font(theme.fonts.Pretendard.body7)}
   `};
 `;

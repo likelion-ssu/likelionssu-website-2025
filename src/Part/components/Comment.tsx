@@ -12,7 +12,7 @@ import media from "../../common/styles/media";
 
 export default function Comment() {
   const { selectedRole } = useRoleStore();
-  const comments = commentsData[selectedRole] ?? [];
+  const [comments, setComments] = useState(commentsData[selectedRole] ?? []);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
   const sliderRef = useRef<Slider | null>(null);
@@ -51,6 +51,7 @@ export default function Comment() {
     ]
   };
 
+  // 무한 클릭 방지
   useEffect(() => {
     if (isDisabled) {
       const timeout = setTimeout(() => {
@@ -59,6 +60,15 @@ export default function Comment() {
       return () => clearTimeout(timeout);
     }
   }, [isDisabled]);
+
+
+  // 카드 인덱스 초기화
+  useEffect(() => {
+    setComments(commentsData[selectedRole] ?? []);
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0);
+    }
+  }, [selectedRole]);
 
   const handlePrev = () => {
     if (isDisabled || !sliderRef.current || currentSlide === 0) return;
@@ -170,7 +180,7 @@ export default function Comment() {
 const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   position: absolute;
   top: 50%;
-  left: 5%;
+  left: 1%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.6);
   border: 0.903px solid #fff;
@@ -205,7 +215,7 @@ const CustomPrevArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
 const CustomNextArrow = styled.button<{ $hidden: boolean; disabled: boolean }>`
   position: absolute;
   top: 50%;
-  right: 5%;
+  right: 1%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.6);
   border: 0.903px solid #fff;
@@ -256,7 +266,7 @@ const ExpandButton = styled.button`
   `};
 
   ${media.small`
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     svg {
       width: 80%;
       height: 80%;
@@ -300,6 +310,8 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-list {
     overflow: visible;
+    width: 130rem;
+    padding: 0 3rem;
 
     ${media.medium`
     overflow: hidden;
@@ -316,9 +328,10 @@ const StyledSlider = styled(Slider as any)`
 
   .slick-track {
     display: flex !important;
-    gap: 3rem;
+    gap: 4rem;
     margin-left: 0;
     padding-right: 0;
+    width: 1000px;
 
     ${media.medium`
       gap: 4rem;
@@ -350,8 +363,8 @@ const StyledSlider = styled(Slider as any)`
     }
   }
 `;
+
 const Container = styled.div`
-  width: 143.6rem;
   display: flex;
   justify-content: center;
   padding-bottom: 7rem;
@@ -376,7 +389,7 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 8.6rem;
+  padding-left: 6rem;
   height: 35.8rem;
 
   ${media.medium`
@@ -393,10 +406,10 @@ const LeftContainer = styled.div`
 `;
 
 const Card = styled.div<{ $expanded: boolean }>`
-  width: 45rem;
-  height: ${({ $expanded }) => ($expanded ? "auto" : "35.8rem")};
-  max-width: 45rem;
-  min-width: 45rem;
+  width: 40rem;
+  height: ${({ $expanded }) => ($expanded ? "auto" : "35rem")};
+  max-width: 40rem;
+  min-width: 40rem;
   border-radius: 20px;
   border: 1.5px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.06);
@@ -409,19 +422,19 @@ const Card = styled.div<{ $expanded: boolean }>`
   transition: height 0.3s ease;
 
   ${media.medium`
-    width: 36rem;
-    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "40rem")};
-    min-width: 36rem;
-    max-width: 36rem;
+    width: 38rem;
+    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "33rem")};
+    min-width: 38rem;
+    max-width: 38rem;
     padding: 2rem;
     margin: 0;
   `};
 
   ${media.small`
-    width: 24.9rem;
-    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "24.2rem")};
-    min-width: 24.9rem;
-    max-width: 24.9rem;
+    width: 25.9rem;
+    height: ${(props: { $expanded: boolean }) => (props.$expanded ? "auto" : "25.2rem")};
+    min-width: 25.9rem;
+    max-width: 25.9rem;
     padding: 1.5rem;
     margin: 0;
   `};
@@ -429,7 +442,8 @@ const Card = styled.div<{ $expanded: boolean }>`
 
 const CarouselWrapper = styled.div`
   display: flex;
-  width: 145rem;
+  width: 100%;
+  position: relative;
 
   ${media.medium`
     width: 100%;
@@ -451,7 +465,7 @@ export const RoleText = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.colors.White};
   font-family: "SUIT Variable";
-  font-size: 6rem;
+  font-size: 5.8rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -465,7 +479,7 @@ export const RoleText = styled.div`
 export const CommentSubTitle = styled.div`
   margin-top: 1rem;
   color: ${({ theme }) => theme.colors["10"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
   width: 41.6rem;
 
   ${media.small` 
@@ -491,7 +505,7 @@ export const Tag = styled.div`
 
 export const Name = styled.div`
   color: ${({ theme }) => theme.colors.White};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body3)}
 
   ${media.small` 
     font-size: 1.4rem;
@@ -500,7 +514,7 @@ export const Name = styled.div`
 
 export const CardinalNumber = styled.div`
   color: ${({ theme }) => theme.colors["30"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
 
   ${media.small` 
     font-size: 1rem;
@@ -509,7 +523,7 @@ export const CardinalNumber = styled.div`
 
 export const CommentCaption = styled.div`
   color: ${({ theme }) => theme.colors["10"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
   line-height: 190%;
   overflow-y: auto;
 

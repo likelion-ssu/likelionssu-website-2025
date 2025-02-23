@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import IcArrow from "../../common/assets/arrow_down.svg?react";
 import { RefObject } from "react";
 import media from "../../common/styles/media";
+import { formlink } from "../constants/formlink";
 
 interface TimerSectionActiveProps {
   snapContainerRef: RefObject<HTMLDivElement>;
@@ -65,7 +66,7 @@ const TimerSectionActive = ({ snapContainerRef }: TimerSectionActiveProps) => {
           <TimerTitle>
             숭실대 멋쟁이사자처럼은 <Blue>지금 서류 모집 중</Blue>
           </TimerTitle>
-          <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+          <ApplyBtn onClick={() => window.open(formlink)}>지원 서류 작성하기</ApplyBtn>
         </TimerContainer>
         <TitleWrapper>
           <TitleRight>BABYLION RECRUITING 13th SSU BABYLION RECRUITING 13th SSU </TitleRight>

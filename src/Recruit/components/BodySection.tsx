@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import media from "../../common/styles/media";
 import RoadmapImg from "../assets/roadmap.png";
 import PartBox from "./PartBox";
+import { formlink } from "../constants/formlink";
 
 const Body = () => {
   const { isExpired } = useCountDownStore();
-  console.log("isExpired:", isExpired);
 
   return (
     <BGC
@@ -66,7 +66,7 @@ const Body = () => {
           <LineBox $bottomBorder />
           <ApplyBox>
             <ApplyTitle>지금 바로 지원하세요</ApplyTitle>
-            <ApplyBtn>지원 서류 작성하기</ApplyBtn>
+            <ApplyBtn onClick={() => window.open(formlink)}>지원 서류 작성하기</ApplyBtn>
           </ApplyBox>
           <LineBox $topBorder />
         </ApplyContainer>
@@ -392,6 +392,20 @@ const ApplyBtn = styled.button`
   `};
 `;
 
-const ApplyTitle = styled(Title)`
+const ApplyTitle = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
+
   margin-bottom: 0;
+
+  ${media.small`
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'calt' off;
+    font-family: Pretendard;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px; /* 162.5% */
+    letter-spacing: -0.16px;
+  `};
 `;

@@ -10,6 +10,7 @@ const Activity_ImgAnimation = ({ src, isActive }: ImgProps) => {
   return (
     <Wrapper>
       <MotionImg
+        loading="lazy"
         src={src}
         style={{
           scale: isActive ? 1 : 0.95,

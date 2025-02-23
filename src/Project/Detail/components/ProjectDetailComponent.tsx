@@ -44,7 +44,7 @@ const ProjectDetailComponent = () => {
 
   // 이미지 로드 관련
   const imageFiles: { [key: string]: string } = import.meta.glob(
-    "/src/Project/assets/projectImgs/*.{png,PNG}",
+    "/src/Project/assets/projectImgs/*.{png,PNG,webp,WEBP}",
     {
       eager: true,
       as: "url"
@@ -77,14 +77,16 @@ const ProjectDetailComponent = () => {
     <>
       <BG>
         <BackBtnWrapper onClick={() => navigate(-1)}>
-          <BackArrow />
+          <BackBtnSvgWrapper>
+            <BackArrow />
+          </BackBtnSvgWrapper>
         </BackBtnWrapper>
 
         <ProjectContainer>
           <ImgContainer>
             <StyledSlider {...settings} ref={sliderRef}>
               {filteredImages.map((src, index) => (
-                <Img key={index} src={src} alt={`guide-${index}`} />
+                <Img rel="preload" loading="lazy" key={index} src={src} alt={`guide-${index}`} />
               ))}
             </StyledSlider>
             <BtnContainer>
@@ -131,19 +133,29 @@ const BG = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
   padding-bottom: 8rem;
 `;
 
 const BackBtnWrapper = styled.div`
-  padding: 1rem;
-  padding-left: 3.5rem;
+  width: 100%;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+  z-index: 0;
+
+  ${media.small`
+    padding-top: 3rem;
+  `}
 
   display: flex;
   justify-content: left;
+`;
 
+const BackBtnSvgWrapper = styled.div`
   cursor: pointer;
+
+  padding: 2rem;
 `;
 
 const ProjectContainer = styled.div`
@@ -156,8 +168,8 @@ const ProjectContainer = styled.div`
   margin: 0 15rem;
 
   ${media.small`
-    padding: 1rem 3.5rem !important;
-    margin: 0 auto;
+    padding: 1.5rem !important;
+    margin: 1.5rem 3rem !important; 
   `}
 
   ${media.medium`
@@ -207,7 +219,7 @@ const StyledSlider = styled(Slider as any)`
     `}
 
     ${media.medium`
-      width: 65rem;
+      width: 60rem;
     `}
 
     ${media.small`
@@ -285,6 +297,10 @@ const TextBody5 = styled.p`
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
 `;
 
+const TextBody6 = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body6)}
+`;
+
 const PageText = styled(TextBody5)`
   color: ${({ theme }) => theme.colors[30]};
 `;
@@ -329,7 +345,7 @@ const TagContainer = styled.div`
   margin: 1.2rem 0;
 `;
 
-const Tag = styled(TextBody5)`
+const Tag = styled(TextBody6)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -358,7 +374,7 @@ const NameContainer = styled.div`
   word-break: keep-all;
 `;
 
-const Name = styled(TextBody5)`
+const Name = styled(TextBody6)`
   color: ${({ theme }) => theme.colors[60]};
 
   ${media.small`
