@@ -12,7 +12,7 @@ import media from "../../common/styles/media";
 
 export default function Comment() {
   const { selectedRole } = useRoleStore();
-  const comments = commentsData[selectedRole] ?? [];
+  const [comments, setComments] = useState(commentsData[selectedRole] ?? []);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
   const sliderRef = useRef<Slider | null>(null);
@@ -51,6 +51,7 @@ export default function Comment() {
     ]
   };
 
+  // 무한 클릭 방지
   useEffect(() => {
     if (isDisabled) {
       const timeout = setTimeout(() => {
@@ -59,6 +60,15 @@ export default function Comment() {
       return () => clearTimeout(timeout);
     }
   }, [isDisabled]);
+
+
+  // 카드 인덱스 초기화
+  useEffect(() => {
+    setComments(commentsData[selectedRole] ?? []);
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0);
+    }
+  }, [selectedRole]);
 
   const handlePrev = () => {
     if (isDisabled || !sliderRef.current || currentSlide === 0) return;
