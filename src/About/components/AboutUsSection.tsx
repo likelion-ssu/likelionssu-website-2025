@@ -167,13 +167,13 @@ const Description = styled.div`
   padding-left: 4rem;
   padding-bottom: 3.13rem;
 
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
   white-space: pre-wrap;
 
   word-break: keep-all;
-  line-height: 3rem;
+  line-height: 2.5rem;
 
   z-index: 1;
 

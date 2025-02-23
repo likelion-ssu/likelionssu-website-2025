@@ -8,7 +8,7 @@ interface ProjectCardProps {
 
 // react.memo 사용
 const ProjectCover = React.memo(({ src }: { src: string }) => {
-  return <CoverImg src={src} alt="Project Cover" />;
+  return <CoverImg rel="preload" loading="lazy" src={src} alt="Project Cover" />;
 });
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
