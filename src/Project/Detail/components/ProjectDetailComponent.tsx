@@ -44,7 +44,7 @@ const ProjectDetailComponent = () => {
 
   // 이미지 로드 관련
   const imageFiles: { [key: string]: string } = import.meta.glob(
-    "/src/Project/assets/projectImgs/*.{png,PNG}",
+    "/src/Project/assets/projectImgs/*.{png,PNG,webp,WEBP}",
     {
       eager: true,
       as: "url"
@@ -86,7 +86,7 @@ const ProjectDetailComponent = () => {
           <ImgContainer>
             <StyledSlider {...settings} ref={sliderRef}>
               {filteredImages.map((src, index) => (
-                <Img loading="lazy" key={index} src={src} alt={`guide-${index}`} />
+                <Img rel="preload" loading="lazy" key={index} src={src} alt={`guide-${index}`} />
               ))}
             </StyledSlider>
             <BtnContainer>
@@ -142,6 +142,7 @@ const BackBtnWrapper = styled.div`
   width: 100%;
   padding-left: 1.5rem;
   padding-top: 1rem;
+  z-index: 0;
 
   ${media.small`
     padding-top: 3rem;

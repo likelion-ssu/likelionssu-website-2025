@@ -14,8 +14,6 @@ interface TeamCategorySectionProps {
 }
 
 const TeamCategorySection: React.FC<TeamCategorySectionProps> = ({ title, teamType, members }) => {
-  console.log(teamType);
-
   return (
     <TeamWrapper $teamType={teamType}>
       <Title>{title}</Title>
