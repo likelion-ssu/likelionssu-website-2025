@@ -392,6 +392,20 @@ const ApplyBtn = styled.button`
   `};
 `;
 
-const ApplyTitle = styled(Title)`
+const ApplyTitle = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
+
   margin-bottom: 0;
+
+  ${media.small`
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'calt' off;
+    font-family: Pretendard;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px; /* 162.5% */
+    letter-spacing: -0.16px;
+  `};
 `;

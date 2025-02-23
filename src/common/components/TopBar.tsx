@@ -87,6 +87,12 @@ const LogoContainer = styled.div`
 const BtnContainer = styled.div`
   display: flex;
   gap: 3.5rem;
+  align-items: center;
+
+  ${media.small`
+  gap: 2rem;
+
+  `};
 `;
 
 const IcMenuStyled = styled(IcMenu)`
@@ -100,24 +106,41 @@ const IcMenuStyled = styled(IcMenu)`
 `;
 
 const ApplyBtn = styled.button`
-  color: var(--Basic-White, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  width: 16.2rem;
+  padding: 1.4rem 2.4rem;
+  gap: 1rem;
+  border-radius: 30px;
+
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(96deg, #6df5ff -0.2%, #8079b4 96.8%);
+
+  color: var(--Basic-White, #fff);
   font-family: Pretendard;
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  display: flex;
-  width: 16.2rem;
-  padding: 1.4rem 2.4rem;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  border-radius: 30px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(96deg, #6df5ff -0.2%, #8079b4 96.8%);
+
+  cursor: pointer;
 
   ${media.small`
- display:none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 8rem;
+    padding: 0.8rem 1rem;
+    gap: 3.113px;
+    border-radius: 20px;
+
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), 
+      linear-gradient(90deg, #6DF5FF 0%, #8079B4 100%);
+
+    font-size: 1rem;
+    font-weight: 400;
   `};
 `;
