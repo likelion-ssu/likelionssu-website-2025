@@ -1,6 +1,5 @@
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
-import { useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import vertexShader from "./shaders/vertex.glsl?raw";
@@ -9,7 +8,7 @@ import fragmentShader from "./shaders/fragment.glsl?raw";
 function Model() {
   const gltf = useLoader(GLTFLoader, "/models/model.gltf");
   const matcapTexture = useLoader(THREE.TextureLoader, "/models/0101.png");
-  const materialRef = useRef();
+  // const materialRef = useRef();
   const clock = new THREE.Clock();
 
   const shaderMaterial = new THREE.ShaderMaterial({
@@ -22,7 +21,7 @@ function Model() {
     transparent: true
   });
 
-  gltf.scene.traverse(child => {
+  gltf.scene.traverse((child: THREE.Object3D) => {
     if (child instanceof THREE.Mesh) {
       child.material = shaderMaterial;
     }
