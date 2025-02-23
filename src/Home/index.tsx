@@ -17,53 +17,59 @@ import ThreeScene from "./components/ThreeScene";
 const Home = () => {
   return (
     <>
-      <TopBar type="home" />
-      <BackgroundWrapper>
-        <Container>
-          <MainContainer>
-            <TextContainer>
-              <TitleWrapper>
-                <img src={pcTitle} />
-                <ThreeSceneContainer>
-                  <ThreeScene />
-                </ThreeSceneContainer>
-              </TitleWrapper>
+      <BackgroundOverlay>
+        <TopBar type="home" />
+        <BackgroundWrapper>
+          <Container>
+            <MainContainer>
+              <TextContainer>
+                <TitleWrapper>
+                  <img src={pcTitle} />
+                  <ThreeSceneContainer>
+                    <ThreeScene />
+                  </ThreeSceneContainer>
+                </TitleWrapper>
 
-              <MobileTitleWrapper>
-                <MobileTitleBg>
-                  <MobileTitleItem>POSSIBILITY</MobileTitleItem>
-                  <img src={possibleImg} />
-                </MobileTitleBg>
+                <MobileTitleWrapper>
+                  <MobileTitleBg>
+                    <MobileTitleItem>POSSIBILITY</MobileTitleItem>
+                    <img src={possibleImg} />
+                  </MobileTitleBg>
 
-                <MobileTitleBg>
-                  <MobileTitleItem>TO</MobileTitleItem>
-                  <img src={toImg} />
-                </MobileTitleBg>
+                  <MobileTitleBg>
+                    <MobileTitleItem>TO</MobileTitleItem>
+                    <img src={toImg} />
+                  </MobileTitleBg>
 
-                <MobileTitleBg>
-                  <MobileTitleItem>REALITY</MobileTitleItem>
-                  <img src={realityImg} />
-                </MobileTitleBg>
-              </MobileTitleWrapper>
+                  <MobileTitleBg>
+                    <MobileTitleItem>REALITY</MobileTitleItem>
+                    <img src={realityImg} />
+                  </MobileTitleBg>
+                </MobileTitleWrapper>
 
-              <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
-            </TextContainer>
+                <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
+              </TextContainer>
 
-            <MainBtnContainer>
-              {mainBtns.map((btn, index) => (
-                <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
-              ))}
-            </MainBtnContainer>
-          </MainContainer>
-        </Container>
-        <BG_IMG src={bgImg} />
-      </BackgroundWrapper>
-      <Footer />
+              <MainBtnContainer>
+                {mainBtns.map((btn, index) => (
+                  <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
+                ))}
+              </MainBtnContainer>
+            </MainContainer>
+          </Container>
+        </BackgroundWrapper>
+        <BG_IMG />
+        <Footer />
+      </BackgroundOverlay>
     </>
   );
 };
 
 export default Home;
+
+const BackgroundOverlay = styled.div`
+  background: rgba(0, 0, 0, 0.92);
+`;
 
 const MainContainer = styled.div`
   display: flex;
@@ -75,11 +81,9 @@ const MainContainer = styled.div`
   gap: 8rem;
 
   margin: 0 8.5rem;
-  margin-top: 10rem;
 
   ${media.small`
     margin: 0 5.5rem;
-    margin-top: 18.2rem;
   `}
 `;
 
@@ -91,6 +95,7 @@ const TextContainer = styled.div`
   gap: 4rem;
   position: relative;
   min-width: 102.7rem;
+  margin-top: 10rem;
 
   ${media.medium`
     min-width: 100%;
@@ -99,6 +104,7 @@ const TextContainer = styled.div`
   ${media.small`
     min-width: 100%;
     gap: 5rem;
+    margin-top: 20rem;
   `};
 `;
 
@@ -205,8 +211,6 @@ const BackgroundWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-
-  background: rgba(0, 0, 0, 0.92);
 `;
 
 const ThreeSceneContainer = styled.div`
@@ -226,12 +230,14 @@ const Container = styled.div`
   z-index: 1;
 `;
 
-const BG_IMG = styled.img`
+const BG_IMG = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: url(${bgImg});
+  background-size: cover;
 
   z-index: -1000;
 `;
