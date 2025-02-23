@@ -227,6 +227,7 @@ const ApplyBtn = styled.button`
   border-radius: 10px;
   background: #1a1a1a;
   color: #fff;
+  font-family: "Pretendard Variable";
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 600;
