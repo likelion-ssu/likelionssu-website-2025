@@ -77,9 +77,7 @@ const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100vw;
   height: 100vh;
-  gap: 8rem;
 
   margin: 0 8.5rem;
 
@@ -95,7 +93,7 @@ const TextContainer = styled.div`
   align-items: center;
   gap: 4rem;
   position: relative;
-  margin-top: 1rem;
+  margin-top: 34rem;
 
   ${media.medium`
     min-width: 100%;
@@ -194,9 +192,10 @@ const MainBtnContainer = styled.div`
   gap: 4rem;
   width: 100%;
   justify-content: center;
+  margin-top: 13.3rem;
+  margin-bottom: 8rem;
 
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-  padding: 5.1rem 8.5rem 0rem 8.5rem;
 
   ${media.small`
     flex-direction: column;
@@ -215,9 +214,9 @@ const BackgroundWrapper = styled.div`
 `;
 
 const ThreeSceneContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100vh;
   z-index: -999;
