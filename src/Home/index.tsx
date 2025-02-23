@@ -69,6 +69,7 @@ export default Home;
 
 const BackgroundOverlay = styled.div`
   background: rgba(0, 0, 0, 0.92);
+  height: 100vh;
 `;
 
 const MainContainer = styled.div`
