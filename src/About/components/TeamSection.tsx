@@ -126,6 +126,12 @@ const Title = styled.div`
   ${({ theme }) => theme.mixins.font(theme.fonts.Suit.subtitle2)}
   text-align: center;
   letter-spacing: 0.06rem;
+
+  ${media.small`
+    font-size: 1.2rem;
+font-style: normal;
+font-weight: 700;
+  `}
 `;
 
 const CardsContainer = styled.div<{ $teamType: string }>`
