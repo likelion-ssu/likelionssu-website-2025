@@ -392,6 +392,8 @@ const ApplyBtn = styled.button`
   `};
 `;
 
-const ApplyTitle = styled(Title)`
+const ApplyTitle = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body1)}
+
   margin-bottom: 0;
 `;
