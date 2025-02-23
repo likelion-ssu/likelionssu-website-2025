@@ -60,14 +60,14 @@ const StaticTitle = styled.div`
 const Title = styled(motion.div)`
   color: ${({ theme }) => theme.colors.White};
   font-family: "Pretendard Variable";
-  font-size: 7rem;
+  font-size: 5.4rem;
   font-weight: 600;
 `;
 
 const Description = styled(motion.div)`
   padding-right: 5rem;
   color: ${({ theme }) => theme.colors["30"]};
-  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body4)}
   line-height: 3.5rem;
   -webkit-font-smoothing: antialiased;
   white-space: pre-wrap;

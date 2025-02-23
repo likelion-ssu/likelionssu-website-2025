@@ -101,4 +101,6 @@ const TextBody6 = styled.div`
 const TextBody2 = styled.div`
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body2)}
+  font-size: 1.8rem;
+  font-weight: 600;
 `;

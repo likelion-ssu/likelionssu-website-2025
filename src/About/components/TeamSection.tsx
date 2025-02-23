@@ -15,7 +15,7 @@ interface TeamCategorySectionProps {
 
 const TeamCategorySection: React.FC<TeamCategorySectionProps> = ({ title, teamType, members }) => {
   return (
-    <TeamWrapper>
+    <TeamWrapper $teamType={teamType}>
       <Title>{title}</Title>
       <CardsContainer $teamType={teamType}>
         {members.map((person, index) => (
@@ -102,12 +102,19 @@ const Wrapper = styled.div`
   `}
 `;
 
-const TeamWrapper = styled.div`
+const TeamWrapper = styled.div<{ $teamType: string }>`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 3.6rem;
+
+  // 데스크탑만
+  height: ${props => (props.$teamType === "MANAGE" ? "100vh" : "50vh")};
+  ${media.medium`
+    height: auto;
+    justify-content: flex-start;
+  `}
 
   ${media.medium`
     gap: 3rem;
