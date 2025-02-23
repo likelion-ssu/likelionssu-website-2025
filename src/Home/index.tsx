@@ -56,10 +56,10 @@ const Home = () => {
                 ))}
               </MainBtnContainer>
             </MainContainer>
+            <Footer />
           </Container>
         </BackgroundWrapper>
         <BG_IMG />
-        <Footer />
       </BackgroundOverlay>
     </>
   );
@@ -103,7 +103,7 @@ const TextContainer = styled.div`
   ${media.small`
     min-width: 100%;
     gap: 5rem;
-    margin-top: 20rem;
+    margin-top: 30rem;
   `};
 `;
 
@@ -199,12 +199,14 @@ const MainBtnContainer = styled.div`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
 
   ${media.small`
+    margin: 0;
     flex-direction: column;
     padding: 2rem 3rem;
     gap: 1.2rem;
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20rem;
   `}
 `;
 
