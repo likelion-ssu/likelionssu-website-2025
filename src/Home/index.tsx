@@ -10,71 +10,80 @@ import pcTitle from "./assets/POSSIBILITY TO REALITY.png";
 import possibleImg from "./assets/possible.png";
 import toImg from "./assets/to.png";
 import realityImg from "./assets/reality.png";
+import bgImg from "../../public/models/0101.png";
+
 import ThreeScene from "./components/ThreeScene";
 
 const Home = () => {
   return (
     <>
-      <TopBar type="home" />
-      <BackgroundWrapper>
-        <Container>
-          <MainContainer>
-            <TextContainer>
-              <TitleWrapper>
-                <img src={pcTitle} />
-                <ThreeSceneContainer>
-                  <ThreeScene />
-                </ThreeSceneContainer>
-              </TitleWrapper>
+      <BackgroundOverlay>
+        <TopBar type="home" />
+        <BackgroundWrapper>
+          <Container>
+            <MainContainer>
+              <TextContainer>
+                <TitleWrapper>
+                  <img src={pcTitle} />
+                  <ThreeSceneContainer>
+                    <ThreeScene />
+                  </ThreeSceneContainer>
+                </TitleWrapper>
 
-              <MobileTitleWrapper>
-                <MobileTitleBg>
-                  <MobileTitleItem>POSSIBILITY</MobileTitleItem>
-                  <img src={possibleImg} />
-                </MobileTitleBg>
+                <MobileTitleWrapper>
+                  <MobileTitleBg>
+                    <MobileTitleItem>POSSIBILITY</MobileTitleItem>
+                    <img src={possibleImg} />
+                  </MobileTitleBg>
 
-                <MobileTitleBg>
-                  <MobileTitleItem>TO</MobileTitleItem>
-                  <img src={toImg} />
-                </MobileTitleBg>
+                  <MobileTitleBg>
+                    <MobileTitleItem>TO</MobileTitleItem>
+                    <img src={toImg} />
+                  </MobileTitleBg>
 
-                <MobileTitleBg>
-                  <MobileTitleItem>REALITY</MobileTitleItem>
-                  <img src={realityImg} />
-                </MobileTitleBg>
-              </MobileTitleWrapper>
+                  <MobileTitleBg>
+                    <MobileTitleItem>REALITY</MobileTitleItem>
+                    <img src={realityImg} />
+                  </MobileTitleBg>
+                </MobileTitleWrapper>
 
-              <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
-            </TextContainer>
-          </MainContainer>
+                <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
+              </TextContainer>
 
-          <MainBtnContainer>
-            {mainBtns.map((btn, index) => (
-              <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
-            ))}
-          </MainBtnContainer>
-        </Container>
+              <MainBtnContainer>
+                {mainBtns.map((btn, index) => (
+                  <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
+                ))}
+              </MainBtnContainer>
+            </MainContainer>
+          </Container>
+        </BackgroundWrapper>
+        <BG_IMG />
         <Footer />
-      </BackgroundWrapper>
+      </BackgroundOverlay>
     </>
   );
 };
 
 export default Home;
 
+const BackgroundOverlay = styled.div`
+  background: rgba(0, 0, 0, 0.92);
+`;
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  height: 100vh;
   gap: 8rem;
 
   margin: 0 8.5rem;
-  margin-top: 21.6rem;
 
   ${media.small`
     margin: 0 5.5rem;
-    margin-top: 18.2rem;
   `}
 `;
 
@@ -86,6 +95,7 @@ const TextContainer = styled.div`
   gap: 4rem;
   position: relative;
   min-width: 102.7rem;
+  margin-top: 10rem;
 
   ${media.medium`
     min-width: 100%;
@@ -94,6 +104,7 @@ const TextContainer = styled.div`
   ${media.small`
     min-width: 100%;
     gap: 5rem;
+    margin-top: 20rem;
   `};
 `;
 
@@ -181,7 +192,7 @@ const SubTitle = styled.div`
 const MainBtnContainer = styled.div`
   display: flex;
   gap: 4rem;
-  width: 100%;
+  width: 100vw;
 
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   padding: 5.1rem 8.5rem 0rem 8.5rem;
@@ -217,4 +228,16 @@ const Container = styled.div`
   max-width: 1440px;
   width: 100%;
   z-index: 1;
+`;
+
+const BG_IMG = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url(${bgImg});
+  background-size: cover;
+
+  z-index: -1000;
 `;
