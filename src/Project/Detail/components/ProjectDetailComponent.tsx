@@ -296,6 +296,10 @@ const TextBody5 = styled.p`
   ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body5)}
 `;
 
+const TextBody6 = styled.p`
+  ${({ theme }) => theme.mixins.font(theme.fonts.Pretendard.body6)}
+`;
+
 const PageText = styled(TextBody5)`
   color: ${({ theme }) => theme.colors[30]};
 `;
@@ -340,7 +344,7 @@ const TagContainer = styled.div`
   margin: 1.2rem 0;
 `;
 
-const Tag = styled(TextBody5)`
+const Tag = styled(TextBody6)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -369,7 +373,7 @@ const NameContainer = styled.div`
   word-break: keep-all;
 `;
 
-const Name = styled(TextBody5)`
+const Name = styled(TextBody6)`
   color: ${({ theme }) => theme.colors[60]};
 
   ${media.small`
