@@ -10,6 +10,8 @@ import pcTitle from "./assets/POSSIBILITY TO REALITY.png";
 import possibleImg from "./assets/possible.png";
 import toImg from "./assets/to.png";
 import realityImg from "./assets/reality.png";
+import bgImg from "../../public/models/0101.png";
+
 import ThreeScene from "./components/ThreeScene";
 
 const Home = () => {
@@ -46,16 +48,17 @@ const Home = () => {
 
               <SubTitle>숭실대학교 멋쟁이사자처럼에서 실현하세요</SubTitle>
             </TextContainer>
-          </MainContainer>
 
-          <MainBtnContainer>
-            {mainBtns.map((btn, index) => (
-              <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
-            ))}
-          </MainBtnContainer>
+            <MainBtnContainer>
+              {mainBtns.map((btn, index) => (
+                <MainBtn key={index} title={btn.title} caption={btn.caption} to={btn.to} />
+              ))}
+            </MainBtnContainer>
+          </MainContainer>
         </Container>
-        <Footer />
+        <BG_IMG src={bgImg} />
       </BackgroundWrapper>
+      <Footer />
     </>
   );
 };
@@ -67,10 +70,12 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  height: 100vh;
   gap: 8rem;
 
   margin: 0 8.5rem;
-  margin-top: 21.6rem;
+  margin-top: 10rem;
 
   ${media.small`
     margin: 0 5.5rem;
@@ -181,7 +186,7 @@ const SubTitle = styled.div`
 const MainBtnContainer = styled.div`
   display: flex;
   gap: 4rem;
-  width: 100%;
+  width: 100vw;
 
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   padding: 5.1rem 8.5rem 0rem 8.5rem;
@@ -200,6 +205,8 @@ const BackgroundWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
+
+  background: rgba(0, 0, 0, 0.92);
 `;
 
 const ThreeSceneContainer = styled.div`
@@ -217,4 +224,14 @@ const Container = styled.div`
   max-width: 1440px;
   width: 100%;
   z-index: 1;
+`;
+
+const BG_IMG = styled.img`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  z-index: -1000;
 `;
