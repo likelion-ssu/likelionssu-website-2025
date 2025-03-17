@@ -119,7 +119,7 @@ const ApplyBtn = styled.button`
     linear-gradient(96deg, #6df5ff -0.2%, #8079b4 96.8%);
 
   color: var(--Basic-White, #fff);
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 600;

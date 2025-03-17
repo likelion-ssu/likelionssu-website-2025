@@ -16,7 +16,7 @@ const Recruit = () => {
       <TopBar type="recruit" />
       <Wrapper ref={snapContainerRef}>
         <SnapContainer>
-          {isExpired ? (
+          {!isExpired ? (
             <Timer snapContainerRef={snapContainerRef} />
           ) : (
             <TimerActive snapContainerRef={snapContainerRef} />

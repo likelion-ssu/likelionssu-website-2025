@@ -169,7 +169,7 @@ const TitleWrapper = styled.div`
 const SubTitle = styled.div`
   color: ${({ theme }) => theme.colors.White};
   text-align: center;
-  font-family: Pretendard;
+  font-family: Pretendard Variable;
   font-size: 2.8rem;
   font-style: normal;
   font-weight: 400;
